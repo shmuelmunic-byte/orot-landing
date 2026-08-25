@@ -1,0 +1,37 @@
+:root{
+  --bg:#FBF8F3; --surface:#FFFFFF; --deep:#08477E; --blue:#0060A0; --cyan:#17A8DC;
+  --gold:#EDA51E; --ink:#1F2D36; --muted:#5C6B75; --line:#E7DFD2;
+  --maxw:820px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Heebo',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+img{max-width:100%;display:block}
+.skip-link{position:absolute;inset-inline-start:-9999px;top:0;z-index:200;background:var(--deep);color:#fff;padding:12px 20px;border-radius:0 0 12px 12px;font-weight:700}
+.skip-link:focus{inset-inline-start:12px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:4px}
+header{background:var(--deep);color:#fff}
+header .wrap{max-width:var(--maxw);margin:0 auto;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.15rem;color:#fff}
+.brand .mark{width:40px;height:40px;border-radius:10px;background:#fff;display:grid;place-items:center;padding:4px}
+.brand .mark img{width:100%;height:100%;object-fit:contain}
+.brand small{display:block;font-size:.62rem;font-weight:600;color:#9fbdd6;margin-top:-2px}
+.back{color:#fff;text-decoration:none;font-weight:600;font-size:.92rem;background:rgba(255,255,255,.12);padding:9px 16px;border-radius:999px;white-space:nowrap}
+.back:hover{background:rgba(255,255,255,.22)}
+main{max-width:var(--maxw);margin:0 auto;padding:44px 20px 60px}
+h1{font-size:clamp(1.7rem,5vw,2.3rem);color:var(--deep);letter-spacing:-.5px;margin-bottom:8px}
+.updated{color:var(--muted);font-size:.9rem;margin-bottom:28px}
+h2{font-size:1.3rem;color:var(--deep);margin:30px 0 10px}
+h3{font-size:1.05rem;margin:18px 0 6px}
+p,li{font-size:1.05rem;color:var(--ink)}
+p{margin-bottom:12px}
+ul,ol{margin:0 14px 16px 0;padding-inline-start:20px}
+li{margin-bottom:7px}
+strong{color:var(--deep)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:18px 0}
+.contact{background:rgba(23,168,220,.08);border:1px solid rgba(23,168,220,.25);border-radius:14px;padding:20px 22px;margin:22px 0}
+.contact a{font-weight:700}
+footer{border-top:1px solid var(--line);text-align:center;padding:26px 20px;color:var(--muted);font-size:.88rem}
+footer a{color:var(--blue)}
+.note{font-size:.9rem;color:var(--muted);font-style:normal}

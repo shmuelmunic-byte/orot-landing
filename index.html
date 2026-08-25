@@ -207,9 +207,58 @@ footer{background:var(--deep);color:#cfe0ee;padding:44px 0 30px}
 .wa-float{position:fixed;bottom:20px;left:20px;z-index:60;width:58px;height:58px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 8px 24px rgba(37,211,102,.5);color:#fff;transition:.2s}
 .wa-float:hover{transform:scale(1.08)}
 .wa-float svg{width:30px;height:30px}
+
+/* ===== accessibility (IS 5568 / תקנות נגישות) ===== */
+.skip-link{position:absolute;inset-inline-start:-9999px;top:0;z-index:200;background:var(--deep);color:#fff;padding:12px 20px;border-radius:0 0 12px 12px;font-weight:700}
+.skip-link:focus{inset-inline-start:12px}
+a:focus-visible,button:focus-visible,input:focus-visible,.btn:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:4px}
+/* user accessibility preference classes (toggled on <html>) */
+html.a11y-text-110{font-size:110%}
+html.a11y-text-125{font-size:125%}
+html.a11y-text-140{font-size:140%}
+html.a11y-contrast-high{filter:contrast(1.4)}
+html.a11y-invert{filter:invert(1) hue-rotate(180deg)}
+html.a11y-invert img{filter:invert(1) hue-rotate(180deg)}
+html.a11y-links a{text-decoration:underline!important;outline:2px solid var(--gold);outline-offset:1px;background:rgba(237,165,30,.16)}
+html.a11y-readable,html.a11y-readable *{font-family:Arial,"Segoe UI",sans-serif!important}
+html.a11y-lines *{line-height:2!important;letter-spacing:.01em}
+html.a11y-noanim *,html.a11y-noanim{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+/* accessibility widget */
+.a11y-btn{position:fixed;bottom:20px;right:20px;z-index:70;width:52px;height:52px;border-radius:50%;background:var(--deep);color:#fff;border:0;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px rgba(8,71,126,.4)}
+.a11y-btn svg{width:28px;height:28px}
+.a11y-panel{position:fixed;bottom:82px;right:20px;z-index:71;width:min(330px,calc(100vw - 40px));background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-lg);padding:16px;display:none}
+.a11y-panel.open{display:block}
+.a11y-panel h2{font-size:1.08rem;margin-bottom:2px}
+.a11y-panel .sub{font-size:.8rem;color:var(--muted);margin-bottom:12px}
+.a11y-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.a11y-opt{padding:11px 8px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);font-family:inherit;font-size:.85rem;font-weight:600;color:var(--ink);cursor:pointer;text-align:center}
+.a11y-opt[aria-pressed="true"]{border-color:var(--blue);background:rgba(23,168,220,.14);color:var(--deep)}
+.a11y-reset{grid-column:1/-1;background:var(--deep);color:#fff;border:0;padding:11px;border-radius:10px;font-family:inherit;font-weight:700;cursor:pointer}
+.a11y-panel .stmt{display:block;text-align:center;margin-top:10px;font-size:.82rem;color:var(--blue);text-decoration:underline}
+html.a11y-invert .a11y-btn,html.a11y-invert .a11y-panel{filter:invert(1) hue-rotate(180deg)}
+@media print{html[class*="a11y-"]{filter:none!important;font-size:100%!important}.a11y-btn,.a11y-panel,.wa-float{display:none!important}}
+/* form validation + consent */
+.field .err{display:block;color:#c0392b;font-size:.82rem;margin-top:5px;font-weight:600}
+.field input[aria-invalid="true"]{border-color:#c0392b}
+.consent{display:flex;gap:9px;align-items:flex-start;font-size:.86rem;color:var(--muted);margin:4px 0 6px;text-align:right;cursor:pointer;line-height:1.5}
+.consent input{width:18px;height:18px;margin-top:2px;flex:0 0 auto}
+.consent a{color:var(--blue);text-decoration:underline}
+.consent-err{display:block;color:#c0392b;font-size:.82rem;margin-bottom:12px;font-weight:600}
+/* legal links in footer */
+.legal-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:14px;font-size:.85rem}
+.legal-links a{color:#cfe0ee;text-decoration:underline}
+.legal-links a:hover{color:#fff}
 </style>
+<script>
+/* apply saved accessibility prefs before paint (avoid flash) */
+(function(){try{var p=JSON.parse(localStorage.getItem('orot_a11y_v1')||'{}');var c=document.documentElement.classList;
+if(p.text>0)c.add('a11y-text-'+({1:110,2:125,3:140}[p.text]));
+if(p.contrast)c.add('a11y-contrast-high');if(p.invert)c.add('a11y-invert');if(p.links)c.add('a11y-links');
+if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)c.add('a11y-noanim');}catch(e){}})();
+</script>
 </head>
 <body>
+<a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
 
 <!-- NAV -->
 <header>
@@ -218,7 +267,7 @@ footer{background:var(--deep);color:#cfe0ee;padding:44px 0 30px}
       <span class="mark"><img src="assets/img/logo_mark.png" alt="מכינת אורות טלמון"></span>
       <span>מכינת אורות<small>טלמון · נחלת בנימין</small></span>
     </a>
-    <nav class="navlinks">
+    <nav class="navlinks" aria-label="ניווט ראשי">
       <a href="#day">יום בחיים</a>
       <a href="#torah">תורה בסבבה</a>
       <a href="#bogrim">בוגרים</a>
@@ -237,6 +286,7 @@ footer{background:var(--deep);color:#cfe0ee;padding:44px 0 30px}
   </div>
 </header>
 
+<main id="main-content" role="main">
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-bg"><img src="assets/img/hero.jpg" alt="חבורת בחורי מכינת אורות על גבעה מול הרי מודיעין"></div>
@@ -390,14 +440,16 @@ footer{background:var(--deep);color:#cfe0ee;padding:44px 0 30px}
       <div class="formfields" id="formFields">
         <h2>בוא לראות מקרוב</h2>
         <p class="sub">השאר שם וטלפון, ורועי יחזור אליך לתאם ביקור</p>
-        <form id="leadForm">
-          <div class="field"><label for="name">איך קוראים לך?</label><input id="name" name="name" type="text" placeholder="שם מלא" required></div>
-          <div class="field"><label for="phone">טלפון</label><input id="phone" name="phone" type="tel" inputmode="tel" placeholder="05X-XXXXXXX" required></div>
+        <form id="leadForm" novalidate>
+          <div class="field"><label for="name">איך קוראים לך?</label><input id="name" name="name" type="text" placeholder="שם מלא" required aria-required="true" aria-describedby="name-err"><span id="name-err" class="err" role="alert" hidden>נא למלא שם מלא</span></div>
+          <div class="field"><label for="phone">טלפון</label><input id="phone" name="phone" type="tel" inputmode="tel" dir="ltr" placeholder="05X-XXXXXXX" required aria-required="true" aria-describedby="phone-err"><span id="phone-err" class="err" role="alert" hidden>נא למלא מספר טלפון תקין (10 ספרות)</span></div>
+          <label class="consent" for="consent"><input type="checkbox" id="consent" required aria-required="true"><span>אני מאשר/ת שאפשר לחזור אליי בטלפון או בוואטסאפ בנוגע למכינה, וקראתי את <a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
+          <span id="consent-err" class="consent-err" role="alert" hidden>יש לאשר את מדיניות הפרטיות כדי לשלוח</span>
           <button type="submit" class="btn btn-gold">שלח, אני רוצה לבוא</button>
         </form>
         <p class="orwa">או פשוט <a href="https://wa.me/972542520537?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%95%D7%A2%D7%99%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%93%D7%A3%20%D7%A9%D7%9C%20%D7%9E%D7%9B%D7%99%D7%A0%D7%AA%20%D7%90%D7%95%D7%A8%D7%95%D7%AA%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%91%D7%99%D7%A7%D7%95%D7%A8" target="_blank" rel="noopener">כתוב לרועי בוואטסאפ ▸</a></p>
       </div>
-      <div class="thanks" id="thanks">
+      <div class="thanks" id="thanks" role="status" aria-live="polite">
         <div class="big">🙌</div>
         <h2>קיבלנו! רועי יחזור אליך</h2>
         <p style="color:var(--muted);margin-top:8px">בינתיים אתה מוזמן לעבור על הסרטון של הבוגרים ולהתרשם</p>
@@ -405,6 +457,8 @@ footer{background:var(--deep);color:#cfe0ee;padding:44px 0 30px}
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -418,9 +472,34 @@ footer{background:var(--deep);color:#cfe0ee;padding:44px 0 30px}
     </div>
   </div>
   <div class="wrap foot-bottom">
+    <nav class="legal-links" aria-label="קישורים משפטיים">
+      <a href="accessibility.html">הצהרת נגישות</a>
+      <a href="privacy.html">מדיניות פרטיות</a>
+      <a href="terms.html">תקנון שימוש</a>
+    </nav>
     <span class="foot-credit">מכינת אורות טלמון · נחלת בנימין &nbsp;|&nbsp; נבנה על ידי <img src="assets/img/shiftup-compact.png" alt="Shift Up" class="su-logo"> שיווק דיגיטלי</span>
   </div>
 </footer>
+
+<!-- ACCESSIBILITY WIDGET -->
+<button class="a11y-btn" id="a11yBtn" aria-expanded="false" aria-controls="a11yPanel" aria-label="תפריט נגישות" aria-keyshortcuts="Alt+A">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="3.6" r="2" fill="currentColor" stroke="none"/><path d="M21 8.5c-3 1-6 1.3-9 1.3S6 9.5 3 8.5M12 9.8V14M12 14l-3 6.5M12 14l3 6.5"/></svg>
+</button>
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="הגדרות נגישות">
+  <h2>נגישות</h2>
+  <p class="sub">ההעדפות נשמרות בדפדפן שלך</p>
+  <div class="a11y-grid">
+    <button class="a11y-opt" data-a11y="text" aria-pressed="false">הגדלת טקסט</button>
+    <button class="a11y-opt" data-a11y="contrast" aria-pressed="false">ניגודיות גבוהה</button>
+    <button class="a11y-opt" data-a11y="invert" aria-pressed="false">היפוך צבעים</button>
+    <button class="a11y-opt" data-a11y="links" aria-pressed="false">הדגשת קישורים</button>
+    <button class="a11y-opt" data-a11y="readable" aria-pressed="false">גופן קריא</button>
+    <button class="a11y-opt" data-a11y="lines" aria-pressed="false">ריווח שורות</button>
+    <button class="a11y-opt" data-a11y="noanim" aria-pressed="false" style="grid-column:1/-1">עצירת אנימציות</button>
+    <button class="a11y-reset" data-a11y="reset">איפוס הגדרות</button>
+  </div>
+  <a class="stmt" href="accessibility.html">להצהרת הנגישות המלאה ▸</a>
+</div>
 
 <a href="https://wa.me/972542520537?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%95%D7%A2%D7%99%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%93%D7%A3%20%D7%A9%D7%9C%20%D7%9E%D7%9B%D7%99%D7%A0%D7%AA%20%D7%90%D7%95%D7%A8%D7%95%D7%AA%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%91%D7%99%D7%A7%D7%95%D7%A8" target="_blank" rel="noopener" class="wa-float" aria-label="כתוב לרועי בוואטסאפ">
   <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9 3 3.5 8.5 3.5 15.5c0 2.4.7 4.7 1.9 6.7L3 29l7-1.8c1.9 1 4 1.6 6 1.6 7 0 12.5-5.5 12.5-12.5S23 3 16 3zm0 22.8c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-4.2 1.1 1.1-4.1-.3-.4a10 10 0 01-1.6-5.4c0-5.6 4.6-10.2 10.5-10.2 5.8 0 10.5 4.6 10.5 10.2S21.8 25.8 16 25.8zm5.8-7.6c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.6 8.6 0 01-2.5-1.6 9.5 9.5 0 01-1.8-2.2c-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.3 2.5 3.8 6 5.3.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
@@ -442,14 +521,55 @@ const yf=document.getElementById('ytFacade');
 if(yf){const play=()=>{yf.classList.add('playing');yf.removeAttribute('role');yf.removeAttribute('tabindex');yf.innerHTML='<iframe src="https://www.youtube.com/embed/GEGv0Wydr4M?autoplay=1&rel=0&playsinline=1" title="עדויות בוגרי מכינת אורות" allow="autoplay;encrypted-media;picture-in-picture;fullscreen" allowfullscreen></iframe>';};
   yf.addEventListener('click',play);
   yf.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();play();}});}
-// form
+// form + validation (הודעות שגיאה בעברית, נגיש)
 document.getElementById('leadForm').addEventListener('submit',e=>{
   e.preventDefault();
+  const name=document.getElementById('name'),phone=document.getElementById('phone'),consent=document.getElementById('consent');
+  let ok=true,firstBad=null;
+  const mark=(inp,errId,bad)=>{const el=document.getElementById(errId);el.hidden=!bad;if(inp)inp.setAttribute('aria-invalid',bad?'true':'false');if(bad){ok=false;firstBad=firstBad||(inp||el);}};
+  mark(name,'name-err', name.value.trim().length<2);
+  mark(phone,'phone-err', !/^0\d{8,9}$/.test(phone.value.replace(/[-\s]/g,'')));
+  mark(null,'consent-err', !consent.checked);
+  if(!ok){ if(firstBad&&firstBad.focus) firstBad.focus(); return; }
   // TODO: לחבר ל-Google Sheet + פיקסל מטא (Lead)
   document.getElementById('formFields').classList.add('hide');
   document.getElementById('thanks').classList.add('show');
   window.scrollTo({top:document.getElementById('signup').offsetTop-40,behavior:'smooth'});
 });
+// ===== accessibility widget =====
+(function(){
+  const KEY='orot_a11y_v1', root=document.documentElement;
+  const btn=document.getElementById('a11yBtn'), panel=document.getElementById('a11yPanel');
+  let prefs; try{prefs=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){prefs={};}
+  const TEXT={1:110,2:125,3:140};
+  const apply=()=>{
+    ['a11y-text-110','a11y-text-125','a11y-text-140','a11y-contrast-high','a11y-invert','a11y-links','a11y-readable','a11y-lines','a11y-noanim'].forEach(c=>root.classList.remove(c));
+    if(prefs.text)root.classList.add('a11y-text-'+TEXT[prefs.text]);
+    if(prefs.contrast)root.classList.add('a11y-contrast-high');
+    if(prefs.invert)root.classList.add('a11y-invert');
+    if(prefs.links)root.classList.add('a11y-links');
+    if(prefs.readable)root.classList.add('a11y-readable');
+    if(prefs.lines)root.classList.add('a11y-lines');
+    if(prefs.noanim)root.classList.add('a11y-noanim');
+    document.querySelectorAll('.a11y-opt').forEach(o=>{const k=o.dataset.a11y;o.setAttribute('aria-pressed', (k==='text'?!!prefs.text:!!prefs[k])?'true':'false');});
+    try{localStorage.setItem(KEY,JSON.stringify(prefs));}catch(e){}
+  };
+  const togglePanel=(force)=>{const open=force!==undefined?force:!panel.classList.contains('open');panel.classList.toggle('open',open);btn.setAttribute('aria-expanded',open?'true':'false');};
+  btn.addEventListener('click',()=>togglePanel());
+  document.querySelectorAll('.a11y-opt').forEach(o=>o.addEventListener('click',()=>{
+    const k=o.dataset.a11y;
+    if(k==='text'){prefs.text=((prefs.text||0)+1)%4;}
+    else{prefs[k]=!prefs[k];}
+    apply();
+  }));
+  panel.querySelector('.a11y-reset').addEventListener('click',()=>{prefs={};apply();});
+  document.addEventListener('keydown',e=>{
+    if(e.altKey&&!e.ctrlKey&&!e.metaKey&&!e.shiftKey&&e.code==='KeyA'){e.preventDefault();togglePanel();}
+    if(e.key==='Escape'&&panel.classList.contains('open')){togglePanel(false);btn.focus();}
+  });
+  document.addEventListener('click',e=>{if(panel.classList.contains('open')&&!panel.contains(e.target)&&e.target!==btn&&!btn.contains(e.target))togglePanel(false);});
+  apply();
+})();
 </script>
 </body>
 </html>
