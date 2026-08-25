@@ -130,7 +130,8 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .video-wrap .yt-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 #ytFacade{cursor:pointer}
-#ytFacade::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.25))}
+#ytFacade:not(.playing)::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.25));pointer-events:none}
+#ytFacade.playing{cursor:default}
 .video-wrap .yt-play{position:absolute;inset:0;margin:auto;width:72px;height:50px;z-index:2;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45));transition:transform .2s}
 #ytFacade:hover .yt-play{transform:scale(1.09)}
 .video-wrap .yt-play svg{width:100%;height:100%;display:block}
@@ -438,7 +439,7 @@ mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mm.classList
 document.querySelectorAll('.qa button').forEach(b=>b.addEventListener('click',()=>b.parentElement.classList.toggle('open')));
 // youtube click-to-play (avoids the heavy iframe + error 153 on load; loads only on click)
 const yf=document.getElementById('ytFacade');
-if(yf){const play=()=>{yf.innerHTML='<iframe src="https://www.youtube.com/embed/GEGv0Wydr4M?autoplay=1&rel=0&playsinline=1" title="עדויות בוגרי מכינת אורות" allow="autoplay;encrypted-media;picture-in-picture;fullscreen" allowfullscreen></iframe>';};
+if(yf){const play=()=>{yf.classList.add('playing');yf.removeAttribute('role');yf.removeAttribute('tabindex');yf.innerHTML='<iframe src="https://www.youtube.com/embed/GEGv0Wydr4M?autoplay=1&rel=0&playsinline=1" title="עדויות בוגרי מכינת אורות" allow="autoplay;encrypted-media;picture-in-picture;fullscreen" allowfullscreen></iframe>';};
   yf.addEventListener('click',play);
   yf.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();play();}});}
 // whatsapp links disabled until Roi's real number is provided (TODO: החלף data-wa-pending ב-href="https://wa.me/972XXXXXXXXX")
