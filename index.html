@@ -69,7 +69,7 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 @media(min-width:900px){.navlinks{display:flex}.burger{display:none}}
 
 /* hero */
-.hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;color:#fff;padding:0}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;color:#fff;padding:0}
 .hero-bg{position:absolute;inset:0;z-index:-2}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,50,90,.25) 0%,rgba(8,50,90,.15) 40%,rgba(6,40,72,.85) 100%)}
@@ -135,8 +135,8 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 .video-wrap .yt-play{position:absolute;inset:0;margin:auto;width:72px;height:50px;z-index:2;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45));transition:transform .2s}
 #ytFacade:hover .yt-play{transform:scale(1.09)}
 .video-wrap .yt-play svg{width:100%;height:100%;display:block}
-.quotes{display:grid;gap:16px;grid-template-columns:1fr;margin-top:26px}
-@media(min-width:760px){.quotes{grid-template-columns:repeat(3,1fr)}}
+.quotes{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:26px}
+.quotes .quote{flex:1 1 250px;max-width:320px}
 .quote{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
 .quote .txt{font-size:1.02rem;color:var(--ink);margin-bottom:14px}
 .quote .who{display:flex;align-items:center;gap:11px}
@@ -144,6 +144,16 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 .quote .who b{display:block;font-size:.95rem}
 .quote .who span{font-size:.82rem;color:var(--muted)}
 .todo{outline:2px dashed var(--gold);background:#fffaf0}
+
+/* stats band */
+.statsband{padding:40px 0;background:var(--bg)}
+.stats{display:grid;gap:14px;grid-template-columns:repeat(3,1fr)}
+.stat .num[data-to]{font-variant-numeric:tabular-nums}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 14px;text-align:center;box-shadow:var(--shadow)}
+.stat .num{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:clamp(2rem,7vw,2.9rem);color:var(--deep);line-height:1}
+.stat .lbl{color:var(--muted);font-weight:600;font-size:.98rem;margin-top:8px}
+.stat .lbl b{color:var(--gold-d)}
+@media(max-width:560px){.stats{grid-template-columns:1fr;gap:12px}.stat{padding:18px 14px}}
 
 /* offer grid */
 .grid4{display:grid;gap:16px;grid-template-columns:1fr 1fr}
@@ -302,6 +312,17 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   </div>
 </section>
 
+<!-- STATS BAND -->
+<section class="statsband" id="stats" aria-label="נתוני בוגרים">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="num" data-to="600" data-suffix="+">0</div><div class="lbl">בוגרים לאורך השנים</div></div>
+      <div class="stat"><div class="num" data-to="100" data-suffix="%">0</div><div class="lbl">גיוס לצה"ל</div></div>
+      <div class="stat"><div class="num" data-to="90" data-suffix="%">0</div><div class="lbl">קרבי, <b>כולל יחידות מיוחדות</b> בצה"ל ובמג"ב</div></div>
+    </div>
+  </div>
+</section>
+
 <!-- DAY IN LIFE -->
 <section id="day">
   <div class="wrap center">
@@ -376,9 +397,10 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
       <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 68 48"><path d="M66.5 7.7c-.8-2.9-3-5.2-6-6C55.5.5 34 .5 34 .5s-21.5 0-26.5 1.2c-2.9.8-5.2 3-6 6C.5 12.7.5 24 .5 24s0 11.3 1 16.3c.8 2.9 3 5.2 6 6C12.5 47.5 34 47.5 34 47.5s21.5 0 26.5-1.2c2.9-.8 5.2-3 6-6 1-5 1-16.3 1-16.3s0-11.3-1-16.3z" fill="#f00"/><path d="M27 34l18-10-18-10z" fill="#fff"/></svg></span>
     </div>
     <div class="quotes">
-      <div class="quote todo"><div class="txt">[ציטוט בוגר אמיתי - ממתין לרועי]</div><div class="who"><span class="av">?</span><div class="who"><b>שם הבוגר</b><span>מחזור · שירות</span></div></div></div>
-      <div class="quote todo"><div class="txt">[ציטוט בוגר אמיתי - ממתין לרועי]</div><div class="who"><span class="av">?</span><div class="who"><b>שם הבוגר</b><span>מחזור · שירות</span></div></div></div>
-      <div class="quote todo"><div class="txt">[כאן יוטמעו קליפי העדויות הערוכים]</div><div class="who"><span class="av">🎬</span><div class="who"><b>עדות מצולמת</b><span>אחרי עריכה</span></div></div></div>
+      <div class="quote"><div class="txt">"הגעתי אדם מסוים, יצאתי אדם אחר, ברמה הערכית וברמה הדתית"</div><div class="who"><span class="av">ע</span><div><b>עומר אברהמי</b><span>מחזור ח'</span></div></div></div>
+      <div class="quote"><div class="txt">"המכינה כמו הבית שלי"</div><div class="who"><span class="av">נ</span><div><b>נהוראי סוויסה</b><span>מחזור י'</span></div></div></div>
+      <div class="quote"><div class="txt">"פה קיבלתי עוד משפחה לחיים, פה בניתי את עצמי באמת"</div><div class="who"><span class="av">מ</span><div><b>מרום טבצ'ניק</b><span>מחזור ח'</span></div></div></div>
+      <div class="quote"><div class="txt">"היום אני יכול להגיד בלב שלם שהמכינה היא הדבר הכי טוב שעשיתי בשביל עצמי"</div><div class="who"><span class="av">נ</span><div><b>נעם עמאר</b><span>מחזור ט"ז</span></div></div></div>
     </div>
   </div>
 </section>
@@ -522,8 +544,32 @@ const yf=document.getElementById('ytFacade');
 if(yf){const play=()=>{yf.classList.add('playing');yf.removeAttribute('role');yf.removeAttribute('tabindex');yf.innerHTML='<iframe src="https://www.youtube.com/embed/GEGv0Wydr4M?autoplay=1&rel=0&playsinline=1" title="עדויות בוגרי מכינת אורות" allow="autoplay;encrypted-media;picture-in-picture;fullscreen" allowfullscreen></iframe>';};
   yf.addEventListener('click',play);
   yf.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();play();}});}
+// count-up numbers when the stats band scrolls into view
+(function(){
+  const nums=document.querySelectorAll('.stat .num[data-to]');
+  if(!nums.length)return;
+  const reduce=document.documentElement.classList.contains('a11y-noanim')||(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const run=(el)=>{
+    const to=+el.dataset.to, suf=el.dataset.suffix||'', dur=1400, t0=performance.now();
+    if(reduce){el.textContent=to+suf;return;}
+    const step=(t)=>{const p=Math.min((t-t0)/dur,1);const e=1-Math.pow(1-p,3);el.textContent=Math.round(to*e)+suf;if(p<1)requestAnimationFrame(step);};
+    requestAnimationFrame(step);
+  };
+  if(!('IntersectionObserver'in window)){nums.forEach(run);return;}
+  const io=new IntersectionObserver((ents)=>{ents.forEach(en=>{if(en.isIntersecting){run(en.target);io.unobserve(en.target);}});},{threshold:.6});
+  nums.forEach(n=>io.observe(n));
+})();
 // form + validation (הודעות שגיאה בעברית, נגיש)
-document.getElementById('leadForm').addEventListener('submit',e=>{
+// כתובת ה-Google Apps Script (Web App). הדבק כאן את ה-URL שמסתיים ב-/exec:
+const SHEET_ENDPOINT='https://script.google.com/macros/s/AKfycbwlHjCk9ioE_lZHfoTLJSs-zKxQepK0l2qkCy3Ifa8xV3BvIr7NfQVruMgn48inL-X8jw/exec';
+const leadForm=document.getElementById('leadForm');
+const submitBtn=leadForm.querySelector('button[type="submit"]');
+const showThanks=()=>{
+  document.getElementById('formFields').classList.add('hide');
+  document.getElementById('thanks').classList.add('show');
+  window.scrollTo({top:document.getElementById('signup').offsetTop-40,behavior:'smooth'});
+};
+leadForm.addEventListener('submit',e=>{
   e.preventDefault();
   const name=document.getElementById('name'),phone=document.getElementById('phone'),consent=document.getElementById('consent');
   let ok=true,firstBad=null;
@@ -532,10 +578,19 @@ document.getElementById('leadForm').addEventListener('submit',e=>{
   mark(phone,'phone-err', !/^0\d{8,9}$/.test(phone.value.replace(/[-\s]/g,'')));
   mark(null,'consent-err', !consent.checked);
   if(!ok){ if(firstBad&&firstBad.focus) firstBad.focus(); return; }
-  // TODO: לחבר ל-Google Sheet + פיקסל מטא (Lead)
-  document.getElementById('formFields').classList.add('hide');
-  document.getElementById('thanks').classList.add('show');
-  window.scrollTo({top:document.getElementById('signup').offsetTop-40,behavior:'smooth'});
+  // TODO: פיקסל מטא (Lead) - להוסיף כאן fbq('track','Lead') כשהפיקסל מותקן
+  const payload=new URLSearchParams({
+    name:name.value.trim(),
+    phone:phone.value.replace(/[-\s]/g,''),
+    source:'דף נחיתה אורות',
+    page:location.href,
+    ts:new Date().toISOString()
+  });
+  const send=SHEET_ENDPOINT
+    ? fetch(SHEET_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:payload.toString()})
+    : Promise.resolve();
+  if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='שולח...';}
+  send.catch(()=>{}).finally(showThanks);
 });
 // ===== accessibility widget =====
 (function(){
