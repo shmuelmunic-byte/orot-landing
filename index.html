@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>מכינת אורות טלמון | תורה ברצינות, בלי כפייה</title>
+<title>מכינת אורות טלמון | השנה שבה תהפוך לבן אדם אחר</title>
 <meta name="description" content="מכינה קדם-צבאית תורנית בטלמון. לומדים תורה לעומק, מתכוננים לצבא, ומרגישים בבית. בוא לראות מקרוב.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Karantina:wght@400;700&family=Miriam+Libre:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#FBF8F3; --surface:#FFFFFF; --cream:#F3ECE0;
@@ -26,10 +26,10 @@ img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
 section{padding:64px 0}
-h1,h2,h3{line-height:1.15;font-weight:800;letter-spacing:-.5px}
-.serif{font-family:'Frank Ruhl Libre',serif}
-.eyebrow{display:inline-block;font-weight:700;font-size:.82rem;letter-spacing:1px;color:var(--blue);background:rgba(23,168,220,.12);padding:6px 14px;border-radius:999px;margin-bottom:18px}
-.sec-title{font-size:clamp(1.7rem,5vw,2.5rem);margin-bottom:14px}
+h1,h2,h3{font-family:'Karantina',sans-serif;line-height:1.08;font-weight:700;letter-spacing:.045em}
+.serif{font-family:'Miriam Libre',sans-serif}
+.eyebrow{display:inline-block;font-family:'Miriam Libre',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.5px;color:var(--blue);background:rgba(23,168,220,.12);padding:6px 14px;border-radius:999px;margin-bottom:18px}
+.sec-title{font-size:clamp(1.8rem,5.2vw,2.7rem);font-weight:900;margin-bottom:14px}
 .sec-sub{color:var(--muted);font-size:1.08rem;max-width:640px;margin:0 auto 6px}
 .center{text-align:center}
 
@@ -73,33 +73,34 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 .hero-bg{position:absolute;inset:0;z-index:-2}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,50,90,.25) 0%,rgba(8,50,90,.15) 40%,rgba(6,40,72,.85) 100%)}
-.hero-inner{padding:0 20px 54px;max-width:var(--maxw);margin:0 auto;width:100%}
+.hero-inner{padding:0 20px 54px;max-width:var(--maxw);margin:0 auto;width:100%;text-align:center}
 .hero .eyebrow{background:rgba(255,255,255,.18);color:#fff;backdrop-filter:blur(4px)}
-.hero h1{font-size:clamp(2rem,7.5vw,3.6rem);max-width:15ch;color:#fff;text-shadow:0 2px 30px rgba(0,12,26,.8),0 0 16px rgba(0,12,26,.55)}
-.hero p.lead{font-size:clamp(1.05rem,3.2vw,1.3rem);max-width:40ch;margin:18px 0 26px;color:#eef4f8;font-weight:400;text-shadow:0 1px 16px rgba(0,12,26,.6)}
-.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
-.trust{display:flex;gap:22px;margin-top:26px;flex-wrap:wrap;font-size:.9rem;color:#dce7ef}
+.hero h1{font-size:clamp(2.1rem,7.8vw,3.8rem);font-weight:900;max-width:16ch;margin:0 auto;color:#fff;text-shadow:0 2px 30px rgba(0,12,26,.8),0 0 16px rgba(0,12,26,.55)}
+.hero p.lead{font-size:clamp(1.05rem,3.2vw,1.3rem);max-width:42ch;margin:18px auto 26px;color:#eef4f8;font-weight:400;text-shadow:0 1px 16px rgba(0,12,26,.6)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.trust{display:flex;gap:22px;margin-top:26px;flex-wrap:wrap;justify-content:center;font-size:.9rem;color:#dce7ef}
 .trust b{color:#fff;font-size:1.05rem}
 /* mobile: image becomes a banner that shows more of the group, text drops below on dark */
 @media(max-width:760px){
-  .hero{min-height:auto;display:flex;flex-direction:column;color:#fff;background:var(--deep)}
+  .hero{min-height:auto;display:flex;flex-direction:column;align-items:stretch;color:#fff;background:var(--deep)}
   .hero-bg{position:relative;inset:auto;height:46vh;min-height:300px;z-index:0}
   .hero-bg img{height:100%;object-position:center 30%}
   .hero::after{display:none}
-  .hero-inner{padding:28px 20px 42px;background:linear-gradient(180deg,#064e86,#06294a)}
-  .hero h1{text-shadow:none}
+  .hero-inner{padding:28px 20px 42px;background:linear-gradient(180deg,#064e86,#06294a);min-width:0}
+  .hero h1{text-shadow:none;font-size:clamp(1.55rem,6.2vw,2.2rem);max-width:100%;min-width:0;overflow-wrap:break-word;word-break:break-word}
   .hero p.lead{text-shadow:none}
 }
 
 /* day in life */
 .cards3{display:grid;gap:18px;grid-template-columns:1fr}
 @media(min-width:760px){.cards3{grid-template-columns:repeat(3,1fr)}}
-.daycard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
-.daycard .ph{padding:22px 22px 24px}
-.daycard .tag{font-weight:700;color:var(--gold-d);font-size:.85rem;letter-spacing:.5px}
-.daycard h3{font-size:1.25rem;margin:6px 0 8px}
+.daycard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
+.daycard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.daycard .dc-img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+.daycard .ph{padding:20px 22px 24px}
+.daycard h3{font-size:1.3rem;margin:0 0 8px}
 .daycard p{color:var(--muted);font-size:.98rem}
-.daycard .ic{margin-bottom:10px}
+@media(min-width:760px){.cards3{align-items:start}.daycard:nth-child(2){transform:translateY(22px)}.daycard:nth-child(2):hover{transform:translateY(16px)}.daycard:nth-child(3){border-radius:26px}}
 .ic svg{width:34px;height:34px;stroke:var(--blue);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
 /* torah basbaba contrast */
@@ -150,27 +151,31 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 .stats{display:grid;gap:14px;grid-template-columns:repeat(3,1fr)}
 .stat .num[data-to]{font-variant-numeric:tabular-nums}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 14px;text-align:center;box-shadow:var(--shadow)}
-.stat .num{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:clamp(2rem,7vw,2.9rem);color:var(--deep);line-height:1}
+.stat .num{font-family:'Miriam Libre',sans-serif;font-weight:700;font-size:clamp(2rem,7vw,2.9rem);color:var(--deep);line-height:1}
 .stat .lbl{color:var(--muted);font-weight:600;font-size:.98rem;margin-top:8px}
 .stat .lbl b{color:var(--gold-d)}
 @media(max-width:560px){.stats{grid-template-columns:1fr;gap:12px}.stat{padding:18px 14px}}
 
 /* offer grid */
 .grid4{display:grid;gap:16px;grid-template-columns:1fr 1fr}
-@media(min-width:760px){.grid4{grid-template-columns:repeat(4,1fr)}}
-.feat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 18px;text-align:center;box-shadow:var(--shadow)}
+@media(min-width:760px){.grid4{grid-template-columns:repeat(4,1fr);align-items:start}.feat:nth-child(2),.feat:nth-child(4){transform:translateY(18px)}.feat:nth-child(2):hover,.feat:nth-child(4):hover{transform:translateY(12px)}}
+.feat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 18px;text-align:center;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
+.feat:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.feat:nth-child(odd){border-radius:24px}
 .feat .ic{margin-bottom:10px}
 .feat .ic svg{width:38px;height:38px}
+.feat:nth-child(2) .ic svg{stroke:var(--gold-d)}
+.feat:nth-child(3) .ic svg{stroke:var(--deep)}
 .feat h3{font-size:1.08rem;margin-bottom:5px}
 .feat p{font-size:.9rem;color:var(--muted)}
 
 /* gallery */
-.gallery{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
-@media(min-width:760px){.gallery{grid-template-columns:repeat(4,1fr)}}
-.gallery img{border-radius:14px;aspect-ratio:1;object-fit:cover;width:100%;cursor:pointer;transition:.25s}
-.gallery img:hover{transform:scale(1.03)}
-.gallery .tall{grid-row:span 2;aspect-ratio:1/2}
-@media(max-width:759px){.gallery .tall{grid-row:auto;aspect-ratio:1}}
+.gallery{column-count:2;column-gap:12px}
+@media(min-width:760px){.gallery{column-count:4;column-gap:14px}}
+.gallery img{width:100%;margin:0 0 12px;border-radius:14px;object-fit:cover;display:block;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease;break-inside:avoid}
+.gallery img:hover{transform:scale(1.03);box-shadow:var(--shadow-lg)}
+.gallery img:nth-child(3n){border-radius:24px}
+.gallery img:nth-child(5n){border-radius:6px}
 
 /* faq */
 .faq{max-width:760px;margin:0 auto}
@@ -280,33 +285,33 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
     </a>
     <nav class="navlinks" aria-label="ניווט ראשי">
       <a href="#day">יום בחיים</a>
-      <a href="#torah">תורה בסבבה</a>
+      <a href="#torah">התורה שלך</a>
       <a href="#bogrim">בוגרים</a>
       <a href="#faq">שאלות</a>
     </nav>
-    <a href="#signup" class="btn btn-gold">בוא לראות מקרוב</a>
+    <a href="#signup" class="btn btn-gold">לתאם יום פתוח</a>
     <button class="burger" id="burger" aria-label="תפריט"><span></span><span></span><span></span></button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
     <a href="#day">יום בחיים</a>
-    <a href="#torah">תורה בסבבה</a>
+    <a href="#torah">התורה שלך</a>
     <a href="#bogrim">בוגרים</a>
     <a href="#offer">מה מקבלים</a>
     <a href="#faq">שאלות</a>
-    <a href="#signup">בוא לראות מקרוב</a>
+    <a href="#signup">לתאם יום פתוח</a>
   </div>
 </header>
 
 <main id="main-content" role="main">
 <!-- HERO -->
 <section class="hero" id="top">
-  <div class="hero-bg"><img src="assets/img/hero.jpg" alt="חבורת בחורי מכינת אורות על גבעה מול הרי מודיעין"></div>
+  <div class="hero-bg"><img src="assets/img/hero-sun.jpg" alt="בחורי מכינת אורות על גבעה עם השמש מאחור"></div>
   <div class="hero-inner">
     <span class="eyebrow">מכינה קדם-צבאית תורנית</span>
-    <h1>לומדים תורה ברצינות, בלי שאף אחד כופה עליך כלום</h1>
-    <p class="lead">בין הרי בנימין, עם חבר'ה שנשארים משפחה הרבה אחרי הצבא. בוא לראות מקרוב לפני שאתה מחליט.</p>
+    <h1>השנה שבה תהפוך לבן אדם אחר</h1>
+    <p class="lead">תורה שהיא שלך, קבוצה שהיא משפחה, והכנה אמיתית לצבא ולחיים</p>
     <div class="hero-cta">
-      <a href="#signup" class="btn btn-gold">בוא לראות מקרוב</a>
+      <a href="#signup" class="btn btn-gold">לתאם יום פתוח</a>
       <a href="#bogrim" class="btn btn-out">שמע מהבוגרים ▸</a>
     </div>
   </div>
@@ -326,15 +331,15 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
 <!-- DAY IN LIFE -->
 <section id="day">
   <div class="wrap center">
-    <span class="eyebrow">איך נראה יום כאן</span>
-    <h2 class="sec-title">יום אחד שמחזיק בית מדרש רציני וגם זמן לנשום</h2>
-    <p class="sec-sub">יום שמחזיק גם עומק וגם אוויר לנשום, בקצב שלך</p>
+    <span class="eyebrow">מה קורה כאן בתכל'ס</span>
+    <h2 class="sec-title">יום בחיים</h2>
+    <p class="sec-sub">יום שיש בו גם תורה וגם זמן לנשום, בקצב שלך</p>
   </div>
   <div class="wrap" style="margin-top:34px">
     <div class="cards3">
-      <div class="daycard"><div class="ph"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 7.5 4.4 4 5v13c3.5-.6 6.5 0 8 1.5 1.5-1.5 4.5-2.1 8-1.5V5c-3.5-.6-6.5 0-8 1.5Z"/><path d="M12 6.5v13"/></svg></div><div class="tag">בוקר</div><h3>בית מדרש וחברותות</h3><p>לומדים ברצינות, מסיימים מסכתות, בונים אמונה לאט ולעומק. בלי מבחנים ובלי חובת נוכחות, ובכל זאת לומדים באמת.</p></div></div>
-      <div class="daycard"><div class="ph"><div class="ic"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 8L9 4l-3 8H2"/></svg></div><div class="tag">צהריים</div><h3>הרצאות, כדורגל וזמן בנחת</h3><p>מרצים מבחוץ, ספורט, וגם פשוט זמן לנשום ולהיות עם החבר'ה. לא מרוץ, חיים.</p></div></div>
-      <div class="daycard"><div class="ph"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 20h18L14 7l-3.2 5.5L8.5 9 3 20Z"/><circle cx="17.5" cy="6" r="1.6"/></svg></div><div class="tag">לאורך השבוע</div><h3>מסעות, נופים ושיחות</h3><p>יוצאים לשטח, מטפסים, מדברים על הדברים הגדולים. פה בונים זהות, לא רק לומדים עליה.</p></div></div>
+      <div class="daycard"><img class="dc-img" src="assets/img/kotel.jpg" alt="לימוד ותפילה"><div class="ph"><h3>לימוד אמונה</h3><p>פותחים את היום בבית המדרש, מחזקים אמונה ומתחילים למצוא את הדרך שלך בתורה, כל אחד בקצב שלו</p></div></div>
+      <div class="daycard"><img class="dc-img" src="assets/img/day-sport.jpg" alt="כדורסל וספורט"><div class="ph"><h3>מרצים, כדורגל וזמן עם החבר'ה</h3><p>מרצים מבחוץ, ספורט, וזמן להתפתח ולהיות עם החבר'ה</p></div></div>
+      <div class="daycard"><img class="dc-img" src="assets/img/day-field.jpg" alt="מסעות וניווטים בשטח"><div class="ph"><h3>מסעות וניווטים בשטח</h3><p>יוצאים לשטח, מנווטים, ומבררים ביחד את הדברים הגדולים של החיים</p></div></div>
     </div>
   </div>
 </section>
@@ -342,32 +347,30 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
 <!-- TORAH BASBABA -->
 <section class="torah" id="torah">
   <div class="wrap center">
-    <span class="eyebrow" style="background:rgba(237,165,30,.2);color:#fff">הלב של המקום</span>
-    <h2 class="sec-title serif">תורה בסבבה</h2>
-    <p class="sec-sub">רצינות אמיתית בלימוד, בלי הכבלים שיש כמעט בכל מקום אחר</p>
+    <span class="eyebrow" style="background:rgba(237,165,30,.2);color:#fff">התורה היא הלב שלנו</span>
+    <h2 class="sec-title">התורה שלך</h2>
   </div>
   <div class="wrap">
     <div class="contrast">
-      <div class="col no">
-        <h3>מה שלא תמצא כאן</h3>
+      <div class="col yes">
+        <h3>מה שתמצא כאן</h3>
         <ul>
-          <li><span class="b">✕</span><span>אין חובת נוכחות בשיעורים</span></li>
-          <li><span class="b">✕</span><span>אין מבחנים</span></li>
-          <li><span class="b">✕</span><span>אין אינספור כללים, בערך חמישה בסך הכל</span></li>
-          <li><span class="b">✕</span><span>אין מי שסוגר עליך או דוחף אותך</span></li>
+          <li><span class="b">✓</span><span>תורה שנפתחת מתוך אהבה וחיבור אישי</span></li>
+          <li><span class="b">✓</span><span>מתחילים באמונה מהיסודות, ומבררים למה זה קשור אליך</span></li>
+          <li><span class="b">✓</span><span>בית מדרש חי שאתה בוחר להיות בו</span></li>
+          <li><span class="b">✓</span><span>אמונה שנבנית לעומק ובכנות</span></li>
+          <li><span class="b">✓</span><span>אישיות עם אמונה, ערכים ומידות</span></li>
         </ul>
       </div>
-      <div class="col yes">
-        <h3>מה שכן תמצא</h3>
+      <div class="col no">
+        <h3>ומה לא</h3>
         <ul>
-          <li><span class="b">✓</span><span>לימוד רציני שמסיימים בו מסכתות שלמות</span></li>
-          <li><span class="b">✓</span><span>בית מדרש חי שאתה בוחר להיות בו</span></li>
-          <li><span class="b">✓</span><span>אמונה שנבנית לאט, לעומק, בכנות</span></li>
-          <li><span class="b">✓</span><span>יחס אישי שמרגישים בו מהיום הראשון</span></li>
+          <li><span class="b">✕</span><span>לחץ חברתי</span></li>
+          <li><span class="b">✕</span><span>מישהו שמנסה לעצב אותך מחדש</span></li>
         </ul>
       </div>
     </div>
-    <p class="punch">לומדים באמת, <span class="serif">כי בוחרים בזה</span>, לא כי מכריחים</p>
+    <p class="punch">כאן תמצא את הדרך שלך בתורה, <span class="serif">כל אחד בקצב שלו</span></p>
   </div>
 </section>
 
@@ -376,20 +379,48 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   <div class="wrap split">
     <img src="assets/img/g-shabbat.jpg" alt="בחורי המכינה יחד בשעת בין הערביים">
     <div>
-      <span class="eyebrow">האווירה</span>
-      <p class="proofbig">כאן לא מספרים לך שהאווירה משפחתית. <span class="hl">מרגישים את זה ברגע שנכנסים.</span></p>
-      <p style="color:var(--muted);margin-top:18px;font-size:1.08rem">הצוות משקיע זמן <em>איתך</em>, לא רק חושב עליך. וההוכחה הכי פשוטה? הבוגרים שממשיכים להתקשר ולהגיע שנים אחרי שסיימו את הצבא. זה לא נגמר כשעוזבים.</p>
+      <span class="eyebrow">אווירה משפחתית</span>
+      <p class="proofbig">כאן רואים אותך, <span class="hl">זר לא יבין זאת</span></p>
+      <p style="color:var(--muted);margin-top:18px;font-size:1.08rem;line-height:1.9">כאן האווירה משפחתית, מרגישים את זה ברגע שנכנסים<br>כאן אתה לא נבלע בתוך ההמון, רואים אותך ומאמינים בך<br>הבוגרים נשארים בקשר שנים אחרי הצבא, וממשיכים לחזור</p>
       <a href="#bogrim" class="btn btn-gold" style="margin-top:22px">שמע מהבוגרים עצמם</a>
     </div>
+  </div>
+</section>
+
+<!-- FIT / WHO -->
+<section id="fit">
+  <style>
+    #fit{background:linear-gradient(160deg,#ffffff,var(--cream))}
+    .fitlist{list-style:none;display:grid;gap:14px}
+    .fitlist li{display:flex;gap:12px;align-items:flex-start;font-size:1.12rem;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
+    .fitlist li:hover{transform:translateX(-4px);box-shadow:var(--shadow-lg)}
+    .fitlist li:nth-child(2){border-radius:22px}
+    .fitlist .b{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#3a2a05;display:grid;place-items:center;font-weight:900;font-size:.82rem;margin-top:2px}
+    .fitclose{text-align:center;font-family:'Karantina',sans-serif;font-weight:700;font-size:1.7rem;color:var(--deep);margin-top:24px;letter-spacing:.03em}
+    .fitless{text-align:center;color:var(--muted);font-size:.98rem;margin-top:10px}
+  </style>
+  <div class="wrap center">
+    <span class="eyebrow">מי מתאים לנו</span>
+    <h2 class="sec-title">זה בשבילך אם...</h2>
+  </div>
+  <div class="wrap" style="max-width:760px;margin-top:26px">
+    <ul class="fitlist">
+      <li><span class="b">✓</span><span>אתה רוצה לגדול ולבנות את עצמך, ומחפש מוטיבציה אמיתית</span></li>
+      <li><span class="b">✓</span><span>אתה רוצה ללמוד תורה, אבל בנחת ובדרך שלך</span></li>
+      <li><span class="b">✓</span><span>אתה רוצה לברר את האמונה שלך ואת הדרך שלך בצבא</span></li>
+      <li><span class="b">✓</span><span>חשובה לך קבוצה, וחשובה לך אווירה של משפחה</span></li>
+    </ul>
+    <p class="fitclose">אם זה אתה, מקומך איתנו</p>
+    <p class="fitless">ולמי פחות? מי שמחפש סד לחץ קרבי או המון כללים נוקשים, ביושר, יש מקומות שיתאימו לך יותר</p>
   </div>
 </section>
 
 <!-- BOGRIM / VIDEO / TESTIMONIALS -->
 <section id="bogrim" style="background:var(--cream)">
   <div class="wrap center">
-    <span class="eyebrow">הבוגרים מספרים</span>
-    <h2 class="sec-title">אל תסמוך על מה שאנחנו אומרים. שמע מהם</h2>
-    <p class="sec-sub">בוגרים מספרים על השנה שלהם, ומה נשאר איתם ממנה</p>
+    <span class="eyebrow">בוגרים מספרים</span>
+    <h2 class="sec-title">מה הבוגרים מספרים</h2>
+    <p class="sec-sub">בוגרים שהיו בדיוק במקומך, מספרים מה השנה הזאת עשתה להם</p>
   </div>
   <div class="wrap" style="max-width:900px;margin-top:26px">
     <div class="video-wrap" id="ytFacade" role="button" tabindex="0" aria-label="נגן את סרטון הבוגרים">
@@ -399,7 +430,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
     <div class="quotes">
       <div class="quote"><div class="txt">"הגעתי אדם מסוים, יצאתי אדם אחר, ברמה הערכית וברמה הדתית"</div><div class="who"><span class="av">ע</span><div><b>עומר אברהמי</b><span>מחזור ח'</span></div></div></div>
       <div class="quote"><div class="txt">"המכינה כמו הבית שלי"</div><div class="who"><span class="av">נ</span><div><b>נהוראי סוויסה</b><span>מחזור י'</span></div></div></div>
-      <div class="quote"><div class="txt">"פה קיבלתי עוד משפחה לחיים, פה בניתי את עצמי באמת"</div><div class="who"><span class="av">מ</span><div><b>מרום טבצ'ניק</b><span>מחזור ח'</span></div></div></div>
+      <div class="quote"><div class="txt">"פה קיבלתי עוד משפחה לחיים, פה בניתי את עצמי"</div><div class="who"><span class="av">מ</span><div><b>מרום טבצ'ניק</b><span>מחזור ח'</span></div></div></div>
       <div class="quote"><div class="txt">"היום אני יכול להגיד בלב שלם שהמכינה היא הדבר הכי טוב שעשיתי בשביל עצמי"</div><div class="who"><span class="av">נ</span><div><b>נעם עמאר</b><span>מחזור ט"ז</span></div></div></div>
     </div>
   </div>
@@ -413,8 +444,8 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   </div>
   <div class="wrap" style="margin-top:32px">
     <div class="grid4">
-      <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 7.5 4.4 4 5v13c3.5-.6 6.5 0 8 1.5 1.5-1.5 4.5-2.1 8-1.5V5c-3.5-.6-6.5 0-8 1.5Z"/><path d="M12 6.5v13"/></svg></div><h3>לימוד בעומק</h3><p>תורה ואמונה ברצינות, בקצב שלך</p></div>
-      <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M16 20v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V20"/><circle cx="9" cy="7.5" r="3.2"/><path d="M22 20v-1.5a4 4 0 0 0-3-3.85"/><path d="M16.5 4.7a4 4 0 0 1 0 7.6"/></svg></div><h3>ליווי אישי</h3><p>צוות שמכיר אותך באמת</p></div>
+      <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 7.5 4.4 4 5v13c3.5-.6 6.5 0 8 1.5 1.5-1.5 4.5-2.1 8-1.5V5c-3.5-.6-6.5 0-8 1.5Z"/><path d="M12 6.5v13"/></svg></div><h3>לימוד בעומק</h3><p>תורה ואמונה שבונות אותך, בקצב שלך</p></div>
+      <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M16 20v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V20"/><circle cx="9" cy="7.5" r="3.2"/><path d="M22 20v-1.5a4 4 0 0 0-3-3.85"/><path d="M16.5 4.7a4 4 0 0 1 0 7.6"/></svg></div><h3>ליווי אישי</h3><p>צוות שאתה מתחבר אליו</p></div>
       <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>הכנה לצה"ל</h3><p>מגיעים ליום הגיוס עם ראש בוגר, לא רק כושר</p></div>
       <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 20s-6.8-4.3-9-8.7C1.4 8 3 5 6 5c2 0 3.2 1.3 4 2.6C10.8 6.3 12 5 14 5c3 0 4.6 3 3 6.3C14.8 15.7 12 20 12 20Z"/></svg></div><h3>קהילת בוגרים</h3><p>משפחה לכל החיים, לא לשנה</p></div>
     </div>
@@ -429,14 +460,18 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   </div>
   <div class="wrap" style="margin-top:30px">
     <div class="gallery">
+      <img src="assets/img/g-fire.jpg" alt="מדורה בלילה">
       <img src="assets/img/atmosphere.jpg" alt="חבורה תחת עץ מול נוף">
-      <img src="assets/img/g-hike.jpg" class="tall" alt="מסע וטיפוס בגבעה">
-      <img src="assets/img/g-night.jpg" alt="טיול לילה של החבר'ה">
-      <img src="assets/img/kotel.jpg" alt="המכינה בכותל">
-      <img src="assets/img/g-handstand.jpg" class="tall" alt="חופש ואוויר בשדה">
-      <img src="assets/img/g-group.jpg" alt="המחזור המלא">
+      <img src="assets/img/g-dune.jpg" alt="טיפוס בשטח">
       <img src="assets/img/g-basket.jpg" alt="משחק כדורסל">
-      <img src="assets/img/g-team.jpg" alt="קבוצת הספורט של המכינה">
+      <img src="assets/img/g-grass.jpg" alt="החבר'ה על הדשא">
+      <img src="assets/img/g-bridge.jpg" alt="מסע בטבע">
+      <img src="assets/img/kotel.jpg" alt="בכותל">
+      <img src="assets/img/g-run.jpg" alt="אימון בשטח">
+      <img src="assets/img/g-sunset.jpg" alt="שקיעה עם הדגל">
+      <img src="assets/img/g-handstand.jpg" alt="חופש ואוויר בשדה">
+      <img src="assets/img/g-meal.jpg" alt="סעודה משותפת">
+      <img src="assets/img/g-hike.jpg" alt="מסע וטיפוס בגבעה">
     </div>
   </div>
 </section>
@@ -448,11 +483,10 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
     <h2 class="sec-title">שאלות שחשוב לך לדעת</h2>
   </div>
   <div class="wrap faq" style="margin-top:30px">
-    <div class="qa"><button>למי המקום הזה מתאים, ולמי פחות? <span class="chev">▾</span></button><div class="a"><p>אם אתה מחפש ללמוד תורה ברצינות אבל בלי שיכפו עליך, ורוצה מקום שבו מרגישים בבית, זה בשבילך. אם אתה מחפש סד לחץ קרבי או המון כללים נוקשים, יש מקומות אחרים שיתאימו לך יותר, ונגיד לך את זה ביושר.</p></div></div>
-    <div class="qa"><button>כמה תורני זה בפועל? <span class="chev">▾</span></button><div class="a"><p>הלימוד הוא הלב של המקום, בערך שישים אחוז מהיום, אבל בלי חובת נוכחות ובלי מבחנים. לומדים כי בוחרים, ולכן לומדים באמת.</p></div></div>
-    <div class="qa"><button>איפה זה נמצא? <span class="chev">▾</span></button><div class="a"><p>ביישוב טלמון, נחלת בנימין, בין הרים ונוף פתוח. מקום שקט שמאפשר להתרכז ולנשום.</p></div></div>
-    <div class="qa"><button>מתי נכנסים ומתי נרשמים? <span class="chev">▾</span></button><div class="a"><p>המחזור נפתח בתחילת אלול. כדאי לתאם ביקור מוקדם כדי להכיר את המקום מקרוב. השאר פרטים ורועי יחזור אליך עם כל מה שצריך.</p></div></div>
-    <div class="qa"><button>מה קורה אחרי הצבא? <span class="chev">▾</span></button><div class="a"><p>הקשר לא נגמר כשמסיימים. הבוגרים ממשיכים להגיע, להתייעץ ולהיות חלק מהמשפחה של אורות שנים קדימה.</p></div></div>
+    <div class="qa"><button>כמה תורני זה בפועל? <span class="chev">▾</span></button><div class="a"><p>התורה היא הלב שלנו, ואצלנו יש שילוב בריא בין לימוד תורה, הכנה לצבא והתפתחות אישית, כאן תמצא את הדרך האישית שלך בתורה</p></div></div>
+    <div class="qa"><button>איפה זה נמצא? <span class="chev">▾</span></button><div class="a"><p>ביישוב טלמון, נחלת בנימין, בין הרים ונוף פתוח, מקום שמאפשר להתרכז ולהתפתח</p></div></div>
+    <div class="qa"><button>מתי נכנסים ומתי נרשמים? <span class="chev">▾</span></button><div class="a"><p>המחזור נפתח בתחילת אלול, כדאי לתאם ביקור מוקדם כדי להכיר את המקום מקרוב, השאר פרטים ורועי יחזור אליך עם כל מה שצריך</p></div></div>
+    <div class="qa"><button>צריך להגיע עם רקע ישיבתי? <span class="chev">▾</span></button><div class="a"><p>לא, מתחילים מהיסודות, וכל אחד מתקדם בקצב שלו</p></div></div>
   </div>
 </section>
 
@@ -461,8 +495,8 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   <div class="wrap">
     <div class="formcard">
       <div class="formfields" id="formFields">
-        <h2>בוא לראות מקרוב</h2>
-        <p class="sub">השאר שם וטלפון, ורועי יחזור אליך לתאם ביקור</p>
+        <h2>מוכן לקחת את השנה הזאת בידיים?</h2>
+        <p class="sub">השאר שם וטלפון, ורועי יחזור אליך לתאם ביקור ולענות על כל שאלה</p>
         <form id="leadForm" novalidate>
           <div class="field"><label for="name">איך קוראים לך?</label><input id="name" name="name" type="text" placeholder="שם מלא" required aria-required="true" aria-describedby="name-err"><span id="name-err" class="err" role="alert" hidden>נא למלא שם מלא</span></div>
           <div class="field"><label for="phone">טלפון</label><input id="phone" name="phone" type="tel" inputmode="tel" dir="ltr" placeholder="05X-XXXXXXX" required aria-required="true" aria-describedby="phone-err"><span id="phone-err" class="err" role="alert" hidden>נא למלא מספר טלפון תקין (10 ספרות)</span></div>
