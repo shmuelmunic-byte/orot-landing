@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>מכינת אורות טלמון | השנה שבה תהפוך לבן אדם אחר</title>
-<meta name="description" content="מכינה קדם-צבאית תורנית בטלמון. לומדים תורה לעומק, מתכוננים לצבא, ומרגישים בבית. בוא לראות מקרוב.">
+<title>מכינת אורות טלמון | השנה שבה תהיה מי שאתה באמת</title>
+<meta name="description" content="מכינה קדם-צבאית בטלמון, שנה לבנות את עצמך, לברר את הדרך שלך ולהגיע לצבא מוכן ובשל, בלי לחץ, בוא לראות מקרוב.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Karantina:wght@400;700&family=Miriam+Libre:wght@400;700&display=swap" rel="stylesheet">
@@ -125,6 +125,28 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 .split img{border-radius:var(--r);box-shadow:var(--shadow-lg);width:100%;aspect-ratio:4/3;object-fit:cover}
 .proofbig{font-size:clamp(1.5rem,4.4vw,2.1rem);font-weight:800;line-height:1.3}
 .proofbig .hl{color:var(--blue)}
+.proof-media{position:relative}
+.proof-tag{position:absolute;bottom:16px;right:16px;background:rgba(8,71,126,.85);color:#fff;font-family:'Karantina',sans-serif;font-weight:700;font-size:clamp(1.3rem,3.6vw,1.95rem);letter-spacing:.04em;padding:7px 18px;border-radius:12px;backdrop-filter:blur(3px);box-shadow:0 8px 20px rgba(0,0,0,.3)}
+
+/* manifesto: שנה לעצמך */
+.manifesto{background:linear-gradient(160deg,#06294a,#08477E);color:#fff;text-align:center}
+.manifesto .eyebrow{background:rgba(237,165,30,.22);color:#fff}
+.manifesto-body{max-width:760px;margin:12px auto 0}
+.manifesto-body p{font-size:1.12rem;color:#dbe8f4;margin-bottom:16px;line-height:1.75}
+.mf-lead{font-family:'Karantina',sans-serif;font-weight:700;font-size:clamp(1.7rem,4.6vw,2.4rem)!important;color:#fff!important;letter-spacing:.03em;margin-bottom:20px!important}
+.mf-punch{font-weight:700;color:#fff!important;font-size:1.18rem!important;line-height:2!important}
+.mf-cta{font-family:'Karantina',sans-serif;font-weight:700;font-size:clamp(1.5rem,4vw,1.9rem)!important;color:var(--gold)!important;letter-spacing:.03em;margin-top:6px!important}
+
+/* week in life: שבוע בחיי המכינה */
+.weekblock{margin-top:34px}
+.week-intro{max-width:760px;margin:0 auto 22px;text-align:center;font-size:1.1rem;color:var(--ink)}
+.weekcard{max-width:760px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px 26px;box-shadow:var(--shadow)}
+.weekcard h3{font-size:1.5rem;text-align:center;margin-bottom:18px;color:var(--deep)}
+.weeklist{list-style:none;display:grid;gap:12px}
+.weeklist li{position:relative;padding-right:28px;font-size:1.06rem;color:var(--ink)}
+.weeklist li::before{content:"←";position:absolute;right:0;top:0;color:var(--gold-d);font-weight:900}
+.week-foot{margin-top:18px;color:var(--muted);text-align:center;font-size:1rem}
+.week-tag{margin-top:14px;text-align:center;font-family:'Karantina',sans-serif;font-weight:700;font-size:clamp(1.5rem,4vw,2rem);color:var(--deep);letter-spacing:.05em}
 
 /* testimonials + video */
 .video-wrap{position:relative;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:16/9;background:#000;margin-top:8px}
@@ -308,8 +330,8 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   <div class="hero-bg"><img src="assets/img/hero-sun.jpg" alt="בחורי מכינת אורות על גבעה עם השמש מאחור"></div>
   <div class="hero-inner">
     <span class="eyebrow">מכינה קדם-צבאית תורנית</span>
-    <h1>השנה שבה תהפוך לבן אדם אחר</h1>
-    <p class="lead">תורה שהיא שלך, קבוצה שהיא משפחה, והכנה אמיתית לצבא ולחיים</p>
+    <h1>השנה שבה תהיה מי שאתה באמת</h1>
+    <p class="lead">קבוצה שהיא משפחה, דרך שהיא שלך, והכנה אמיתית לצבא ולחיים</p>
     <div class="hero-cta">
       <a href="#signup" class="btn btn-gold">לתאם יום פתוח</a>
       <a href="#bogrim" class="btn btn-out">שמע מהבוגרים ▸</a>
@@ -328,6 +350,24 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   </div>
 </section>
 
+<!-- MANIFESTO: שנה לעצמך -->
+<section class="manifesto" id="manifesto">
+  <div class="wrap">
+    <span class="eyebrow">שנה לעצמך</span>
+    <div class="manifesto-body">
+      <p class="mf-lead">סיימת תיכון, סיימת בגרויות, ועוד רגע הצבא. ומה עכשיו?</p>
+      <p>עכשיו אתה רוצה שנה אחת שהיא שלך, שנה להתקדם, לברר במה אתה מאמין, ולבחור לאן אתה הולך לשרת.</p>
+      <p class="mf-punch">אתה לא רוצה להיות עוד אחד מאלף, אתה רוצה להיות אתה.<br>להאמין כי אתה מאמין, לא כי אמרו לך.<br>לשרת כי אתה בוחר, לא כי ככה עושים.</p>
+      <p>בשביל זה הקמנו את מכינת אורות לפני 19 שנה, כדי שתבחר מי אתה, באמונה, בצבא ובחיים.</p>
+      <p>הבנו שבשביל זה צריך אווירה של משפחה, חברים אמיתיים, וצוות שמכיר אותך בשם, פה אתה לא אחד ממאה שנלחמים על תשומת לב, פה חושבים עליך.</p>
+      <p>הבנו שאתה לא נבנה כשלוחצים עליך, אבל אתה כן רוצה יד מכוונת, עצה טובה, ולפעמים גם עזרה, אז בנינו מקום שנותן לך את הקצב שלך יחד עם התוכן והעשייה.</p>
+      <p>פה תתקדם בדרך שלך, בלי לחץ, תציב לעצמך יעדים ותכבוש אותם כי אתה רוצה ולא כי צריך, תאמין מתוך בחירה ותשרת מתוך אכפתיות ואחריות.</p>
+      <p class="mf-cta">מדבר אליך? דבר איתנו.</p>
+      <a href="#signup" class="btn btn-gold" style="margin-top:8px">לתאם יום פתוח</a>
+    </div>
+  </div>
+</section>
+
 <!-- DAY IN LIFE -->
 <section id="day">
   <div class="wrap center">
@@ -340,6 +380,21 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
       <div class="daycard"><img class="dc-img" src="assets/img/kotel.jpg" alt="לימוד ותפילה"><div class="ph"><h3>לימוד אמונה</h3><p>פותחים את היום בבית המדרש, מחזקים אמונה ומתחילים למצוא את הדרך שלך בתורה, כל אחד בקצב שלו</p></div></div>
       <div class="daycard"><img class="dc-img" src="assets/img/day-sport.jpg" alt="כדורסל וספורט"><div class="ph"><h3>מרצים, כדורגל וזמן עם החבר'ה</h3><p>מרצים מבחוץ, ספורט, וזמן להתפתח ולהיות עם החבר'ה</p></div></div>
       <div class="daycard"><img class="dc-img" src="assets/img/day-field.jpg" alt="מסעות וניווטים בשטח"><div class="ph"><h3>מסעות וניווטים בשטח</h3><p>יוצאים לשטח, מנווטים, ומבררים ביחד את הדברים הגדולים של החיים</p></div></div>
+    </div>
+  </div>
+  <div class="wrap weekblock">
+    <p class="week-intro">אז ת'כלס, מה עושים פה כל יום? לומדים, מתאמנים, עושים, ובתוך כל זה יש גם זמן שלך, לשבת, לחשוב, ולבחור.</p>
+    <div class="weekcard">
+      <h3>שבוע בחיי המכינה</h3>
+      <ul class="weeklist">
+        <li>פותחים את הבוקר בלימוד אמונה בבית המדרש</li>
+        <li>ממשיכים לנושאים שנוגעים לחיים: מדינת ישראל, כלכלה, חברה</li>
+        <li>מתנדבים בעמותת חסד לנזקקים</li>
+        <li>מתכוננים לשירות משמעותי: אימונים, מד"סים, ניווטים, ומפגשים עם קצינים ומור"קים</li>
+        <li>יוצאים למסעות ולסיורי מורשת בפינות הכי יפות בארץ</li>
+      </ul>
+      <p class="week-foot">והכל לפי תוכנית שנתית מסודרת, כדי שתדע בדיוק לאן אתה הולך.</p>
+      <p class="week-tag">תבוא. תרגיש. תבין.</p>
     </div>
   </div>
 </section>
@@ -377,10 +432,13 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
 <!-- ATMOSPHERE / PROOF -->
 <section id="proof">
   <div class="wrap split">
-    <img src="assets/img/g-shabbat.jpg" alt="בחורי המכינה יחד בשעת בין הערביים">
+    <div class="proof-media">
+      <img src="assets/img/g-shabbat.jpg" alt="בחורי המכינה יחד בשעת בין הערביים">
+      <span class="proof-tag">זר לא יבין זאת</span>
+    </div>
     <div>
       <span class="eyebrow">אווירה משפחתית</span>
-      <p class="proofbig">כאן רואים אותך, <span class="hl">זר לא יבין זאת</span></p>
+      <p class="proofbig">כאן <span class="hl">רואים אותך</span></p>
       <p style="color:var(--muted);margin-top:18px;font-size:1.08rem;line-height:1.9">כאן האווירה משפחתית, מרגישים את זה ברגע שנכנסים<br>כאן אתה לא נבלע בתוך ההמון, רואים אותך ומאמינים בך<br>הבוגרים נשארים בקשר שנים אחרי הצבא, וממשיכים לחזור</p>
       <a href="#bogrim" class="btn btn-gold" style="margin-top:22px">שמע מהבוגרים עצמם</a>
     </div>
@@ -406,7 +464,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   <div class="wrap" style="max-width:760px;margin-top:26px">
     <ul class="fitlist">
       <li><span class="b">✓</span><span>אתה רוצה לגדול ולבנות את עצמך, ומחפש מוטיבציה אמיתית</span></li>
-      <li><span class="b">✓</span><span>אתה רוצה ללמוד תורה, אבל בנחת ובדרך שלך</span></li>
+      <li><span class="b">✓</span><span>אתה רוצה להעמיק באמונה, אבל בנחת ובדרך שלך</span></li>
       <li><span class="b">✓</span><span>אתה רוצה לברר את האמונה שלך ואת הדרך שלך בצבא</span></li>
       <li><span class="b">✓</span><span>חשובה לך קבוצה, וחשובה לך אווירה של משפחה</span></li>
     </ul>
@@ -444,7 +502,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   </div>
   <div class="wrap" style="margin-top:32px">
     <div class="grid4">
-      <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 7.5 4.4 4 5v13c3.5-.6 6.5 0 8 1.5 1.5-1.5 4.5-2.1 8-1.5V5c-3.5-.6-6.5 0-8 1.5Z"/><path d="M12 6.5v13"/></svg></div><h3>לימוד בעומק</h3><p>תורה ואמונה שבונות אותך, בקצב שלך</p></div>
+      <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 7.5 4.4 4 5v13c3.5-.6 6.5 0 8 1.5 1.5-1.5 4.5-2.1 8-1.5V5c-3.5-.6-6.5 0-8 1.5Z"/><path d="M12 6.5v13"/></svg></div><h3>לימוד בעומק</h3><p>לימוד ואמונה שבונים אותך, בקצב שלך</p></div>
       <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M16 20v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V20"/><circle cx="9" cy="7.5" r="3.2"/><path d="M22 20v-1.5a4 4 0 0 0-3-3.85"/><path d="M16.5 4.7a4 4 0 0 1 0 7.6"/></svg></div><h3>ליווי אישי</h3><p>צוות שאתה מתחבר אליו</p></div>
       <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>הכנה לצה"ל</h3><p>מגיעים ליום הגיוס עם ראש בוגר, לא רק כושר</p></div>
       <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 20s-6.8-4.3-9-8.7C1.4 8 3 5 6 5c2 0 3.2 1.3 4 2.6C10.8 6.3 12 5 14 5c3 0 4.6 3 3 6.3C14.8 15.7 12 20 12 20Z"/></svg></div><h3>קהילת בוגרים</h3><p>משפחה לכל החיים, לא לשנה</p></div>
@@ -483,7 +541,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
     <h2 class="sec-title">שאלות שחשוב לך לדעת</h2>
   </div>
   <div class="wrap faq" style="margin-top:30px">
-    <div class="qa"><button>כמה תורני זה בפועל? <span class="chev">▾</span></button><div class="a"><p>התורה היא הלב שלנו, ואצלנו יש שילוב בריא בין לימוד תורה, הכנה לצבא והתפתחות אישית, כאן תמצא את הדרך האישית שלך בתורה</p></div></div>
+    <div class="qa"><button>כמה תורני זה בפועל? <span class="chev">▾</span></button><div class="a"><p>הלימוד הוא הלב שלנו, ואצלנו זה שילוב בריא בין לימוד, הכנה לצבא והתפתחות אישית, וכל אחד מוצא את הדרך האישית שלו</p></div></div>
     <div class="qa"><button>איפה זה נמצא? <span class="chev">▾</span></button><div class="a"><p>ביישוב טלמון, נחלת בנימין, בין הרים ונוף פתוח, מקום שמאפשר להתרכז ולהתפתח</p></div></div>
     <div class="qa"><button>מתי נכנסים ומתי נרשמים? <span class="chev">▾</span></button><div class="a"><p>המחזור נפתח בתחילת אלול, כדאי לתאם ביקור מוקדם כדי להכיר את המקום מקרוב, השאר פרטים ורועי יחזור אליך עם כל מה שצריך</p></div></div>
     <div class="qa"><button>צריך להגיע עם רקע ישיבתי? <span class="chev">▾</span></button><div class="a"><p>לא, מתחילים מהיסודות, וכל אחד מתקדם בקצב שלו</p></div></div>
