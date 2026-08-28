@@ -11,13 +11,13 @@
 <style>
 :root{
   --bg:#FBF8F3; --surface:#FFFFFF; --cream:#F3ECE0;
-  --deep:#08477E; --blue:#0060A0; --cyan:#17A8DC;
+  --deep:#0A4E92; --blue:#0A82C4; --cyan:#13ACDE;
   --gold:#EDA51E; --gold-d:#CE8608;
-  --ink:#1F2D36; --muted:#5C6B75; --line:#E7DFD2;
+  --ink:#14314A; --muted:#566572; --line:#E4E1DA;
   --wa:#25D366;
-  --r:18px; --maxw:1120px;
-  --shadow:0 10px 30px rgba(8,71,126,.08);
-  --shadow-lg:0 20px 50px rgba(8,71,126,.16);
+  --r:6px; --maxw:1120px;
+  --shadow:0 2px 10px rgba(10,78,146,.06);
+  --shadow-lg:0 16px 40px rgba(10,78,146,.14);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -94,13 +94,13 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 /* day in life */
 .cards3{display:grid;gap:18px;grid-template-columns:1fr}
 @media(min-width:760px){.cards3{grid-template-columns:repeat(3,1fr)}}
-.daycard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
-.daycard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.daycard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .2s ease,box-shadow .2s ease}
+.daycard:hover{border-color:var(--cyan);box-shadow:var(--shadow)}
 .daycard .dc-img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
 .daycard .ph{padding:20px 22px 24px}
 .daycard h3{font-size:1.3rem;margin:0 0 8px}
 .daycard p{color:var(--muted);font-size:.98rem}
-@media(min-width:760px){.cards3{align-items:start}.daycard:nth-child(2){transform:translateY(22px)}.daycard:nth-child(2):hover{transform:translateY(16px)}.daycard:nth-child(3){border-radius:26px}}
+@media(min-width:760px){.cards3{align-items:stretch}}
 .ic svg{width:34px;height:34px;stroke:var(--blue);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
 /* torah basbaba contrast */
@@ -116,20 +116,29 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 .col li .b{flex:0 0 auto;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.8rem;font-weight:900;margin-top:3px}
 .no .b{background:rgba(255,255,255,.16)}
 .yes .b{background:var(--gold);color:#3a2a05}
-.torah .punch{text-align:center;margin-top:32px;font-size:clamp(1.3rem,4vw,1.9rem);font-weight:800}
+.torah .punch{text-align:center;margin-top:30px;font-size:clamp(1.3rem,4vw,1.9rem);font-weight:800}
 .torah .punch .serif{color:var(--gold)}
+/* torah bento: hairline-separated, last cell spans full width so no empty column */
+.torah-grid{display:grid;gap:1px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.2);grid-template-columns:1fr;margin-top:30px}
+@media(min-width:760px){.torah-grid{grid-template-columns:1fr 1fr}.tcell-wide{grid-column:1/-1}}
+.tcell{background:linear-gradient(160deg,var(--deep),var(--blue));display:flex;gap:12px;align-items:flex-start;padding:20px 22px;font-size:1.06rem}
+.tcell .ti{flex:0 0 auto;width:24px;height:24px;background:var(--gold);color:#3a2a05;font-weight:900;font-size:.8rem;display:grid;place-items:center;margin-top:2px}
+.torah-not{text-align:center;margin-top:20px;color:#cfe3f2;font-size:1.02rem}
+.torah-not b{color:#fff;font-weight:700}
 
 /* atmosphere / proof */
 .split{display:grid;gap:30px;align-items:center;grid-template-columns:1fr}
 @media(min-width:860px){.split{grid-template-columns:1.05fr .95fr;gap:48px}}
-.split img{border-radius:var(--r);box-shadow:var(--shadow-lg);width:100%;aspect-ratio:4/3;object-fit:cover}
+.split img:not(.proof-tagimg){border-radius:var(--r);box-shadow:var(--shadow-lg);width:100%;aspect-ratio:4/3;object-fit:cover}
 .proofbig{font-size:clamp(1.5rem,4.4vw,2.1rem);font-weight:800;line-height:1.3}
 .proofbig .hl{color:var(--blue)}
 .proof-media{position:relative}
-.proof-tag{position:absolute;bottom:16px;right:16px;background:rgba(8,71,126,.85);color:#fff;font-family:'Karantina',sans-serif;font-weight:700;font-size:clamp(1.3rem,3.6vw,1.95rem);letter-spacing:.04em;padding:7px 18px;border-radius:12px;backdrop-filter:blur(3px);box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.proof-plate{position:absolute;bottom:0;right:0;background:#fff;padding:12px 22px 14px;box-shadow:0 -6px 22px rgba(0,0,0,.14)}
+.proof-tagimg{width:clamp(150px,25vw,208px);height:auto;display:block}
+@media(max-width:760px){.proof-plate{padding:10px 16px 12px}}
 
 /* manifesto: שנה לעצמך */
-.manifesto{background:linear-gradient(160deg,#06294a,#08477E);color:#fff;text-align:center}
+.manifesto{background:linear-gradient(160deg,#073a6e,#0A4E92);color:#fff;text-align:center}
 .manifesto .eyebrow{background:rgba(237,165,30,.22);color:#fff}
 .manifesto-body{max-width:760px;margin:12px auto 0}
 .manifesto-body p{font-size:1.12rem;color:#dbe8f4;margin-bottom:16px;line-height:1.75}
@@ -140,7 +149,7 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 /* week in life: שבוע בחיי המכינה */
 .weekblock{margin-top:34px}
 .week-intro{max-width:760px;margin:0 auto 22px;text-align:center;font-size:1.1rem;color:var(--ink)}
-.weekcard{max-width:760px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px 26px;box-shadow:var(--shadow)}
+.weekcard{max-width:760px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:var(--r);padding:28px 26px;box-shadow:var(--shadow)}
 .weekcard h3{font-size:1.5rem;text-align:center;margin-bottom:18px;color:var(--deep)}
 .weeklist{list-style:none;display:grid;gap:12px}
 .weeklist li{position:relative;padding-right:28px;font-size:1.06rem;color:var(--ink)}
@@ -180,10 +189,9 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 
 /* offer grid */
 .grid4{display:grid;gap:16px;grid-template-columns:1fr 1fr}
-@media(min-width:760px){.grid4{grid-template-columns:repeat(4,1fr);align-items:start}.feat:nth-child(2),.feat:nth-child(4){transform:translateY(18px)}.feat:nth-child(2):hover,.feat:nth-child(4):hover{transform:translateY(12px)}}
-.feat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 18px;text-align:center;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
-.feat:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
-.feat:nth-child(odd){border-radius:24px}
+@media(min-width:760px){.grid4{grid-template-columns:repeat(4,1fr)}}
+.feat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px 18px;text-align:center;transition:border-color .2s ease,box-shadow .2s ease}
+.feat:hover{border-color:var(--cyan);box-shadow:var(--shadow)}
 .feat .ic{margin-bottom:10px}
 .feat .ic svg{width:38px;height:38px}
 .feat:nth-child(2) .ic svg{stroke:var(--gold-d)}
@@ -194,14 +202,12 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 /* gallery */
 .gallery{column-count:2;column-gap:12px}
 @media(min-width:760px){.gallery{column-count:4;column-gap:14px}}
-.gallery img{width:100%;margin:0 0 12px;border-radius:14px;object-fit:cover;display:block;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease;break-inside:avoid}
-.gallery img:hover{transform:scale(1.03);box-shadow:var(--shadow-lg)}
-.gallery img:nth-child(3n){border-radius:24px}
-.gallery img:nth-child(5n){border-radius:6px}
+.gallery img{width:100%;margin:0 0 12px;border-radius:4px;object-fit:cover;display:block;cursor:pointer;transition:filter .2s ease,box-shadow .2s ease;break-inside:avoid}
+.gallery img:hover{filter:brightness(1.04);box-shadow:var(--shadow-lg)}
 
 /* faq */
 .faq{max-width:760px;margin:0 auto}
-.qa{background:var(--surface);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.qa{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
 .qa button{width:100%;text-align:right;background:none;border:0;padding:20px 22px;font-family:inherit;font-size:1.08rem;font-weight:700;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px}
 .qa .a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--muted)}
 .qa .a p{padding:0 22px 20px;font-size:1rem}
@@ -211,12 +217,12 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 
 /* form / CTA */
 .signup{background:linear-gradient(160deg,var(--gold) 0%,#f4b840 100%)}
-.formcard{background:var(--surface);border-radius:24px;box-shadow:var(--shadow-lg);padding:34px 26px;max-width:520px;margin:0 auto}
+.formcard{background:var(--surface);border-radius:8px;box-shadow:var(--shadow-lg);padding:34px 26px;max-width:520px;margin:0 auto}
 .formcard h2{font-size:clamp(1.5rem,5vw,2rem);text-align:center;margin-bottom:6px}
 .formcard p.sub{text-align:center;color:var(--muted);margin-bottom:22px}
 .field{margin-bottom:14px}
 .field label{display:block;font-weight:600;font-size:.92rem;margin-bottom:6px}
-.field input{width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;font-family:inherit;font-size:1.05rem;background:var(--bg)}
+.field input{width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:6px;font-family:inherit;font-size:1.05rem;background:var(--bg)}
 .field input:focus{outline:none;border-color:var(--blue)}
 .formcard .btn-gold{width:100%;justify-content:center;font-size:1.15rem}
 .orwa{text-align:center;margin-top:16px;color:var(--muted);font-size:.95rem}
@@ -406,26 +412,15 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
     <h2 class="sec-title">התורה שלך</h2>
   </div>
   <div class="wrap">
-    <div class="contrast">
-      <div class="col yes">
-        <h3>מה שתמצא כאן</h3>
-        <ul>
-          <li><span class="b">✓</span><span>תורה שנפתחת מתוך אהבה וחיבור אישי</span></li>
-          <li><span class="b">✓</span><span>מתחילים באמונה מהיסודות, ומבררים למה זה קשור אליך</span></li>
-          <li><span class="b">✓</span><span>בית מדרש חי שאתה בוחר להיות בו</span></li>
-          <li><span class="b">✓</span><span>אמונה שנבנית לעומק ובכנות</span></li>
-          <li><span class="b">✓</span><span>אישיות עם אמונה, ערכים ומידות</span></li>
-        </ul>
-      </div>
-      <div class="col no">
-        <h3>ומה לא</h3>
-        <ul>
-          <li><span class="b">✕</span><span>לחץ חברתי</span></li>
-          <li><span class="b">✕</span><span>מישהו שמנסה לעצב אותך מחדש</span></li>
-        </ul>
-      </div>
+    <div class="torah-grid">
+      <div class="tcell"><span class="ti">✓</span><span>תורה שנפתחת מתוך אהבה וחיבור אישי</span></div>
+      <div class="tcell"><span class="ti">✓</span><span>מתחילים באמונה מהיסודות, ומבררים למה זה קשור אליך</span></div>
+      <div class="tcell"><span class="ti">✓</span><span>בית מדרש חי שאתה בוחר להיות בו</span></div>
+      <div class="tcell"><span class="ti">✓</span><span>אמונה שנבנית לעומק ובכנות</span></div>
+      <div class="tcell tcell-wide"><span class="ti">✓</span><span>אישיות עם אמונה, ערכים ומידות</span></div>
     </div>
     <p class="punch">כאן תמצא את הדרך שלך בתורה, <span class="serif">כל אחד בקצב שלו</span></p>
+    <p class="torah-not">ומה לא תמצא כאן? <b>לחץ חברתי</b>, או <b>מישהו שמנסה לעצב אותך מחדש</b></p>
   </div>
 </section>
 
@@ -434,7 +429,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   <div class="wrap split">
     <div class="proof-media">
       <img src="assets/img/g-shabbat.jpg" alt="בחורי המכינה יחד בשעת בין הערביים">
-      <span class="proof-tag">זר לא יבין זאת</span>
+      <div class="proof-plate"><img src="assets/img/tagline-zar.png" alt="זר לא יבין זאת" class="proof-tagimg"></div>
     </div>
     <div>
       <span class="eyebrow">אווירה משפחתית</span>
@@ -450,9 +445,8 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   <style>
     #fit{background:linear-gradient(160deg,#ffffff,var(--cream))}
     .fitlist{list-style:none;display:grid;gap:14px}
-    .fitlist li{display:flex;gap:12px;align-items:flex-start;font-size:1.12rem;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
-    .fitlist li:hover{transform:translateX(-4px);box-shadow:var(--shadow-lg)}
-    .fitlist li:nth-child(2){border-radius:22px}
+    .fitlist li{display:flex;gap:12px;align-items:flex-start;font-size:1.12rem;background:var(--surface);border:1px solid var(--line);border-right:3px solid var(--gold);border-radius:var(--r);padding:16px 18px;transition:border-color .2s ease,box-shadow .2s ease}
+    .fitlist li:hover{box-shadow:var(--shadow)}
     .fitlist .b{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#3a2a05;display:grid;place-items:center;font-weight:900;font-size:.82rem;margin-top:2px}
     .fitclose{text-align:center;font-family:'Karantina',sans-serif;font-weight:700;font-size:1.7rem;color:var(--deep);margin-top:24px;letter-spacing:.03em}
     .fitless{text-align:center;color:var(--muted);font-size:.98rem;margin-top:10px}
