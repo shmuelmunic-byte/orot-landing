@@ -123,6 +123,8 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 @media(min-width:760px){.torah-grid{grid-template-columns:1fr 1fr}.tcell-wide{grid-column:1/-1}}
 .tcell{background:linear-gradient(160deg,var(--deep),var(--blue));display:flex;gap:12px;align-items:flex-start;padding:20px 22px;font-size:1.06rem}
 .tcell .ti{flex:0 0 auto;width:24px;height:24px;background:var(--gold);color:#3a2a05;font-weight:900;font-size:.8rem;display:grid;place-items:center;margin-top:2px}
+.punch .pbr{display:none}
+@media(max-width:760px){.punch .pbr{display:block}}
 .torah-not{text-align:center;margin-top:20px;color:#cfe3f2;font-size:1.02rem}
 .torah-not b{color:#fff;font-weight:700}
 
@@ -419,7 +421,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
       <div class="tcell"><span class="ti">✓</span><span>אמונה שנבנית לעומק ובכנות</span></div>
       <div class="tcell tcell-wide"><span class="ti">✓</span><span>אישיות עם אמונה, ערכים ומידות</span></div>
     </div>
-    <p class="punch">כאן תמצא את הדרך שלך בתורה, <span class="serif">כל אחד בקצב שלו</span></p>
+    <p class="punch">כאן תמצא את הדרך שלך בתורה,<br class="pbr"> <span class="serif">כל אחד בקצב שלו</span></p>
     <p class="torah-not">ומה לא תמצא כאן? <b>לחץ חברתי</b>, או <b>מישהו שמנסה לעצב אותך מחדש</b></p>
   </div>
 </section>
