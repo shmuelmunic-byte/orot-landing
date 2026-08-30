@@ -5,9 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>מכינת אורות טלמון | השנה שבה תהיה מי שאתה באמת</title>
 <meta name="description" content="מכינה קדם-צבאית בטלמון, שנה לבנות את עצמך, לברר את הדרך שלך ולהגיע לצבא מוכן ובשל, בלי לחץ, בוא לראות מקרוב.">
+<!-- ===== Meta Pixel (base code) ===== -->
+<!-- החלף את PIXEL_ID_HERE במספר הפיקסל מ-Business Manager. זה השינוי היחיד שצריך. -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+window.FB_PIXEL_ID='PIXEL_ID_HERE';
+if(window.FB_PIXEL_ID && window.FB_PIXEL_ID!=='PIXEL_ID_HERE'){
+  fbq('init', window.FB_PIXEL_ID);
+  fbq('track', 'PageView');
+}
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=PIXEL_ID_HERE&ev=PageView&noscript=1"/></noscript>
+<!-- ===== End Meta Pixel ===== -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Karantina:wght@400;700&family=Miriam+Libre:wght@400;700&display=swap" rel="stylesheet">
+<!-- פונטי כתב יד עבריים מאוחסנים מקומית (עוקף תלות ב-Google מאחורי סינון). פעיל: Dana Yad. חלופה: Gveret Levin -->
+<style>
+@font-face{font-family:'Dana Yad';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/dana-yad.woff') format('woff')}
+@font-face{font-family:'Gveret Levin';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/gveret-levin-regular.woff2') format('woff2')}
+</style>
 <style>
 :root{
   --bg:#FBF8F3; --surface:#FFFFFF; --cream:#F3ECE0;
@@ -190,8 +215,9 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 @media(max-width:560px){.stats{grid-template-columns:1fr;gap:12px}.stat{padding:18px 14px}}
 
 /* offer grid */
-.grid4{display:grid;gap:16px;grid-template-columns:1fr 1fr}
-@media(min-width:760px){.grid4{grid-template-columns:repeat(4,1fr)}}
+.grid4{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+.grid4 .feat{flex:1 1 140px;max-width:240px}
+@media(min-width:760px){.grid4 .feat{flex:1 1 180px}}
 .feat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px 18px;text-align:center;transition:border-color .2s ease,box-shadow .2s ease}
 .feat:hover{border-color:var(--cyan);box-shadow:var(--shadow)}
 .feat .ic{margin-bottom:10px}
@@ -329,7 +355,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
       <a href="#bogrim">בוגרים</a>
       <a href="#faq">שאלות</a>
     </nav>
-    <a href="#signup" class="btn btn-gold">לתאם יום פתוח</a>
+    <a href="#signup" class="btn btn-gold">לתיאום שבו"ש</a>
     <button class="burger" id="burger" aria-label="תפריט"><span></span><span></span><span></span></button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
@@ -338,7 +364,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
     <a href="#bogrim">בוגרים</a>
     <a href="#offer">מה מקבלים</a>
     <a href="#faq">שאלות</a>
-    <a href="#signup">לתאם יום פתוח</a>
+    <a href="#signup">לתיאום שבו"ש</a>
   </div>
 </header>
 
@@ -349,9 +375,9 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   <div class="hero-inner">
     <span class="eyebrow">מכינה קדם-צבאית תורנית</span>
     <h1>השנה שבה תהיה מי שאתה באמת</h1>
-    <p class="lead">קבוצה שהיא משפחה, דרך שהיא שלך, והכנה מלאה לצבא ולחיים</p>
+    <p class="lead">מכינה שהיא משפחה, דרך שהיא שלך, והכנה מלאה לצבא ולחיים</p>
     <div class="hero-cta">
-      <a href="#signup" class="btn btn-gold">לתאם יום פתוח</a>
+      <a href="#signup" class="btn btn-gold">לתיאום שבו"ש</a>
       <a href="#bogrim" class="btn btn-out">שמע מהבוגרים ▸</a>
     </div>
   </div>
@@ -373,15 +399,16 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   <div class="wrap">
     <span class="eyebrow">שנה לעצמך</span>
     <div class="manifesto-body">
-      <p class="mf-lead">סיימת תיכון, סיימת בגרויות, ועוד רגע הצבא. ומה עכשיו?</p>
-      <p>עכשיו אתה רוצה שנה אחת שהיא שלך, שנה להתקדם, לברר במה אתה מאמין, ולבחור לאן אתה הולך לשרת.</p>
-      <p class="mf-punch">אתה לא רוצה להיות עוד אחד מאלף, אתה רוצה להיות אתה.<br>להאמין כי אתה מאמין, לא כי אמרו לך.<br>לשרת כי אתה בוחר, לא כי ככה עושים.</p>
-      <p>בשביל זה הקמנו את מכינת אורות לפני 19 שנה, כדי שתבחר מי אתה, באמונה, בצבא ובחיים.</p>
-      <p>הבנו שבשביל זה צריך אווירה של משפחה, חברים לחיים, וצוות שמכיר אותך בשם, פה אתה לא אחד ממאה שנלחמים על תשומת לב, פה חושבים עליך.</p>
-      <p>הבנו שאתה לא נבנה כשלוחצים עליך, אבל אתה כן רוצה יד מכוונת, עצה טובה, ולפעמים גם עזרה, אז בנינו מקום שנותן לך את הקצב שלך יחד עם התוכן והעשייה.</p>
+      <p class="mf-lead">סיימת תיכון, עוד רגע הצבא,<br>ומה עכשיו?</p>
+      <p>עכשיו אתה רוצה שנה אחת לעצמך, שנה אחת שהיא שלך, שנה להתקדם, לברר במה אתה מאמין, ולבחור לאן אתה הולך לשרת.</p>
+      <p class="mf-punch">אתה לא רוצה להיות עוד אחד מאלף, אתה רוצה להיות אתה.<br>להאמין כי אתה מאמין, לא כי אמרו לך.<br>לשרת בצה"ל כי אתה בוחר, לא כי ככה כולם עושים.</p>
+      <p>בשביל זה הקמנו את מכינת אורות לפני 19 שנה, כדי שתבחר להיות מי אתה, באמונה, בצבא ובחיים.</p>
+      <p>הבנו שבשביל זה צריך אווירה של משפחה, חברים לחיים, וצוות שמכיר אותך.</p>
+      <p>פה חושבים עליך.</p>
+      <p>הבנו שאתה לא מתקדם כשלוחצים עליך, אבל אתה כן רוצה יד מכוונת, עצה טובה, ולפעמים גם עזרה, אז בנינו מקום שנותן לך את הקצב שלך יחד עם התוכן והעשייה.</p>
       <p>פה תתקדם בדרך שלך, בלי לחץ, תציב לעצמך יעדים ותכבוש אותם כי אתה רוצה ולא כי צריך, תאמין מתוך בחירה ותשרת מתוך אכפתיות ואחריות.</p>
       <p class="mf-cta">מדבר אליך? דבר איתנו.</p>
-      <a href="#signup" class="btn btn-gold" style="margin-top:8px">לתאם יום פתוח</a>
+      <a href="#signup" class="btn btn-gold" style="margin-top:8px">לתיאום שבו"ש</a>
     </div>
   </div>
 </section>
@@ -395,7 +422,8 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   </div>
   <div class="wrap" style="margin-top:34px">
     <div class="cards3">
-      <div class="daycard"><img class="dc-img" src="assets/img/kotel.jpg" alt="לימוד ותפילה"><div class="ph"><h3>לימוד אמונה</h3><p>פותחים את היום בבית המדרש, מחזקים אמונה ומתחילים למצוא את הדרך שלך בתורה, כל אחד בקצב שלו</p></div></div>
+      <!-- TODO: להחליף ל-תמונה מבית המדרש כשתגיע (שמואל יעדכן) -->
+      <div class="daycard"><img class="dc-img" src="assets/img/kotel.jpg" alt="לימוד אמונה בבית המדרש"><div class="ph"><h3>לימוד אמונה</h3><p>פותחים את היום בבית המדרש, מחזקים אמונה ומתחילים למצוא את הדרך שלך בתורה, כל אחד בקצב שלו</p></div></div>
       <div class="daycard"><img class="dc-img" src="assets/img/day-sport.jpg" alt="כדורסל וספורט"><div class="ph"><h3>מרצים, כדורגל וזמן עם החבר'ה</h3><p>מרצים מבחוץ, ספורט, וזמן להתפתח ולהיות עם החבר'ה</p></div></div>
       <div class="daycard"><img class="dc-img" src="assets/img/day-field.jpg" alt="מסעות וניווטים בשטח"><div class="ph"><h3>מסעות וניווטים בשטח</h3><p>יוצאים לשטח, מנווטים, ומבררים ביחד את הדברים הגדולים של החיים</p></div></div>
     </div>
@@ -432,7 +460,6 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
       <div class="tcell tcell-wide"><span class="ti">✓</span><span>אישיות עם אמונה, ערכים ומידות</span></div>
     </div>
     <p class="punch">כאן תמצא את הדרך שלך בתורה,<br class="pbr"> <span class="serif">כל אחד בקצב שלו</span></p>
-    <p class="torah-not">ומה לא תמצא כאן? <b>לחץ חברתי</b>, או <b>מישהו שמנסה לעצב אותך מחדש</b></p>
   </div>
 </section>
 
@@ -465,22 +492,31 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   </style>
   <div class="wrap center">
     <span class="eyebrow">מי מתאים לנו</span>
-    <h2 class="sec-title">זה בשבילך אם...</h2>
+    <h2 class="sec-title">מכינת אורות מחפשת את...</h2>
   </div>
   <div class="wrap" style="max-width:760px;margin-top:26px">
     <ul class="fitlist">
-      <li><span class="b">✓</span><span>אתה רוצה לגדול ולבנות את עצמך, ומחפש מוטיבציה שבאה מבפנים</span></li>
-      <li><span class="b">✓</span><span>אתה רוצה להעמיק באמונה, אבל בנחת ובדרך שלך</span></li>
-      <li><span class="b">✓</span><span>אתה רוצה לברר את האמונה שלך ואת הדרך שלך בצבא</span></li>
-      <li><span class="b">✓</span><span>חשובה לך קבוצה, וחשובה לך אווירה של משפחה</span></li>
+      <li><span class="b">✓</span><span>מי שרוצה לגדול ולבנות את עצמו, ומחפש מוטיבציה שבאה מבפנים</span></li>
+      <li><span class="b">✓</span><span>מי שרוצה להעמיק באמונה, בנחת ובדרך שלו</span></li>
+      <li><span class="b">✓</span><span>מי שרוצה לברר את האמונה שלו ואת הדרך שלו בצבא</span></li>
+      <li><span class="b">✓</span><span>מי שמחפש קבוצה ואווירה של משפחה</span></li>
     </ul>
     <p class="fitclose">אם זה אתה, מקומך איתנו</p>
-    <p class="fitless">ולמי פחות? מי שמחפש סד לחץ קרבי או המון כללים נוקשים, ביושר, יש מקומות שיתאימו לך יותר</p>
+    <p class="fitless">ולמי פחות? מי שמחפש סד לחץ קרבי או משמעת ומסגרת נוקשה, ביושר, יש מקומות שיתאימו לך יותר</p>
   </div>
 </section>
 
 <!-- BOGRIM / VIDEO / TESTIMONIALS -->
 <section id="bogrim" style="background:var(--cream)">
+  <style>
+    #bogrim .quotes .quote{position:relative;background:linear-gradient(180deg,#fff,#fbf5e6);border:1px solid #e6d3a3;border-top:3px solid var(--gold);border-radius:14px;padding:30px 22px 20px;box-shadow:0 10px 24px rgba(8,71,126,.09);transition:transform .25s ease,box-shadow .25s ease}
+    #bogrim .quotes .quote:nth-child(odd){transform:rotate(-.7deg)}
+    #bogrim .quotes .quote:nth-child(even){transform:rotate(.7deg)}
+    #bogrim .quotes .quote:hover{transform:rotate(0) translateY(-4px);box-shadow:0 16px 32px rgba(8,71,126,.14)}
+    #bogrim .quotes .quote::before{content:'\201D';position:absolute;top:6px;right:16px;font-family:Georgia,serif;font-size:3.6rem;line-height:1;color:var(--gold);opacity:.4}
+    #bogrim .quotes .quote .txt{font-family:'Dana Yad','Heebo',cursive;font-weight:400;font-size:1.35rem;line-height:1.6;color:var(--ink)}
+    #bogrim .quotes .quote .av{background:var(--gold);color:#3a2a05}
+  </style>
   <div class="wrap center">
     <span class="eyebrow">בוגרים מספרים</span>
     <h2 class="sec-title">מה הבוגרים מספרים</h2>
@@ -496,6 +532,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
       <div class="quote"><div class="txt">"המכינה כמו הבית שלי"</div><div class="who"><span class="av">נ</span><div><b>נהוראי סוויסה</b><span>מחזור י'</span></div></div></div>
       <div class="quote"><div class="txt">"פה קיבלתי עוד משפחה לחיים, פה בניתי את עצמי"</div><div class="who"><span class="av">מ</span><div><b>מרום טבצ'ניק</b><span>מחזור ח'</span></div></div></div>
       <div class="quote"><div class="txt">"היום אני יכול להגיד בלב שלם שהמכינה היא הדבר הכי טוב שעשיתי בשביל עצמי"</div><div class="who"><span class="av">נ</span><div><b>נעם עמאר</b><span>מחזור ט"ז</span></div></div></div>
+      <div class="quote"><div class="txt">"המכינה תמיד תהיה לי עוגן בחיים, מקום שלא משנה מתי, אני יכול להגיע, להשתנות, ולהיות מוכל ואהוב"</div><div class="who"><span class="av">א</span><div><b>איתמר נגר</b><span>מחזור ט"ז</span></div></div></div>
     </div>
   </div>
 </section>
@@ -503,11 +540,12 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
 <!-- OFFER GRID -->
 <section id="offer">
   <div class="wrap center">
-    <span class="eyebrow">מה יוצא לך מפה</span>
+    <span class="eyebrow">מה תקבל משנה במכינת אורות</span>
     <h2 class="sec-title">שנה שבונה אותך לכל מה שבא אחריה</h2>
   </div>
   <div class="wrap" style="margin-top:32px">
     <div class="grid4">
+      <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2.5c1.4 2.7.8 4.6-.8 6.2C9.3 10.6 8 12.2 8 14.5a4 4 0 0 0 8 0c0-1.5-.6-2.8-1.5-3.9M12 22v-3"/></svg></div><h3>בניין אמונה</h3><p>חיבור אמיתי לעבודת ה'</p></div>
       <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 7.5 4.4 4 5v13c3.5-.6 6.5 0 8 1.5 1.5-1.5 4.5-2.1 8-1.5V5c-3.5-.6-6.5 0-8 1.5Z"/><path d="M12 6.5v13"/></svg></div><h3>לימוד בעומק</h3><p>לימוד ואמונה שבונים אותך, בקצב שלך</p></div>
       <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M16 20v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V20"/><circle cx="9" cy="7.5" r="3.2"/><path d="M22 20v-1.5a4 4 0 0 0-3-3.85"/><path d="M16.5 4.7a4 4 0 0 1 0 7.6"/></svg></div><h3>ליווי אישי</h3><p>צוות שאתה מתחבר אליו</p></div>
       <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>הכנה לצה"ל</h3><p>מגיעים ליום הגיוס עם ראש בוגר, לא רק כושר</p></div>
@@ -544,12 +582,12 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
 <section id="faq">
   <div class="wrap center">
     <span class="eyebrow">לפני שתשאל</span>
-    <h2 class="sec-title">שאלות שחשוב לך לדעת</h2>
+    <h2 class="sec-title">דברים שחשוב לך לדעת</h2>
   </div>
   <div class="wrap faq" style="margin-top:30px">
     <div class="qa"><button>כמה תורני זה בפועל? <span class="chev">▾</span></button><div class="a"><p>הלימוד הוא הלב שלנו, ואצלנו זה שילוב בריא בין לימוד, הכנה לצבא והתפתחות אישית, וכל אחד מוצא את הדרך האישית שלו</p></div></div>
     <div class="qa"><button>איפה זה נמצא? <span class="chev">▾</span></button><div class="a"><p>ביישוב טלמון, נחלת בנימין, בין הרים ונוף פתוח, מקום שמאפשר להתרכז ולהתפתח</p></div></div>
-    <div class="qa"><button>מתי נכנסים ומתי נרשמים? <span class="chev">▾</span></button><div class="a"><p>המחזור נפתח בתחילת אלול, כדאי לתאם ביקור מוקדם כדי להכיר את המקום מקרוב, השאר פרטים ורועי יחזור אליך עם כל מה שצריך</p></div></div>
+    <div class="qa"><button>מתי נכנסים ומתי נרשמים? <span class="chev">▾</span></button><div class="a"><p>המחזור נפתח בתחילת אלול, כדאי לקבוע שבו"ש מוקדם כדי להכיר את המקום מקרוב, השאר פרטים ורועי יחזור אליך עם כל מה שצריך</p></div></div>
     <div class="qa"><button>צריך להגיע עם רקע ישיבתי? <span class="chev">▾</span></button><div class="a"><p>לא, מתחילים מהיסודות, וכל אחד מתקדם בקצב שלו</p></div></div>
   </div>
 </section>
@@ -560,7 +598,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
     <div class="formcard">
       <div class="formfields" id="formFields">
         <h2>מוכן לקחת את השנה הזאת בידיים?</h2>
-        <p class="sub">השאר שם וטלפון, ורועי יחזור אליך לתאם ביקור ולענות על כל שאלה</p>
+        <p class="sub">השאר שם וטלפון, ורועי יחזור אליך לתיאום שבו"ש ולענות על כל שאלה</p>
         <form id="leadForm" novalidate>
           <div class="field"><label for="name">איך קוראים לך?</label><input id="name" name="name" type="text" placeholder="שם מלא" required aria-required="true" aria-describedby="name-err"><span id="name-err" class="err" role="alert" hidden>נא למלא שם מלא</span></div>
           <div class="field"><label for="phone">טלפון</label><input id="phone" name="phone" type="tel" inputmode="tel" dir="ltr" placeholder="05X-XXXXXXX" required aria-required="true" aria-describedby="phone-err"><span id="phone-err" class="err" role="alert" hidden>נא למלא מספר טלפון תקין (10 ספרות)</span></div>
@@ -697,7 +735,8 @@ leadForm.addEventListener('submit',e=>{
   mark(phone,'phone-err', !/^0\d{8,9}$/.test(phone.value.replace(/[-\s]/g,'')));
   mark(null,'consent-err', !consent.checked);
   if(!ok){ if(firstBad&&firstBad.focus) firstBad.focus(); return; }
-  // TODO: פיקסל מטא (Lead) - להוסיף כאן fbq('track','Lead') כשהפיקסל מותקן
+  // פיקסל מטא: ליד תקין (עבר וולידציה) - זה מה שמטא לומדת ממנו מי המיר
+  if(window.fbq){ fbq('track','Lead',{content_name:'טופס דף נחיתה אורות'}); }
   const payload=new URLSearchParams({
     name:name.value.trim(),
     phone:phone.value.replace(/[-\s]/g,''),
