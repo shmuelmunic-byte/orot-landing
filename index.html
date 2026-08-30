@@ -248,10 +248,20 @@ footer{background:var(--deep);color:#cfe0ee;padding:44px 0 30px}
 .foot-bottom .su-logo{height:30px;width:auto;display:inline-block;vertical-align:middle;margin:0 5px;opacity:.92}
 .foot-credit{display:inline-flex;align-items:center;gap:5px;flex-wrap:wrap;justify-content:center}
 
-/* floating whatsapp */
-.wa-float{position:fixed;bottom:20px;left:20px;z-index:60;width:58px;height:58px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 8px 24px rgba(37,211,102,.5);color:#fff;transition:.2s}
-.wa-float:hover{transform:scale(1.08)}
+/* floating whatsapp dock (wa + fan-out socials) */
+.wa-dock{position:fixed;left:20px;bottom:20px;z-index:60;width:58px;height:58px}
+.wa-float{position:absolute;left:0;bottom:0;width:58px;height:58px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 8px 24px rgba(37,211,102,.5);color:#fff;transition:transform .2s ease;z-index:2}
+.wa-dock:hover .wa-float{transform:scale(1.08)}
 .wa-float svg{width:30px;height:30px}
+/* fan-out socials: always visible, arranged in a half-circle above the wa button */
+.social-float a{position:absolute;left:13px;bottom:13px;width:32px;height:32px;border-radius:50%;background:#fff;color:var(--deep);display:grid;place-items:center;box-shadow:0 4px 12px rgba(8,71,126,.22);transition:transform .2s cubic-bezier(.34,1.4,.6,1),background .2s ease,color .2s ease;z-index:1}
+.social-float a svg{width:17px;height:17px}
+.social-float a.ig{transform:translate(46px,-40px)}
+.social-float a.tt{transform:translate(15px,-60px)}
+.social-float a.yt{transform:translate(-22px,-58px)}
+.social-float a.ig:hover{transform:translate(46px,-40px) scale(1.12);background:#E1306C;color:#fff}
+.social-float a.tt:hover{transform:translate(15px,-60px) scale(1.12);background:#010101;color:#fff}
+.social-float a.yt:hover{transform:translate(-22px,-58px) scale(1.12);background:#FF0000;color:#fff}
 
 /* ===== accessibility (IS 5568 / תקנות נגישות) ===== */
 .skip-link{position:absolute;inset-inline-start:-9999px;top:0;z-index:200;background:var(--deep);color:#fff;padding:12px 20px;border-radius:0 0 12px 12px;font-weight:700}
@@ -281,7 +291,7 @@ html.a11y-noanim *,html.a11y-noanim{animation:none!important;transition:none!imp
 .a11y-reset{grid-column:1/-1;background:var(--deep);color:#fff;border:0;padding:11px;border-radius:10px;font-family:inherit;font-weight:700;cursor:pointer}
 .a11y-panel .stmt{display:block;text-align:center;margin-top:10px;font-size:.82rem;color:var(--blue);text-decoration:underline}
 html.a11y-invert .a11y-btn,html.a11y-invert .a11y-panel{filter:invert(1) hue-rotate(180deg)}
-@media print{html[class*="a11y-"]{filter:none!important;font-size:100%!important}.a11y-btn,.a11y-panel,.wa-float{display:none!important}}
+@media print{html[class*="a11y-"]{filter:none!important;font-size:100%!important}.a11y-btn,.a11y-panel,.wa-float,.social-float{display:none!important}}
 /* form validation + consent */
 [hidden]{display:none!important}
 .field .err{display:block;color:#c0392b;font-size:.82rem;margin-top:5px;font-weight:600}
@@ -612,9 +622,24 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   <a class="stmt" href="accessibility.html">להצהרת הנגישות המלאה ▸</a>
 </div>
 
+<!-- floating whatsapp + fan-out social links (Roi's request) -->
+<div class="wa-dock">
+<div class="social-float">
+  <a href="https://instagram.com/mehinat_orot_talmon" target="_blank" rel="noopener" class="ig" aria-label="אינסטגרם של מכינת אורות">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+  </a>
+  <a href="https://tiktok.com/@mehinat_orot.777" target="_blank" rel="noopener" class="tt" aria-label="טיקטוק של מכינת אורות">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.1 1.6 3.6 3.7 3.8V9c-1.4.1-2.7-.3-3.8-1v6.4c0 3.2-2.6 5.6-5.7 5.4C7.7 19.6 5.5 17.3 5.6 14.4c.1-2.7 2.3-4.9 5-4.9.3 0 .6 0 .9.1v2.5c-.3-.1-.6-.2-.9-.2-1.4 0-2.5 1.1-2.5 2.5S9.2 17 10.6 17s2.5-1.1 2.5-2.5V3h3.4z"/></svg>
+  </a>
+  <a href="https://youtu.be/GEGv0Wydr4M" target="_blank" rel="noopener" class="yt" aria-label="יוטיוב של מכינת אורות">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 7.2c-.25-1.05-1-1.85-2-2.1C18.7 4.6 12 4.6 12 4.6s-6.7 0-8.5.5c-1 .25-1.75 1.05-2 2.1C1 9 1 12 1 12s0 3 .5 4.8c.25 1.05 1 1.85 2 2.1 1.8.5 8.5.5 8.5.5s6.7 0 8.5-.5c1-.25 1.75-1.05 2-2.1.5-1.8.5-4.8.5-4.8s0-3-.5-4.8zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
+  </a>
+</div>
+
 <a href="https://wa.me/972542520537?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%95%D7%A2%D7%99%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%93%D7%A3%20%D7%A9%D7%9C%20%D7%9E%D7%9B%D7%99%D7%A0%D7%AA%20%D7%90%D7%95%D7%A8%D7%95%D7%AA%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%91%D7%99%D7%A7%D7%95%D7%A8" target="_blank" rel="noopener" class="wa-float" aria-label="כתוב לרועי בוואטסאפ">
   <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9 3 3.5 8.5 3.5 15.5c0 2.4.7 4.7 1.9 6.7L3 29l7-1.8c1.9 1 4 1.6 6 1.6 7 0 12.5-5.5 12.5-12.5S23 3 16 3zm0 22.8c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-4.2 1.1 1.1-4.1-.3-.4a10 10 0 01-1.6-5.4c0-5.6 4.6-10.2 10.5-10.2 5.8 0 10.5 4.6 10.5 10.2S21.8 25.8 16 25.8zm5.8-7.6c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.6 8.6 0 01-2.5-1.6 9.5 9.5 0 01-1.8-2.2c-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.3 2.5 3.8 6 5.3.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
 </a>
+</div>
 
 <script>
 // header: transparent over hero, solid on scroll
