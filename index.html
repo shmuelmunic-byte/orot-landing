@@ -25,6 +25,21 @@ if(window.FB_PIXEL_ID && window.FB_PIXEL_ID!=='PIXEL_ID_HERE'){
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1059725356661562&ev=PageView&noscript=1"/></noscript>
 <!-- ===== End Meta Pixel ===== -->
+<!-- ===== Google Analytics 4 ===== -->
+<!-- החלף את G-XXXXXXXXXX במזהה המדידה מ-GA4 (Admin > Data Streams). זה השינוי היחיד שצריך. -->
+<script>window.GA_MEASUREMENT_ID='G-XXXXXXXXXX';</script>
+<script>
+if(window.GA_MEASUREMENT_ID && window.GA_MEASUREMENT_ID!=='G-XXXXXXXXXX'){
+  var ga=document.createElement('script');ga.async=!0;
+  ga.src='https://www.googletagmanager.com/gtag/js?id='+window.GA_MEASUREMENT_ID;
+  document.head.appendChild(ga);
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){dataLayer.push(arguments)};
+  gtag('js',new Date());
+  gtag('config',window.GA_MEASUREMENT_ID);
+}
+</script>
+<!-- ===== End Google Analytics 4 ===== -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Karantina:wght@400;700&family=Miriam+Libre:wght@400;700&display=swap" rel="stylesheet">
@@ -719,6 +734,42 @@ if(yf){const play=()=>{yf.classList.add('playing');yf.removeAttribute('role');yf
   const onScrollFallback=()=>{if(band&&band.getBoundingClientRect().top<window.innerHeight*0.9){runAll();window.removeEventListener('scroll',onScrollFallback);}};
   window.addEventListener('scroll',onScrollFallback,{passive:true});
 })();
+// ===== ייחוס מקור הליד (attribution) =====
+// תופס את המקור ברגע הכניסה הראשונה לדף ושומר אותו, כדי שכל ליד יגיע עם המקור שלו.
+const ATTR=(function(){
+  const KEY='orot_attribution';
+  try{const saved=localStorage.getItem(KEY);if(saved)return JSON.parse(saved);}catch(e){}
+  const q=new URLSearchParams(location.search);
+  const ref=document.referrer||'';
+  let host='';try{host=ref?new URL(ref).hostname.replace(/^www\./,''):'';}catch(e){}
+  // מזהה קליק => הגיע מקמפיין ממומן גם בלי UTM
+  const fbclid=q.get('fbclid')||'', gclid=q.get('gclid')||'';
+  let utm_source=q.get('utm_source')||'';
+  let utm_medium=q.get('utm_medium')||'';
+  // אם אין UTM, מנחשים מקור לפי referrer / מזהה קליק
+  if(!utm_source){
+    if(fbclid) utm_source='meta';
+    else if(gclid) utm_source='google';
+    else if(/facebook|instagram|fb\.|ig\./.test(host)) utm_source=host.includes('inst')?'instagram':'facebook';
+    else if(/google\./.test(host)) utm_source='google-organic';
+    else if(/t\.co|twitter|x\.com/.test(host)) utm_source='twitter';
+    else if(/whatsapp|wa\.me/.test(host)) utm_source='whatsapp';
+    else if(/tiktok/.test(host)) utm_source='tiktok';
+    else if(host) utm_source=host;
+    else utm_source='כניסה ישירה';
+  }
+  const data={
+    utm_source, utm_medium,
+    utm_campaign:q.get('utm_campaign')||'',
+    utm_content:q.get('utm_content')||'',
+    utm_term:q.get('utm_term')||'',
+    referrer:host||ref||'',
+    click_id:fbclid?('fb:'+fbclid):(gclid?('gc:'+gclid):''),
+    landing:location.pathname
+  };
+  try{localStorage.setItem(KEY,JSON.stringify(data));}catch(e){}
+  return data;
+})();
 // form + validation (הודעות שגיאה בעברית, נגיש)
 // כתובת ה-Google Apps Script (Web App). הדבק כאן את ה-URL שמסתיים ב-/exec:
 const SHEET_ENDPOINT='https://script.google.com/macros/s/AKfycbwlHjCk9ioE_lZHfoTLJSs-zKxQepK0l2qkCy3Ifa8xV3BvIr7NfQVruMgn48inL-X8jw/exec';
@@ -740,10 +791,19 @@ leadForm.addEventListener('submit',e=>{
   if(!ok){ if(firstBad&&firstBad.focus) firstBad.focus(); return; }
   // פיקסל מטא: ליד תקין (עבר וולידציה) - זה מה שמטא לומדת ממנו מי המיר
   if(window.fbq){ fbq('track','Lead',{content_name:'טופס דף נחיתה אורות'}); }
+  // Google Analytics: אירוע המרה של ליד (מופיע ב-GA4 כ-generate_lead)
+  if(window.gtag){ gtag('event','generate_lead',{form_name:'טופס דף נחיתה אורות'}); }
   const payload=new URLSearchParams({
     name:name.value.trim(),
     phone:phone.value.replace(/[-\s]/g,''),
     source:'דף נחיתה אורות',
+    utm_source:ATTR.utm_source,
+    utm_medium:ATTR.utm_medium,
+    utm_campaign:ATTR.utm_campaign,
+    utm_content:ATTR.utm_content,
+    utm_term:ATTR.utm_term,
+    referrer:ATTR.referrer,
+    click_id:ATTR.click_id,
     page:location.href,
     ts:new Date().toISOString()
   });
@@ -753,6 +813,14 @@ leadForm.addEventListener('submit',e=>{
   if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='שולח...';}
   send.catch(()=>{}).finally(showThanks);
 });
+// ===== מעקב לחיצות וואטסאפ (מטא Contact + GA whatsapp_click) =====
+document.addEventListener('click',function(e){
+  const a=e.target.closest('a[href*="wa.me"],a[href*="whatsapp"]');
+  if(!a)return;
+  const spot=a.classList.contains('wa-float')?'כפתור צף':'קישור בטופס';
+  if(window.fbq){ fbq('track','Contact',{content_name:'וואטסאפ אורות',source:spot}); }
+  if(window.gtag){ gtag('event','whatsapp_click',{location:spot,utm_source:(typeof ATTR!=='undefined'?ATTR.utm_source:'')}); }
+},true);
 // ===== accessibility widget =====
 (function(){
   const KEY='orot_a11y_v1', root=document.documentElement;
