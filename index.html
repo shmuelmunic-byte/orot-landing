@@ -842,6 +842,9 @@ leadForm.addEventListener('submit',e=>{
   if(!ok){ if(firstBad&&firstBad.focus) firstBad.focus(); return; }
   // אירועי ההמרה (Lead במטא + generate_lead ב-GA4) יורים בעמוד התודה thank-you.html
   // כדי שהמדידה תהיה על URL ייעודי ונקי (טעות #9 של אושר זלמן - עמוד תודה נפרד)
+  // מזהה המרה חד-פעמי: עמוד התודה יורה Lead פעם אחת בלבד לכל הגשה (dedup - מונע ספירת יתר מרענון/נחיתה חוזרת)
+  const leadEventId='lead_'+Date.now()+'_'+Math.random().toString(36).slice(2,10);
+  try{ sessionStorage.setItem('orot_lead_pending', leadEventId); }catch(e){}
   const payload=new URLSearchParams({
     name:name.value.trim(),
     phone:phone.value.replace(/[-\s]/g,''),
