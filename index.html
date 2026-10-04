@@ -189,6 +189,17 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
   .hero h1{text-shadow:none;font-size:clamp(1.55rem,6.2vw,2.2rem);max-width:100%;min-width:0;overflow-wrap:break-word;word-break:break-word}
   .hero p.lead{text-shadow:none}
 }
+/* hero value row (all the value, above the fold) */
+.hero-vals{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 18px;margin:0 auto 24px;max-width:46ch;font-size:1rem;color:#eef4f8;font-weight:600}
+.hero-vals span{display:inline-flex;align-items:center;gap:7px;text-shadow:0 1px 10px rgba(0,12,26,.55)}
+.hero-vals span::before{content:"✓";color:var(--gold);font-weight:900}
+@media(max-width:760px){.hero-vals{font-size:.95rem;gap:8px 14px}}
+
+/* post-hero CTA band (lead capture right after hero) */
+.cta-band{background:linear-gradient(160deg,var(--deep),var(--blue));color:#fff;text-align:center;padding:48px 0}
+.cta-band h2{font-size:clamp(1.6rem,5vw,2.3rem);font-weight:900;margin-bottom:10px}
+.cta-band p{color:#dbe8f4;max-width:560px;margin:0 auto 22px;font-size:1.1rem}
+.cta-band .btn-gold{font-size:1.15rem;padding:16px 36px}
 
 /* day in life */
 .cards3{display:grid;gap:18px;grid-template-columns:1fr}
@@ -431,7 +442,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
       <a href="#bogrim">בוגרים</a>
       <a href="#faq">שאלות</a>
     </nav>
-    <a href="#signup" class="btn btn-gold">לתיאום שבו"ש</a>
+    <a href="#signup" class="btn btn-gold">לתיאום ביקור</a>
     <button class="burger" id="burger" aria-label="תפריט"><span></span><span></span><span></span></button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
@@ -440,7 +451,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
     <a href="#bogrim">בוגרים</a>
     <a href="#offer">מה מקבלים</a>
     <a href="#faq">שאלות</a>
-    <a href="#signup">לתיאום שבו"ש</a>
+    <a href="#signup">לתיאום ביקור</a>
   </div>
 </header>
 
@@ -451,10 +462,39 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
   <div class="hero-inner">
     <span class="eyebrow">מכינה קדם-צבאית תורנית</span>
     <h1>השנה שבה תהיה מי שאתה באמת</h1>
-    <p class="lead">מכינה שהיא משפחה, דרך שהיא שלך, והכנה מלאה לצבא ולחיים</p>
+    <p class="lead">שנה אחת לבנות את עצמך, להעמיק באמונה בדרך שלך, ולהגיע לצבא בוגר ובשל, בלי לחץ</p>
+    <div class="hero-vals">
+      <span>בונים אישיות ואמונה</span>
+      <span>הכנה מלאה לצבא</span>
+      <span>קהילה לכל החיים</span>
+    </div>
     <div class="hero-cta">
-      <a href="#signup" class="btn btn-gold">לתיאום שבו"ש</a>
+      <a href="#cta-top" class="btn btn-gold">השאירו פרטים לתיאום ביקור</a>
       <a href="#bogrim" class="btn btn-out">שמע מהבוגרים ▸</a>
+    </div>
+  </div>
+</section>
+
+<!-- POST-HERO CTA BAND (lead capture, inline form) -->
+<section class="cta-band" id="cta-top">
+  <div class="wrap">
+    <h2>רוצה לראות אם זה בשבילך?</h2>
+    <p>השאירו שם וטלפון, ורועי יחזור אליכם לתיאום ביקור</p>
+    <div class="formcard">
+      <div class="formfields" id="formFieldsTop">
+        <form id="leadFormTop" novalidate>
+          <div class="field"><label for="t-name">איך קוראים לך?</label><input id="t-name" name="name" type="text" placeholder="שם מלא" required aria-required="true"><span class="err" role="alert" hidden>נא למלא שם מלא</span></div>
+          <div class="field"><label for="t-phone">טלפון</label><input id="t-phone" name="phone" type="tel" inputmode="tel" dir="ltr" placeholder="05X-XXXXXXX" required aria-required="true"><span class="err" role="alert" hidden>נא למלא מספר טלפון תקין (10 ספרות)</span></div>
+          <label class="consent" for="t-consent"><input type="checkbox" id="t-consent" name="consent" required aria-required="true"><span>אני מאשר/ת שאפשר לחזור אליי בטלפון או בוואטסאפ בנוגע למכינה, וקראתי את <a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
+          <span class="consent-err" role="alert" hidden>יש לאשר את מדיניות הפרטיות כדי לשלוח</span>
+          <button type="submit" class="btn btn-gold">לתיאום ביקור</button>
+        </form>
+        <p class="orwa">או פשוט <a href="https://wa.me/972542520537?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%95%D7%A2%D7%99%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%93%D7%A3%20%D7%A9%D7%9C%20%D7%9E%D7%9B%D7%99%D7%A0%D7%AA%20%D7%90%D7%95%D7%A8%D7%95%D7%AA%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%91%D7%99%D7%A7%D7%95%D7%A8" target="_blank" rel="noopener">כתוב לרועי בוואטסאפ ▸</a></p>
+      </div>
+      <div class="thanks" id="thanksTop" role="status" aria-live="polite">
+        <div class="big">🙌</div>
+        <h2>קיבלנו! רועי יחזור אליך לתיאום ביקור</h2>
+      </div>
     </div>
   </div>
 </section>
@@ -484,7 +524,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
       <p>הבנו שאתה לא מתקדם כשלוחצים עליך, אבל אתה כן רוצה יד מכוונת, עצה טובה, ולפעמים גם עזרה, אז בנינו מקום שנותן לך את הקצב שלך יחד עם התוכן והעשייה.</p>
       <p>פה תתקדם בדרך שלך, בלי לחץ, תציב לעצמך יעדים ותכבוש אותם כי אתה רוצה ולא כי צריך, תאמין מתוך בחירה ותשרת מתוך אכפתיות ואחריות.</p>
       <p class="mf-cta">מדבר אליך? דבר איתנו.</p>
-      <a href="#signup" class="btn btn-gold" style="margin-top:8px">לתיאום שבו"ש</a>
+      <a href="#signup" class="btn btn-gold" style="margin-top:8px">לתיאום ביקור</a>
     </div>
   </div>
 </section>
@@ -675,7 +715,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
     <div class="formcard">
       <div class="formfields" id="formFields">
         <h2>מוכן לקחת את השנה הזאת בידיים?</h2>
-        <p class="sub">השאר שם וטלפון, ורועי יחזור אליך לתיאום שבו"ש ולענות על כל שאלה</p>
+        <p class="sub">השאר שם וטלפון, ורועי יחזור אליך לתיאום ביקור ולענות על כל שאלה</p>
         <form id="leadForm" novalidate>
           <div class="field"><label for="name">איך קוראים לך?</label><input id="name" name="name" type="text" placeholder="שם מלא" required aria-required="true" aria-describedby="name-err"><span id="name-err" class="err" role="alert" hidden>נא למלא שם מלא</span></div>
           <div class="field"><label for="phone">טלפון</label><input id="phone" name="phone" type="tel" inputmode="tel" dir="ltr" placeholder="05X-XXXXXXX" required aria-required="true" aria-describedby="phone-err"><span id="phone-err" class="err" role="alert" hidden>נא למלא מספר טלפון תקין (10 ספרות)</span></div>
@@ -832,49 +872,56 @@ const ATTR=(function(){
 // form + validation (הודעות שגיאה בעברית, נגיש)
 // כתובת ה-Google Apps Script (Web App). הדבק כאן את ה-URL שמסתיים ב-/exec:
 const SHEET_ENDPOINT='https://script.google.com/macros/s/AKfycbwlHjCk9ioE_lZHfoTLJSs-zKxQepK0l2qkCy3Ifa8xV3BvIr7NfQVruMgn48inL-X8jw/exec';
-const leadForm=document.getElementById('leadForm');
-const submitBtn=leadForm.querySelector('button[type="submit"]');
-const showThanks=()=>{
-  document.getElementById('formFields').classList.add('hide');
-  document.getElementById('thanks').classList.add('show');
-  window.scrollTo({top:document.getElementById('signup').offsetTop-40,behavior:'smooth'});
-};
-leadForm.addEventListener('submit',e=>{
-  e.preventDefault();
-  const name=document.getElementById('name'),phone=document.getElementById('phone'),consent=document.getElementById('consent');
-  let ok=true,firstBad=null;
-  const mark=(inp,errId,bad)=>{const el=document.getElementById(errId);el.hidden=!bad;if(inp)inp.setAttribute('aria-invalid',bad?'true':'false');if(bad){ok=false;firstBad=firstBad||(inp||el);}};
-  mark(name,'name-err', name.value.trim().length<2);
-  mark(phone,'phone-err', !/^0\d{8,9}$/.test(phone.value.replace(/[-\s]/g,'')));
-  mark(null,'consent-err', !consent.checked);
-  if(!ok){ if(firstBad&&firstBad.focus) firstBad.focus(); return; }
-  // אירועי ההמרה (Lead במטא + generate_lead ב-GA4) יורים בעמוד התודה thank-you.html
-  // כדי שהמדידה תהיה על URL ייעודי ונקי (טעות #9 של אושר זלמן - עמוד תודה נפרד)
-  // מזהה המרה חד-פעמי: עמוד התודה יורה Lead פעם אחת בלבד לכל הגשה (dedup - מונע ספירת יתר מרענון/נחיתה חוזרת)
-  const leadEventId='lead_'+Date.now()+'_'+Math.random().toString(36).slice(2,10);
-  try{ sessionStorage.setItem('orot_lead_pending', leadEventId); }catch(e){}
-  const payload=new URLSearchParams({
-    name:name.value.trim(),
-    phone:phone.value.replace(/[-\s]/g,''),
-    source:'דף נחיתה אורות',
-    utm_source:ATTR.utm_source,
-    utm_medium:ATTR.utm_medium,
-    utm_campaign:ATTR.utm_campaign,
-    utm_content:ATTR.utm_content,
-    utm_term:ATTR.utm_term,
-    referrer:ATTR.referrer,
-    click_id:ATTR.click_id,
-    page:location.href,
-    ts:new Date().toISOString()
+// חיווט אחיד לכל טופס ליד בדף (הירו/באנר עליון + טופס תחתון), אותו מנגנון שליחה ומדידה
+function wireLeadForm(form, sourceLabel){
+  if(!form) return;
+  const submitBtn=form.querySelector('button[type="submit"]');
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const name=form.querySelector('[name="name"]'),phone=form.querySelector('[name="phone"]'),consent=form.querySelector('[name="consent"]');
+    let ok=true,firstBad=null;
+    const mark=(inp,bad)=>{
+      const fld=inp&&inp.closest('.field');
+      const el=fld?fld.querySelector('.err'):null;
+      if(el)el.hidden=!bad;
+      if(inp)inp.setAttribute('aria-invalid',bad?'true':'false');
+      if(bad){ok=false;firstBad=firstBad||inp;}
+    };
+    mark(name, name.value.trim().length<2);
+    mark(phone, !/^0\d{8,9}$/.test(phone.value.replace(/[-\s]/g,'')));
+    const consErr=form.querySelector('.consent-err');
+    const consBad=!consent.checked;
+    if(consErr)consErr.hidden=!consBad;
+    if(consBad){ok=false;firstBad=firstBad||consent;}
+    if(!ok){ if(firstBad&&firstBad.focus) firstBad.focus(); return; }
+    // אירועי ההמרה (Lead במטא + generate_lead ב-GA4) יורים בעמוד התודה thank-you.html
+    // מזהה המרה חד-פעמי לכל הגשה (dedup, מונע ספירת יתר מרענון/נחיתה חוזרת)
+    const leadEventId='lead_'+Date.now()+'_'+Math.random().toString(36).slice(2,10);
+    try{ sessionStorage.setItem('orot_lead_pending', leadEventId); }catch(e){}
+    const payload=new URLSearchParams({
+      name:name.value.trim(),
+      phone:phone.value.replace(/[-\s]/g,''),
+      source:sourceLabel,
+      utm_source:ATTR.utm_source,
+      utm_medium:ATTR.utm_medium,
+      utm_campaign:ATTR.utm_campaign,
+      utm_content:ATTR.utm_content,
+      utm_term:ATTR.utm_term,
+      referrer:ATTR.referrer,
+      click_id:ATTR.click_id,
+      page:location.href,
+      ts:new Date().toISOString()
+    });
+    const send=SHEET_ENDPOINT
+      ? fetch(SHEET_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:payload.toString()})
+      : Promise.resolve();
+    if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='שולח...';}
+    const goThanks=()=>{ try{ location.href='thank-you.html'; }catch(e){} };
+    send.catch(()=>{}).finally(goThanks);
   });
-  const send=SHEET_ENDPOINT
-    ? fetch(SHEET_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:payload.toString()})
-    : Promise.resolve();
-  if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='שולח...';}
-  // מעבר לעמוד התודה (שם יורים אירועי ההמרה). fallback: הודעה אינליין אם ההפניה נכשלת
-  const goThanks=()=>{ try{ location.href='thank-you.html'; }catch(e){ showThanks(); } };
-  send.catch(()=>{}).finally(goThanks);
-});
+}
+wireLeadForm(document.getElementById('leadFormTop'), 'דף נחיתה אורות - באנר עליון');
+wireLeadForm(document.getElementById('leadForm'), 'דף נחיתה אורות');
 // ===== מעקב לחיצות וואטסאפ (מטא Contact + GA whatsapp_click) =====
 document.addEventListener('click',function(e){
   const a=e.target.closest('a[href*="wa.me"],a[href*="whatsapp"]');
