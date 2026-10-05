@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/yompatuach", "destination": "/yom-patuach.html" },
+    { "source": "/yp", "destination": "/yom-patuach.html" }
+  ]
+}
