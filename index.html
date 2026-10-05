@@ -425,6 +425,19 @@ if(p.text>0)c.add('a11y-text-'+({1:110,2:125,3:140}[p.text]));
 if(p.contrast)c.add('a11y-contrast-high');if(p.invert)c.add('a11y-invert');if(p.links)c.add('a11y-links');
 if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)c.add('a11y-noanim');}catch(e){}})();
 </script>
+<style id="openday-css">
+.openday{background:linear-gradient(135deg,#0C60AC,#083e6f);padding:52px 0}
+.od-card{max-width:900px;margin:0 auto;background:#fff;border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1.05fr 1fr;box-shadow:0 22px 55px rgba(0,0,0,.3)}
+.od-media{position:relative;min-height:270px}
+.od-media img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.od-pill{position:absolute;top:16px;right:16px;background:var(--gold);color:#3a2a05;font-family:'Miriam Libre',sans-serif;font-weight:700;font-size:1rem;padding:7px 20px;border-radius:999px;box-shadow:0 8px 20px rgba(237,165,30,.45)}
+.od-body{padding:34px 30px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.od-body h2{font-size:clamp(1.55rem,4.2vw,2.3rem);color:var(--ink);margin-bottom:12px;line-height:1.1}
+.od-date{font-family:'Karantina',sans-serif;font-weight:700;font-size:clamp(1.7rem,5.2vw,2.4rem);color:var(--deep);letter-spacing:.03em;line-height:1}
+.od-sub{color:var(--muted);font-weight:600;margin:8px 0 2px}
+.od-cta{margin-top:18px;font-size:1.15rem;padding:15px 44px}
+@media(max-width:720px){.od-card{grid-template-columns:1fr}.od-media{min-height:210px;max-height:280px}}
+</style>
 </head>
 <body>
 <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
@@ -442,7 +455,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
       <a href="#bogrim">בוגרים</a>
       <a href="#faq">שאלות</a>
     </nav>
-    <a href="#signup" class="btn btn-gold">לתיאום ביקור</a>
+    <a href="yom-patuach.html" class="btn btn-gold">יום פתוח</a>
     <button class="burger" id="burger" aria-label="תפריט"><span></span><span></span><span></span></button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
@@ -451,7 +464,7 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
     <a href="#bogrim">בוגרים</a>
     <a href="#offer">מה מקבלים</a>
     <a href="#faq">שאלות</a>
-    <a href="#signup">לתיאום ביקור</a>
+    <a href="yom-patuach.html">יום פתוח</a>
   </div>
 </header>
 
@@ -469,42 +482,26 @@ if(p.readable)c.add('a11y-readable');if(p.lines)c.add('a11y-lines');if(p.noanim)
       <span>קהילה לכל החיים</span>
     </div>
     <div class="hero-cta">
-      <a href="#cta-top" class="btn btn-gold">השאירו פרטים לתיאום ביקור</a>
+      <a href="yom-patuach.html" class="btn btn-gold">לפרטים על יום הפתוח</a>
     </div>
   </div>
 </section>
 
-<!-- OPEN DAY BANNER (links to dedicated open-day page) -->
-<section id="openday" aria-label="יום פתוח" style="background:linear-gradient(135deg,#EDA51E,#CE8608);padding:20px 0">
-  <div class="wrap" style="display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;text-align:center">
-    <span style="color:#3a2a05;font-weight:800;font-size:1.12rem;line-height:1.4">יום פתוח במכינה · יום שלישי ל׳ בחשוון, 10.11.26 · הסעה חינם ממודיעין</span>
-    <a href="yom-patuach.html" class="btn" style="background:#14314A;color:#fff;padding:12px 26px">לפרטים והרשמה</a>
-  </div>
-</section>
-
-<!-- POST-HERO CTA BAND (lead capture, inline form) -->
-<section class="cta-band" id="cta-top">
+<!-- OPEN DAY BANNER (prominent, links to dedicated open-day page) -->
+<section id="openday" class="openday" aria-label="יום פתוח במכינת אורות">
   <div class="wrap">
-    <h2>רוצה לראות אם זה בשבילך?</h2>
-    <p>השאירו שם וטלפון, ורועי יחזור אליכם לתיאום ביקור</p>
-    <div class="formcard">
-      <div class="formfields" id="formFieldsTop">
-        <form id="leadFormTop" novalidate>
-          <div class="field"><label for="t-name">איך קוראים לך?</label><input id="t-name" name="name" type="text" placeholder="שם מלא" required aria-required="true"><span class="err" role="alert" hidden>נא למלא שם מלא</span></div>
-          <div class="field"><label for="t-phone">טלפון</label><input id="t-phone" name="phone" type="tel" inputmode="tel" dir="ltr" placeholder="05X-XXXXXXX" required aria-required="true"><span class="err" role="alert" hidden>נא למלא מספר טלפון תקין (10 ספרות)</span></div>
-          <label class="consent" for="t-consent"><input type="checkbox" id="t-consent" name="consent" required aria-required="true"><span>אני מאשר/ת שאפשר לחזור אליי בטלפון או בוואטסאפ בנוגע למכינה, וקראתי את <a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
-          <span class="consent-err" role="alert" hidden>יש לאשר את מדיניות הפרטיות כדי לשלוח</span>
-          <button type="submit" class="btn btn-gold">לתיאום ביקור</button>
-        </form>
-        <p class="orwa">או פשוט <a href="https://wa.me/972542520537?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%95%D7%A2%D7%99%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%93%D7%A3%20%D7%A9%D7%9C%20%D7%9E%D7%9B%D7%99%D7%A0%D7%AA%20%D7%90%D7%95%D7%A8%D7%95%D7%AA%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%91%D7%99%D7%A7%D7%95%D7%A8" target="_blank" rel="noopener">כתוב לרועי בוואטסאפ ▸</a></p>
-      </div>
-      <div class="thanks" id="thanksTop" role="status" aria-live="polite">
-        <div class="big">🙌</div>
-        <h2>קיבלנו! רועי יחזור אליך לתיאום ביקור</h2>
+    <div class="od-card">
+      <div class="od-media"><img src="assets/img/g-group.jpg" alt="בחורי מכינת אורות יחד ביום פתוח"><span class="od-pill">יום פתוח</span></div>
+      <div class="od-body">
+        <h2>בוא לראות מקרוב את השנה הבאה שלך</h2>
+        <p class="od-date">יום שלישי · ל׳ בחשוון · 10.11.26</p>
+        <p class="od-sub">הסעה חינם ממודיעין · בלי עלות, בלי התחייבות</p>
+        <a href="yom-patuach.html" class="btn btn-gold od-cta">לפרטים והרשמה</a>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- STATS BAND -->
 <section class="statsband" id="stats" aria-label="נתוני בוגרים">
