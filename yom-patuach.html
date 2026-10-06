@@ -508,8 +508,16 @@ body{background:var(--bg)}
       <h2 class="f-formtitle">רוצה להגיע? השאירו פרטים</h2>
       <p class="f-formsub">ורועי יחזור אליכם עם כל הפרטים ותיאום ההסעה</p>
       <form id="leadFormTop" novalidate>
-        <div class="field"><label for="t-name">איך קוראים לך?</label><input id="t-name" name="name" type="text" placeholder="שם מלא" required aria-required="true"><span class="err" role="alert" hidden>נא למלא שם מלא</span></div>
-        <div class="field"><label for="t-phone">טלפון</label><input id="t-phone" name="phone" type="tel" inputmode="tel" dir="ltr" placeholder="05X-XXXXXXX" required aria-required="true"><span class="err" role="alert" hidden>נא למלא מספר טלפון תקין (10 ספרות)</span></div>
+        <div class="field"><label for="t-name">איך קוראים לך?</label><input id="t-name" name="name" type="text" autocomplete="name" placeholder="שם מלא" required aria-required="true"><span class="err" role="alert" hidden>נא למלא שם מלא</span></div>
+        <div class="field"><label for="t-phone">טלפון</label><input id="t-phone" name="phone" type="tel" inputmode="tel" dir="ltr" autocomplete="tel" placeholder="05X-XXXXXXX" required aria-required="true"><span class="err" role="alert" hidden>נא למלא מספר טלפון תקין (10 ספרות)</span></div>
+        <div class="field"><label for="t-school">מוסד לימודים נוכחי</label><input id="t-school" name="school" type="text" placeholder="שם הישיבה או בית הספר" required aria-required="true"><span class="err" role="alert" hidden>נא למלא מוסד לימודים</span></div>
+        <div class="field"><label for="t-city">מקום מגורים</label><input id="t-city" name="city" type="text" autocomplete="address-level2" placeholder="עיר או יישוב" required aria-required="true"><span class="err" role="alert" hidden>נא למלא מקום מגורים</span></div>
+        <div class="field">
+          <span style="display:block;margin-bottom:6px;font-weight:600">איך מתכנן להגיע?</span>
+          <label style="display:flex;align-items:center;gap:8px;margin:4px 0;font-weight:400;cursor:pointer"><input type="radio" name="arrival" value="הסעה ממודיעין ב-10:00" required> הסעה חינם ממודיעין ב-10:00</label>
+          <label style="display:flex;align-items:center;gap:8px;margin:4px 0;font-weight:400;cursor:pointer"><input type="radio" name="arrival" value="מגיע עצמאית"> מגיע עצמאית</label>
+          <span class="err" role="alert" hidden>נא לבחור איך מגיעים</span>
+        </div>
         <label class="consent" for="t-consent"><input type="checkbox" id="t-consent" name="consent" required aria-required="true"><span>אני מאשר/ת שאפשר לחזור אליי בטלפון או בוואטסאפ בנוגע למכינה, וקראתי את <a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
         <span class="consent-err" role="alert" hidden>יש לאשר את מדיניות הפרטיות כדי לשלוח</span>
         <button type="submit" class="btn btn-gold">אני מגיע ליום הפתוח</button>
@@ -671,6 +679,8 @@ function wireLeadForm(form, sourceLabel){
   form.addEventListener('submit',e=>{
     e.preventDefault();
     const name=form.querySelector('[name="name"]'),phone=form.querySelector('[name="phone"]'),consent=form.querySelector('[name="consent"]');
+    const school=form.querySelector('[name="school"]'),city=form.querySelector('[name="city"]');
+    const arrivalEls=form.querySelectorAll('[name="arrival"]');
     let ok=true,firstBad=null;
     const mark=(inp,bad)=>{
       const fld=inp&&inp.closest('.field');
@@ -681,6 +691,19 @@ function wireLeadForm(form, sourceLabel){
     };
     mark(name, name.value.trim().length<2);
     mark(phone, !/^0\d{8,9}$/.test(phone.value.replace(/[-\s]/g,'')));
+    if(school) mark(school, school.value.trim().length<2);
+    if(city) mark(city, city.value.trim().length<2);
+    // רדיו "איך מגיע" - ולידציה ייעודית (קבוצה, לא שדה טקסט)
+    let arrival='';
+    if(arrivalEls.length){
+      const checked=form.querySelector('[name="arrival"]:checked');
+      arrival=checked?checked.value:'';
+      const grp=arrivalEls[0].closest('.field');
+      const aerr=grp?grp.querySelector('.err'):null;
+      const aBad=!checked;
+      if(aerr)aerr.hidden=!aBad;
+      if(aBad){ok=false;firstBad=firstBad||arrivalEls[0];}
+    }
     const consErr=form.querySelector('.consent-err');
     const consBad=!consent.checked;
     if(consErr)consErr.hidden=!consBad;
@@ -690,9 +713,15 @@ function wireLeadForm(form, sourceLabel){
     // מזהה המרה חד-פעמי לכל הגשה (dedup, מונע ספירת יתר מרענון/נחיתה חוזרת)
     const leadEventId='lead_'+Date.now()+'_'+Math.random().toString(36).slice(2,10);
     try{ sessionStorage.setItem('orot_lead_pending', leadEventId); }catch(e){}
+    const isOpenDay = (sourceLabel||'').indexOf('יום פתוח')===0;
     const payload=new URLSearchParams({
       name:name.value.trim(),
       phone:phone.value.replace(/[-\s]/g,''),
+      school: school?school.value.trim():'',
+      city: city?city.value.trim():'',
+      arrival: arrival,
+      formType: isOpenDay?'open-day':'',
+      openday_date: isOpenDay?'ל׳ חשוון 10.11.26':'',
       source:sourceLabel,
       utm_source:ATTR.utm_source,
       utm_medium:ATTR.utm_medium,
