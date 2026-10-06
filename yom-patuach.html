@@ -413,6 +413,15 @@ html.a11y-invert .a11y-btn,html.a11y-invert .a11y-panel{filter:invert(1) hue-rot
 .consent input{width:18px;height:18px;margin-top:2px;flex:0 0 auto}
 .consent a{color:var(--blue);text-decoration:underline}
 .consent-err{display:block;color:#c0392b;font-size:.82rem;margin-bottom:12px;font-weight:600}
+/* בחירת דרך הגעה - כרטיסים לחיצים, RTL */
+.arrival-title{display:block;font-weight:600;font-size:.92rem;margin-bottom:8px}
+.arrival-group{display:flex;flex-direction:column;gap:10px}
+.field .arrival-opt{display:flex;align-items:center;gap:12px;margin:0;padding:14px 16px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);font-weight:500;font-size:1.02rem;cursor:pointer;transition:border-color .15s,background .15s,box-shadow .15s}
+.field .arrival-opt:hover{border-color:var(--blue)}
+.field .arrival-opt input{width:20px;height:20px;flex:0 0 auto;margin:0;padding:0;accent-color:var(--blue);cursor:pointer}
+.field .arrival-opt span{flex:1 1 auto}
+.field .arrival-opt:has(input:checked){border-color:var(--blue);background:rgba(12,116,184,.07);box-shadow:inset 0 0 0 1px var(--blue);font-weight:700}
+.field .arrival-opt input[aria-invalid="true"]{outline:2px solid #c0392b}
 /* legal links in footer */
 .legal-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:14px;font-size:.85rem}
 .legal-links a{color:#cfe0ee;text-decoration:underline}
@@ -513,9 +522,11 @@ body{background:var(--bg)}
         <div class="field"><label for="t-school">מוסד לימודים נוכחי</label><input id="t-school" name="school" type="text" placeholder="שם הישיבה או בית הספר" required aria-required="true"><span class="err" role="alert" hidden>נא למלא מוסד לימודים</span></div>
         <div class="field"><label for="t-city">מקום מגורים</label><input id="t-city" name="city" type="text" autocomplete="address-level2" placeholder="עיר או יישוב" required aria-required="true"><span class="err" role="alert" hidden>נא למלא מקום מגורים</span></div>
         <div class="field">
-          <span style="display:block;margin-bottom:6px;font-weight:600">איך מתכנן להגיע?</span>
-          <label style="display:flex;align-items:center;gap:8px;margin:4px 0;font-weight:400;cursor:pointer"><input type="radio" name="arrival" value="הסעה ממודיעין ב-10:00" required> הסעה חינם ממודיעין ב-10:00</label>
-          <label style="display:flex;align-items:center;gap:8px;margin:4px 0;font-weight:400;cursor:pointer"><input type="radio" name="arrival" value="מגיע עצמאית"> מגיע עצמאית</label>
+          <span class="arrival-title">איך מתכנן להגיע?</span>
+          <div class="arrival-group">
+            <label class="arrival-opt"><input type="radio" name="arrival" value="הסעה ממודיעין ב-10:00" required><span>הסעה חינם ממודיעין ב-10:00</span></label>
+            <label class="arrival-opt"><input type="radio" name="arrival" value="מגיע עצמאית"><span>מגיע עצמאית</span></label>
+          </div>
           <span class="err" role="alert" hidden>נא לבחור איך מגיעים</span>
         </div>
         <label class="consent" for="t-consent"><input type="checkbox" id="t-consent" name="consent" required aria-required="true"><span>אני מאשר/ת שאפשר לחזור אליי בטלפון או בוואטסאפ בנוגע למכינה, וקראתי את <a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
