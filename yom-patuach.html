@@ -708,7 +708,9 @@ function wireLeadForm(form, sourceLabel){
       if(bad){ok=false;firstBad=firstBad||inp;}
     };
     mark(name, name.value.trim().length<2);
-    mark(phone, !/^0\d{8,9}$/.test(phone.value.replace(/[-\s]/g,'')));
+    // נרמול טלפון: ספרות בלבד, +972/972 → 0, 5XXXXXXXX → 05XXXXXXXX (מילוי אוטומטי בנייד)
+    window.__np=window.__np||function(v){var d=String(v||'').replace(/\D/g,'');if(d.indexOf('972')===0)d='0'+d.slice(3);if(d.indexOf('00')===0)d=d.slice(1);if(d.length===9&&d.charAt(0)==='5')d='0'+d;return d;};
+    mark(phone, !/^0\d{8,9}$/.test(window.__np(phone.value)));
     if(school) mark(school, school.value.trim().length<2);
     if(city) mark(city, city.value.trim().length<2);
     // רדיו "איך מגיע" - ולידציה ייעודית (קבוצה, לא שדה טקסט)
@@ -734,7 +736,7 @@ function wireLeadForm(form, sourceLabel){
     const isOpenDay = (sourceLabel||'').indexOf('יום פתוח')===0;
     const payload=new URLSearchParams({
       name:name.value.trim(),
-      phone:phone.value.replace(/[-\s]/g,''),
+      phone:window.__np(phone.value),
       school: school?school.value.trim():'',
       city: city?city.value.trim():'',
       arrival: arrival,

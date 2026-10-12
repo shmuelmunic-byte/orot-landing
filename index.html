@@ -892,7 +892,9 @@ function wireLeadForm(form, sourceLabel){
       if(bad){ok=false;firstBad=firstBad||inp;}
     };
     mark(name, name.value.trim().length<2);
-    mark(phone, !/^0\d{8,9}$/.test(phone.value.replace(/[-\s]/g,'')));
+    // נרמול טלפון: ספרות בלבד, +972/972 → 0, 5XXXXXXXX → 05XXXXXXXX (מילוי אוטומטי בנייד)
+    window.__np=window.__np||function(v){var d=String(v||'').replace(/\D/g,'');if(d.indexOf('972')===0)d='0'+d.slice(3);if(d.indexOf('00')===0)d=d.slice(1);if(d.length===9&&d.charAt(0)==='5')d='0'+d;return d;};
+    mark(phone, !/^0\d{8,9}$/.test(window.__np(phone.value)));
     const consErr=form.querySelector('.consent-err');
     const consBad=!consent.checked;
     if(consErr)consErr.hidden=!consBad;
@@ -904,7 +906,7 @@ function wireLeadForm(form, sourceLabel){
     try{ sessionStorage.setItem('orot_lead_pending', leadEventId); }catch(e){}
     const payload=new URLSearchParams({
       name:name.value.trim(),
-      phone:phone.value.replace(/[-\s]/g,''),
+      phone:window.__np(phone.value),
       source:sourceLabel,
       utm_source:ATTR.utm_source,
       utm_medium:ATTR.utm_medium,
