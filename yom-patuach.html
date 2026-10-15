@@ -404,6 +404,13 @@ html.a11y-noanim *,html.a11y-noanim{animation:none!important;transition:none!imp
 .a11y-reset{grid-column:1/-1;background:var(--deep);color:#fff;border:0;padding:11px;border-radius:10px;font-family:inherit;font-weight:700;cursor:pointer}
 .a11y-panel .stmt{display:block;text-align:center;margin-top:10px;font-size:.82rem;color:var(--blue);text-decoration:underline}
 html.a11y-invert .a11y-btn,html.a11y-invert .a11y-panel{filter:invert(1) hue-rotate(180deg)}
+/* mobile: while the signup form is on screen, floating buttons step aside so they never cover the consent line / submit */
+.wa-dock,.a11y-btn{transition:opacity .2s ease,transform .2s ease}
+@media (max-width:768px){
+  body.form-in-view .wa-dock{opacity:0;pointer-events:none;transform:translateY(20px)}
+  body.form-in-view .a11y-btn{top:50%;bottom:auto;right:0;width:32px;height:44px;border-radius:12px 0 0 12px;transform:translateY(-50%)}
+  body.form-in-view .a11y-btn svg{width:22px;height:22px}
+}
 @media print{html[class*="a11y-"]{filter:none!important;font-size:100%!important}.a11y-btn,.a11y-panel,.wa-float,.social-float{display:none!important}}
 /* form validation + consent */
 [hidden]{display:none!important}
@@ -804,6 +811,16 @@ document.addEventListener('click',function(e){
   });
   document.addEventListener('click',e=>{if(panel.classList.contains('open')&&!panel.contains(e.target)&&e.target!==btn&&!btn.contains(e.target))togglePanel(false);});
   apply();
+})();
+</script>
+<script>
+/* hide/shift floating buttons while the signup form is visible (mobile overlap fix) */
+(function(){
+  var f=document.getElementById('cta-top');
+  if(!f||!('IntersectionObserver' in window))return;
+  new IntersectionObserver(function(es){
+    document.body.classList.toggle('form-in-view',es[0].isIntersecting);
+  },{threshold:0.05}).observe(f);
 })();
 </script>
 </body>
