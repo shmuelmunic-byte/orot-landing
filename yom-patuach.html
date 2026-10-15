@@ -98,10 +98,11 @@ if(window.GA_MEASUREMENT_ID && window.GA_MEASUREMENT_ID!=='G-XXXXXXXXXX'){
 }
 </script>
 <!-- ===== End Google Analytics 4 ===== -->
-<link rel="preload" as="image" href="assets/img/hero-sun.jpg" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" href="assets/img/g-group-720.webp" imagesrcset="assets/img/g-group-720.webp 720w, assets/img/g-group-1200.webp 1200w" imagesizes="(max-width:600px) 100vw, 600px" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Karantina:wght@400;700&family=Miriam+Libre:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&family=Karantina:wght@400;700&family=Miriam+Libre:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&family=Karantina:wght@400;700&family=Miriam+Libre:wght@400;700&display=swap"></noscript>
 <!-- פונטי כתב יד עבריים מאוחסנים מקומית (עוקף תלות ב-Google מאחורי סינון). פעיל: Dana Yad. חלופה: Gveret Levin -->
 <style>
 @font-face{font-family:'Dana Yad';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/dana-yad.woff') format('woff')}
@@ -404,6 +405,14 @@ html.a11y-noanim *,html.a11y-noanim{animation:none!important;transition:none!imp
 .a11y-reset{grid-column:1/-1;background:var(--deep);color:#fff;border:0;padding:11px;border-radius:10px;font-family:inherit;font-weight:700;cursor:pointer}
 .a11y-panel .stmt{display:block;text-align:center;margin-top:10px;font-size:.82rem;color:var(--blue);text-decoration:underline}
 html.a11y-invert .a11y-btn,html.a11y-invert .a11y-panel{filter:invert(1) hue-rotate(180deg)}
+/* hero picture wrapper fills the card like the bare img did */
+.f-hero>picture{display:block;width:100%;height:100%}
+.f-hero>picture>img{width:100%;height:100%;object-fit:cover;object-position:center 28%}
+.f-mark img{width:100%;height:auto}
+/* mobile: shorter hero so the form comes up sooner */
+@media (max-width:480px){.flyer .f-hero{aspect-ratio:16/11}}
+/* tappable headline/info blocks (Clarity dead clicks) scroll to the form */
+.f-top,.f-date{cursor:pointer}
 /* mobile: while the signup form is on screen, floating buttons step aside so they never cover the consent line / submit */
 .wa-dock,.a11y-btn{transition:opacity .2s ease,transform .2s ease}
 @media (max-width:768px){
@@ -494,14 +503,14 @@ html{scroll-behavior:smooth}
 
   <div class="f-top">
     <div class="f-brand">
-      <span class="f-mark"><img src="assets/img/logo_mark.png" alt="מכינת אורות טלמון"></span>
+      <span class="f-mark"><img src="assets/img/logo_mark-112.webp" alt="מכינת אורות טלמון" width="112" height="99"></span>
       <span class="f-name">מכינת אורות<small>טלמון · נחלת בנימין</small></span>
     </div>
     <span class="f-kicker">מכינה קדם-צבאית</span>
   </div>
 
   <a class="f-hero" href="#cta-top" aria-label="להרשמה ליום הפתוח">
-    <img src="assets/img/g-group.jpg" alt="בחורי מכינת אורות יחד">
+    <picture><source type="image/webp" srcset="assets/img/g-group-720.webp 720w, assets/img/g-group-1200.webp 1200w" sizes="(max-width:600px) 100vw, 600px"><img src="assets/img/g-group.jpg" alt="בחורי מכינת אורות יחד" width="1920" height="1440" fetchpriority="high" decoding="async"></picture>
     <span class="f-eyebrow">יום פתוח</span>
     <div class="f-htext"><h1>בוא לראות מקרוב<br>את השנה הבאה שלך</h1></div>
   </a>
@@ -510,22 +519,6 @@ html{scroll-behavior:smooth}
     <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#ffd98a" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/><circle cx="8" cy="14" r="1.2" fill="#ffd98a" stroke="none"/><circle cx="12" cy="14" r="1.2" fill="#ffd98a" stroke="none"/><circle cx="16" cy="14" r="1.2" fill="#ffd98a" stroke="none"/></svg>
     <div><div class="f-dlbl">יום שלישי · ל׳ בחשוון</div><h2>10.11.26</h2></div>
   </div>
-
-  <div class="f-jump"><a href="#cta-top" class="btn btn-gold">אני רוצה להגיע &#9662;</a></div>
-
-  <div class="f-info">
-    <div class="f-it"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0C60AC" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10"/><path d="M3 16h18v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M4 9h16"/><circle cx="7.5" cy="19.5" r="1.6"/><circle cx="16.5" cy="19.5" r="1.6"/></svg><div>הסעה חינם ממודיעין<small>יציאה 10:00</small></div></div>
-    <div class="f-it"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0C60AC" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><div>סיום משוער<small>סביב 15:45</small></div></div>
-  </div>
-
-  <div class="f-feats">
-    <div class="f-feat"><span class="dot"></span>מסעות וניווטים</div>
-    <div class="f-feat"><span class="dot"></span>יחס משפחתי וחם</div>
-    <div class="f-feat"><span class="dot"></span>עבודת המידות וחיזוק האמונה</div>
-    <div class="f-feat"><span class="dot"></span>הכנה לצבא, פיזית ומנטלית</div>
-  </div>
-
-  <div class="f-tag"><span>תבוא, תרגיש, תבין</span></div>
 
   <div class="f-form" id="cta-top">
     <div class="formfields" id="formFieldsTop">
@@ -556,13 +549,28 @@ html{scroll-behavior:smooth}
     </div>
   </div>
 
+  <div class="f-info">
+    <div class="f-it"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0C60AC" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10"/><path d="M3 16h18v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M4 9h16"/><circle cx="7.5" cy="19.5" r="1.6"/><circle cx="16.5" cy="19.5" r="1.6"/></svg><div>הסעה חינם ממודיעין<small>יציאה 10:00</small></div></div>
+    <div class="f-it"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0C60AC" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><div>סיום משוער<small>סביב 15:45</small></div></div>
+  </div>
+
+  <div class="f-feats">
+    <div class="f-feat"><span class="dot"></span>מסעות וניווטים</div>
+    <div class="f-feat"><span class="dot"></span>יחס משפחתי וחם</div>
+    <div class="f-feat"><span class="dot"></span>עבודת המידות וחיזוק האמונה</div>
+    <div class="f-feat"><span class="dot"></span>הכנה לצבא, פיזית ומנטלית</div>
+  </div>
+
+  <div class="f-tag"><span>תבוא, תרגיש, תבין</span></div>
+
+
 </div>
 </main>
 
 <!-- FOOTER -->
 <footer>
   <div class="wrap foot">
-    <a href="#top" class="brand"><span class="mark"><img src="assets/img/logo_mark.png" alt="מכינת אורות טלמון"></span><span>מכינת אורות<small>טלמון · נחלת בנימין</small></span></a>
+    <a href="#top" class="brand"><span class="mark"><img src="assets/img/logo_mark-112.webp" alt="מכינת אורות טלמון" width="112" height="99"></span><span>מכינת אורות<small>טלמון · נחלת בנימין</small></span></a>
     <div class="socials">
       <a href="https://instagram.com/mehinat_orot_talmon" target="_blank" rel="noopener" title="אינסטגרם">◎</a>
       <a href="https://tiktok.com/@mehinat_orot.777" target="_blank" rel="noopener" title="טיקטוק">♪</a>
@@ -576,7 +584,7 @@ html{scroll-behavior:smooth}
       <a href="privacy.html">מדיניות פרטיות</a>
       <a href="terms.html">תקנון שימוש</a>
     </nav>
-    <span class="foot-credit">מכינת אורות טלמון · נחלת בנימין &nbsp;|&nbsp; נבנה על ידי <a href="https://www.shiftup.marketing/" target="_blank" rel="noopener" title="Shift Up - שיווק דיגיטלי" style="display:inline-flex;align-items:center;gap:5px"><img src="assets/img/shiftup-compact.png" alt="Shift Up" class="su-logo"> שיווק דיגיטלי</a></span>
+    <span class="foot-credit">מכינת אורות טלמון · נחלת בנימין &nbsp;|&nbsp; נבנה על ידי <a href="https://www.shiftup.marketing/" target="_blank" rel="noopener" title="Shift Up - שיווק דיגיטלי" style="display:inline-flex;align-items:center;gap:5px"><img src="assets/img/shiftup-compact.png" alt="Shift Up" class="su-logo" loading="lazy" decoding="async"> שיווק דיגיטלי</a></span>
   </div>
 </footer>
 
@@ -821,6 +829,14 @@ document.addEventListener('click',function(e){
   new IntersectionObserver(function(es){
     document.body.classList.toggle('form-in-view',es[0].isIntersecting);
   },{threshold:0.05}).observe(f);
+})();
+</script>
+<script>
+/* dead-click blocks (logo, date) scroll to the form */
+(function(){
+  var form=document.getElementById('cta-top');
+  function go(){if(form)form.scrollIntoView({behavior:'smooth',block:'start'});}
+  document.querySelectorAll('.f-top,.f-date').forEach(function(el){el.addEventListener('click',go);});
 })();
 </script>
 </body>
