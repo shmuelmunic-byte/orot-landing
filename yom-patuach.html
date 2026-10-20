@@ -464,6 +464,7 @@ body{background:var(--bg)}
 .f-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,30,56,.22),rgba(6,30,56,0) 34%,rgba(6,30,56,.5) 72%,rgba(6,30,56,.88))}
 .f-eyebrow{position:absolute;top:15px;right:15px;z-index:2;background:var(--gold);color:#3a2a05;font-family:'Miriam Libre',sans-serif;font-weight:700;font-size:1rem;padding:7px 18px;border-radius:999px;box-shadow:0 8px 20px rgba(237,165,30,.4)}
 .f-htext{position:absolute;right:18px;left:18px;bottom:18px;z-index:2}
+.f-match{margin:0 0 6px;color:#ffd98a;font-family:'Heebo',sans-serif;font-weight:800;font-size:clamp(1rem,4.2vw,1.2rem);line-height:1.3;text-wrap:balance;max-width:24ch;text-shadow:0 2px 14px rgba(0,12,26,.9)}
 .f-htext h1{color:#fff;font-size:clamp(2.1rem,8.6vw,3.1rem);text-shadow:0 2px 20px rgba(0,12,26,.85);letter-spacing:.03em;line-height:1.02}
 .f-date{background:linear-gradient(135deg,#0A67AC,#0A4C86);color:#fff;margin:16px 14px 0;border-radius:16px;display:flex;align-items:center;justify-content:center;gap:16px;padding:15px 14px;position:relative;overflow:hidden}
 .f-date::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 16% 24%,rgba(21,171,221,.45),transparent 55%)}
@@ -514,7 +515,8 @@ html{scroll-behavior:smooth}
   <a class="f-hero" href="#cta-top" aria-label="להרשמה ליום הפתוח">
     <picture><source type="image/webp" srcset="assets/img/g-group-720.webp 720w, assets/img/g-group-1200.webp 1200w" sizes="(max-width:600px) 100vw, 600px"><img src="assets/img/g-group.jpg" alt="בחורי מכינת אורות יחד" width="1920" height="1440" fetchpriority="high" decoding="async"></picture>
     <span class="f-eyebrow">יום פתוח</span>
-    <div class="f-htext"><h1>בוא לראות מקרוב<br>את השנה הבאה שלך</h1></div>
+    <div class="f-htext"><p class="f-match" id="fMatch" hidden></p><h1>בוא לראות מקרוב<br>את השנה הבאה שלך</h1></div>
+    <script>/* שורת התאמה למודעה: לפי utm_content, כדי שמי שהגיע ממודעה יראה את ההבטחה שלה */(function(){try{var c=(new URLSearchParams(location.search).get('utm_content')||'').toLowerCase(),t='';if(c.indexOf('testimony')>-1)t='בוגרים שלנו הגיעו לשנה ובחרו להישאר לשנתיים';else if(c.indexOf('motion')>-1)t='יש דברים שמרגישים רק כשאתה בפנים';if(t){var e=document.getElementById('fMatch');e.textContent=t;e.hidden=false;}}catch(e){}})();</script>
   </a>
 
   <div class="f-date">
