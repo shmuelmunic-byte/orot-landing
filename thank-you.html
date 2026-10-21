@@ -131,34 +131,47 @@ document.getElementById('tyLead').textContent='רועי יחזור אליך עם
 document.getElementById('tySub').textContent='יום שלישי, ל׳ בחשוון, בטלמון, ההסעה יוצאת ממודיעין ב-10:00, כדאי לשמור את התאריך ביומן כבר עכשיו';
 document.getElementById('tyCal').hidden=false;
 document.title='נתראה ביום הפתוח · מכינת אורות';
-// השלמת פרטים (ישיבה + עיר) לאותו ליד — שליחה שנייה לגיליון עם אותו leadId
+// שליחה אחת בלבד לגיליון: מלאה (עם ישיבה+עיר) אם ממלאים, בסיסית אם עוזבים את הדף.
 var SHEET_ENDPOINT='https://script.google.com/macros/s/AKfycbwlHjCk9ioE_lZHfoTLJSs-zKxQepK0l2qkCy3Ifa8xV3BvIr7NfQVruMgn48inL-X8jw/exec';
 var ld=null; try{ ld=JSON.parse(sessionStorage.getItem('orot_lead_data')||'null'); }catch(e){}
-var ef=document.getElementById('tyEnrich'), sentFlag=false;
-try{ sentFlag=!!sessionStorage.getItem('orot_enrich_sent'); }catch(e){}
-if(ld && ld.leadId && ef && !sentFlag){
-  ef.hidden=false;
-  ef.addEventListener('submit',function(ev){
-    ev.preventDefault();
-    var sc=document.getElementById('ty-school'), ct=document.getElementById('ty-city'), ok=true;
-    [sc,ct].forEach(function(inp){
-      var bad=inp.value.trim().length<2;
-      inp.setAttribute('aria-invalid',bad?'true':'false');
-      var er=inp.parentNode.querySelector('.eerr'); if(er)er.hidden=!bad;
-      if(bad)ok=false;
-    });
-    if(!ok){ (sc.value.trim().length<2?sc:ct).focus(); return; }
+if(ld && ld.leadId){
+  var sheetSent=false; try{ sheetSent=!!sessionStorage.getItem('orot_sheet_sent'); }catch(e){}
+  var sendOnce=function(extra, useBeacon){
+    if(sheetSent) return;
+    sheetSent=true; try{ sessionStorage.setItem('orot_sheet_sent','1'); }catch(e){}
     var p=new URLSearchParams(ld);
-    p.set('school', sc.value.trim());
-    p.set('city', ct.value.trim());
-    p.set('stage','השלמת פרטים (ישיבה ועיר)');
+    if(extra&&extra.school) p.set('school', extra.school);
+    if(extra&&extra.city) p.set('city', extra.city);
     p.set('ts', new Date().toISOString());
-    try{ sessionStorage.setItem('orot_enrich_sent','1'); }catch(e){}
-    var btn=document.getElementById('tyEnrichBtn'); if(btn){btn.disabled=true;btn.textContent='שומר...';}
-    var done=function(){ ef.hidden=true; var okEl=document.getElementById('tyEnrichOk'); if(okEl)okEl.hidden=false; try{sessionStorage.removeItem('orot_lead_data');}catch(e){} };
-    try{ fetch(SHEET_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:p.toString()}).catch(function(){}).finally(done); }
-    catch(e){ done(); }
-  });
+    var body=p.toString();
+    try{
+      if(useBeacon && navigator.sendBeacon){ navigator.sendBeacon(SHEET_ENDPOINT, new Blob([body],{type:'application/x-www-form-urlencoded;charset=UTF-8'})); }
+      else { fetch(SHEET_ENDPOINT,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:body}); }
+    }catch(e){}
+    try{ sessionStorage.removeItem('orot_lead_data'); }catch(e){}
+  };
+  var ef=document.getElementById('tyEnrich');
+  if(ef && !sheetSent){
+    ef.hidden=false;
+    ef.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var sc=document.getElementById('ty-school'), ct=document.getElementById('ty-city'), ok=true;
+      [sc,ct].forEach(function(inp){
+        var bad=inp.value.trim().length<2;
+        inp.setAttribute('aria-invalid',bad?'true':'false');
+        var er=inp.parentNode.querySelector('.eerr'); if(er)er.hidden=!bad;
+        if(bad)ok=false;
+      });
+      if(!ok){ (sc.value.trim().length<2?sc:ct).focus(); return; }
+      var btn=document.getElementById('tyEnrichBtn'); if(btn){btn.disabled=true;btn.textContent='שומר...';}
+      sendOnce({school:sc.value.trim(), city:ct.value.trim()}, false);
+      ef.hidden=true; var okEl=document.getElementById('tyEnrichOk'); if(okEl)okEl.hidden=false;
+    });
+  }
+  // רשת ביטחון: עוזבים בלי למלא ישיבה/עיר -> שולחים את הליד הבסיסי פעם אחת (אותה שורה)
+  var flush=function(){ sendOnce({}, true); };
+  window.addEventListener('pagehide', flush);
+  document.addEventListener('visibilitychange', function(){ if(document.visibilityState==='hidden') flush(); });
 }
 }catch(e){}})();
 </script>

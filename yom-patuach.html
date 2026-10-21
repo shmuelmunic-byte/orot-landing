@@ -904,15 +904,18 @@ function wireLeadForm(form, sourceLabel){
       page:location.href,
       ts:new Date().toISOString()
     };
-    const payload=new URLSearchParams(leadData);
-    // שומרים את הליד כדי שדף התודה ישלים ישיבה/עיר לאותו leadId (שליחה שנייה, אותה שורה)
-    try{ sessionStorage.setItem('orot_lead_data', JSON.stringify(leadData)); }catch(e){}
-    const send=SHEET_ENDPOINT
-      ? fetch(SHEET_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:payload.toString()})
-      : Promise.resolve();
+    // שומרים את הליד; דף התודה שולח שורה אחת (מלאה אם ממלאים ישיבה/עיר, בסיסית אם עוזבים)
+    try{ sessionStorage.setItem('orot_lead_data', JSON.stringify(leadData)); sessionStorage.removeItem('orot_sheet_sent'); }catch(e){}
     if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='שולח...';}
     const goThanks=()=>{ try{ location.href=isOpenDay?'thank-you.html?t=yom':'thank-you.html'; }catch(e){} };
-    send.catch(()=>{}).finally(goThanks);
+    if(isOpenDay){
+      goThanks();
+    } else {
+      const send=SHEET_ENDPOINT
+        ? fetch(SHEET_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:new URLSearchParams(leadData).toString()})
+        : Promise.resolve();
+      send.catch(()=>{}).finally(goThanks);
+    }
   });
 }
 wireLeadForm(document.getElementById('leadFormTop'), 'יום פתוח 10.11.26');
