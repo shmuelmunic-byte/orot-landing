@@ -575,8 +575,6 @@ body.sticky-on .a11y-btn{bottom:84px}
       <form id="leadFormTop" novalidate>
         <div class="field"><label for="t-name">איך קוראים לך?</label><input id="t-name" name="name" type="text" autocomplete="name" placeholder="שם מלא" required aria-required="true"><span class="err" role="alert" hidden>נא למלא שם מלא</span></div>
         <div class="field"><label for="t-phone">טלפון</label><input id="t-phone" name="phone" type="tel" inputmode="tel" dir="ltr" autocomplete="tel" placeholder="05X-XXXXXXX" required aria-required="true"><span class="err" role="alert" hidden>נא למלא מספר טלפון תקין (10 ספרות)</span></div>
-        <div class="field"><label for="t-school">מוסד לימודים נוכחי</label><input id="t-school" name="school" type="text" placeholder="שם הישיבה או בית הספר" required aria-required="true"><span class="err" role="alert" hidden>נא למלא מוסד לימודים</span></div>
-        <div class="field"><label for="t-city">מקום מגורים</label><input id="t-city" name="city" type="text" autocomplete="address-level2" placeholder="עיר או יישוב" required aria-required="true"><span class="err" role="alert" hidden>נא למלא מקום מגורים</span></div>
         <div class="field">
           <span class="arrival-title">איך מתכנן להגיע?</span>
           <div class="arrival-group">
@@ -694,8 +692,6 @@ body.sticky-on .a11y-btn{bottom:84px}
       <form id="leadFormBottom" novalidate>
         <div class="field"><label for="b-name">איך קוראים לך?</label><input id="b-name" name="name" type="text" autocomplete="name" placeholder="שם מלא" required aria-required="true"><span class="err" role="alert" hidden>נא למלא שם מלא</span></div>
         <div class="field"><label for="b-phone">טלפון</label><input id="b-phone" name="phone" type="tel" inputmode="tel" dir="ltr" autocomplete="tel" placeholder="05X-XXXXXXX" required aria-required="true"><span class="err" role="alert" hidden>נא למלא מספר טלפון תקין (10 ספרות)</span></div>
-        <div class="field"><label for="b-school">מוסד לימודים נוכחי</label><input id="b-school" name="school" type="text" placeholder="שם הישיבה או בית הספר" required aria-required="true"><span class="err" role="alert" hidden>נא למלא מוסד לימודים</span></div>
-        <div class="field"><label for="b-city">מקום מגורים</label><input id="b-city" name="city" type="text" autocomplete="address-level2" placeholder="עיר או יישוב" required aria-required="true"><span class="err" role="alert" hidden>נא למלא מקום מגורים</span></div>
         <div class="field">
           <span class="arrival-title">איך מתכנן להגיע?</span>
           <div class="arrival-group">
@@ -888,7 +884,8 @@ function wireLeadForm(form, sourceLabel){
     const leadEventId='lead_'+Date.now()+'_'+Math.random().toString(36).slice(2,10);
     try{ sessionStorage.setItem('orot_lead_pending', leadEventId); }catch(e){}
     const isOpenDay = (sourceLabel||'').indexOf('יום פתוח')===0;
-    const payload=new URLSearchParams({
+    const leadData={
+      leadId:leadEventId,
       name:name.value.trim(),
       phone:window.__np(phone.value),
       school: school?school.value.trim():'',
@@ -906,7 +903,10 @@ function wireLeadForm(form, sourceLabel){
       click_id:ATTR.click_id,
       page:location.href,
       ts:new Date().toISOString()
-    });
+    };
+    const payload=new URLSearchParams(leadData);
+    // שומרים את הליד כדי שדף התודה ישלים ישיבה/עיר לאותו leadId (שליחה שנייה, אותה שורה)
+    try{ sessionStorage.setItem('orot_lead_data', JSON.stringify(leadData)); }catch(e){}
     const send=SHEET_ENDPOINT
       ? fetch(SHEET_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:payload.toString()})
       : Promise.resolve();

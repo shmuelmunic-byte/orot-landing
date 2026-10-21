@@ -90,6 +90,13 @@ h1{font-family:'Karantina',sans-serif;font-weight:700;letter-spacing:.045em;font
 .home:hover{color:var(--blue)}
 .foot{margin-top:34px;color:var(--muted);font-size:.82rem}
 .foot a{color:var(--blue);text-decoration:none}
+#tyEnrich{width:100%;max-width:340px;margin:0 auto 22px;display:flex;flex-direction:column;gap:10px;text-align:right}
+#tyEnrich .enrich-lead{font-weight:700;color:var(--ink);margin-bottom:2px;font-size:1rem}
+#tyEnrich input{width:100%;padding:13px 14px;border:2px solid var(--line);border-radius:12px;font-family:inherit;font-size:1rem;background:var(--surface);color:var(--ink)}
+#tyEnrich input:focus{outline:none;border-color:var(--blue)}
+#tyEnrich input[aria-invalid="true"]{border-color:#d33}
+#tyEnrich .eerr{color:#d33;font-size:.82rem;margin-top:3px;display:block}
+.enrich-ok{color:var(--blue);font-weight:700;margin:0 auto 22px}
 </style>
 </head>
 <body>
@@ -98,6 +105,14 @@ h1{font-family:'Karantina',sans-serif;font-weight:700;letter-spacing:.045em;font
   <h1 id="tyTitle">קיבלנו את הפרטים שלך</h1>
   <p class="lead" id="tyLead">רועי יחזור אליך תוך 24 שעות לתיאום שבו"ש ולענות על כל שאלה</p>
   <p class="sub" id="tySub">רוצה להתקדם כבר עכשיו? אפשר לכתוב לרועי ישירות בוואטסאפ, או להציץ באורות מבפנים באינסטגרם</p>
+
+  <form id="tyEnrich" hidden>
+    <p class="enrich-lead">כדי לתאם לך את ההסעה, רק עוד שני פרטים</p>
+    <div class="ef"><input id="ty-school" name="school" type="text" placeholder="מוסד לימודים נוכחי (ישיבה או בית ספר)" autocomplete="off"><span class="eerr" hidden>נא למלא מוסד לימודים</span></div>
+    <div class="ef"><input id="ty-city" name="city" type="text" placeholder="עיר או יישוב מגורים" autocomplete="address-level2"><span class="eerr" hidden>נא למלא מקום מגורים</span></div>
+    <button type="submit" class="btn btn-out" id="tyEnrichBtn">שמור את הפרטים</button>
+  </form>
+  <p id="tyEnrichOk" class="enrich-ok" hidden>מעולה, שמרנו. נתראה ב-10.11 ✓</p>
 
   <div class="btns">
     <a class="btn btn-cal" id="tyCal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%D7%99%D7%95%D7%9D+%D7%A4%D7%AA%D7%95%D7%97+%D7%91%D7%9E%D7%9B%D7%99%D7%A0%D7%AA+%D7%90%D7%95%D7%A8%D7%95%D7%AA%2C+%D7%98%D7%9C%D7%9E%D7%95%D7%9F&amp;dates=20261110T100000%2F20261110T154500&amp;ctz=Asia%2FJerusalem&amp;details=%D7%94%D7%A1%D7%A2%D7%94+%D7%97%D7%99%D7%A0%D7%9D+%D7%99%D7%95%D7%A6%D7%90%D7%AA+%D7%9E%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F+%D7%91-10%3A00%2C+%D7%A1%D7%99%D7%95%D7%9D+%D7%9E%D7%A9%D7%95%D7%A2%D7%A8+%D7%A1%D7%91%D7%99%D7%91+15%3A45%2C+%D7%9C%D7%A9%D7%90%D7%9C%D7%95%D7%AA+%D7%A8%D7%95%D7%A2%D7%99+%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4+054-2520537&amp;location=%D7%9E%D7%9B%D7%99%D7%A0%D7%AA+%D7%90%D7%95%D7%A8%D7%95%D7%AA%2C+%D7%98%D7%9C%D7%9E%D7%95%D7%9F" target="_blank" rel="noopener" hidden>שמור את 10.11 ביומן</a>
@@ -115,7 +130,37 @@ document.getElementById('tyTitle').textContent='קיבלנו! נתראה ב-10.1
 document.getElementById('tyLead').textContent='רועי יחזור אליך עם כל הפרטים ותיאום ההסעה';
 document.getElementById('tySub').textContent='יום שלישי, ל׳ בחשוון, בטלמון, ההסעה יוצאת ממודיעין ב-10:00, כדאי לשמור את התאריך ביומן כבר עכשיו';
 document.getElementById('tyCal').hidden=false;
-document.title='נתראה ביום הפתוח · מכינת אורות';}catch(e){}})();
+document.title='נתראה ביום הפתוח · מכינת אורות';
+// השלמת פרטים (ישיבה + עיר) לאותו ליד — שליחה שנייה לגיליון עם אותו leadId
+var SHEET_ENDPOINT='https://script.google.com/macros/s/AKfycbwlHjCk9ioE_lZHfoTLJSs-zKxQepK0l2qkCy3Ifa8xV3BvIr7NfQVruMgn48inL-X8jw/exec';
+var ld=null; try{ ld=JSON.parse(sessionStorage.getItem('orot_lead_data')||'null'); }catch(e){}
+var ef=document.getElementById('tyEnrich'), sentFlag=false;
+try{ sentFlag=!!sessionStorage.getItem('orot_enrich_sent'); }catch(e){}
+if(ld && ld.leadId && ef && !sentFlag){
+  ef.hidden=false;
+  ef.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var sc=document.getElementById('ty-school'), ct=document.getElementById('ty-city'), ok=true;
+    [sc,ct].forEach(function(inp){
+      var bad=inp.value.trim().length<2;
+      inp.setAttribute('aria-invalid',bad?'true':'false');
+      var er=inp.parentNode.querySelector('.eerr'); if(er)er.hidden=!bad;
+      if(bad)ok=false;
+    });
+    if(!ok){ (sc.value.trim().length<2?sc:ct).focus(); return; }
+    var p=new URLSearchParams(ld);
+    p.set('school', sc.value.trim());
+    p.set('city', ct.value.trim());
+    p.set('stage','השלמת פרטים (ישיבה ועיר)');
+    p.set('ts', new Date().toISOString());
+    try{ sessionStorage.setItem('orot_enrich_sent','1'); }catch(e){}
+    var btn=document.getElementById('tyEnrichBtn'); if(btn){btn.disabled=true;btn.textContent='שומר...';}
+    var done=function(){ ef.hidden=true; var okEl=document.getElementById('tyEnrichOk'); if(okEl)okEl.hidden=false; try{sessionStorage.removeItem('orot_lead_data');}catch(e){} };
+    try{ fetch(SHEET_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:p.toString()}).catch(function(){}).finally(done); }
+    catch(e){ done(); }
+  });
+}
+}catch(e){}})();
 </script>
 </body>
 </html>
