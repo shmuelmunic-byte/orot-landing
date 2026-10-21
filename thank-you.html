@@ -84,6 +84,8 @@ h1{font-family:'Karantina',sans-serif;font-weight:700;letter-spacing:.045em;font
 .btn-wa:hover{transform:translateY(-2px)}
 .btn-out{background:transparent;border-color:var(--line);color:var(--ink)}
 .btn-out:hover{border-color:var(--blue);color:var(--blue)}
+.btn-cal{background:var(--gold);color:#3a2a05;box-shadow:0 8px 22px rgba(237,165,30,.35)}
+[hidden]{display:none!important}
 .home{margin-top:26px;color:var(--muted);font-size:.92rem;text-decoration:none}
 .home:hover{color:var(--blue)}
 .foot{margin-top:34px;color:var(--muted);font-size:.82rem}
@@ -93,11 +95,12 @@ h1{font-family:'Karantina',sans-serif;font-weight:700;letter-spacing:.045em;font
 <body>
   <img class="logo" src="assets/img/logo_official.png" alt="מכינת אורות טלמון">
   <div class="mark">🙌</div>
-  <h1>קיבלנו את הפרטים שלך</h1>
-  <p class="lead">רועי יחזור אליך תוך 24 שעות לתיאום שבו"ש ולענות על כל שאלה</p>
-  <p class="sub">רוצה להתקדם כבר עכשיו? אפשר לכתוב לרועי ישירות בוואטסאפ, או להציץ באורות מבפנים באינסטגרם</p>
+  <h1 id="tyTitle">קיבלנו את הפרטים שלך</h1>
+  <p class="lead" id="tyLead">רועי יחזור אליך תוך 24 שעות לתיאום שבו"ש ולענות על כל שאלה</p>
+  <p class="sub" id="tySub">רוצה להתקדם כבר עכשיו? אפשר לכתוב לרועי ישירות בוואטסאפ, או להציץ באורות מבפנים באינסטגרם</p>
 
   <div class="btns">
+    <a class="btn btn-cal" id="tyCal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%D7%99%D7%95%D7%9D+%D7%A4%D7%AA%D7%95%D7%97+%D7%91%D7%9E%D7%9B%D7%99%D7%A0%D7%AA+%D7%90%D7%95%D7%A8%D7%95%D7%AA%2C+%D7%98%D7%9C%D7%9E%D7%95%D7%9F&amp;dates=20261110T100000%2F20261110T154500&amp;ctz=Asia%2FJerusalem&amp;details=%D7%94%D7%A1%D7%A2%D7%94+%D7%97%D7%99%D7%A0%D7%9D+%D7%99%D7%95%D7%A6%D7%90%D7%AA+%D7%9E%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F+%D7%91-10%3A00%2C+%D7%A1%D7%99%D7%95%D7%9D+%D7%9E%D7%A9%D7%95%D7%A2%D7%A8+%D7%A1%D7%91%D7%99%D7%91+15%3A45%2C+%D7%9C%D7%A9%D7%90%D7%9C%D7%95%D7%AA+%D7%A8%D7%95%D7%A2%D7%99+%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4+054-2520537&amp;location=%D7%9E%D7%9B%D7%99%D7%A0%D7%AA+%D7%90%D7%95%D7%A8%D7%95%D7%AA%2C+%D7%98%D7%9C%D7%9E%D7%95%D7%9F" target="_blank" rel="noopener" hidden>שמור את 10.11 ביומן</a>
     <a class="btn btn-wa" href="https://wa.me/972542520537?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%95%D7%A2%D7%99%2C%20%D7%94%D7%A9%D7%90%D7%A8%D7%AA%D7%99%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%20%D7%9E%D7%9B%D7%99%D7%A0%D7%AA%20%D7%90%D7%95%D7%A8%D7%95%D7%AA" target="_blank" rel="noopener">כתוב לרועי בוואטסאפ</a>
     <a class="btn btn-out" href="https://www.instagram.com/mehinat_orot_talmon/" target="_blank" rel="noopener">אורות באינסטגרם</a>
   </div>
@@ -105,5 +108,14 @@ h1{font-family:'Karantina',sans-serif;font-weight:700;letter-spacing:.045em;font
   <a class="home" href="index.html">חזרה לעמוד הראשי ▸</a>
 
   <div class="foot">מכינת אורות טלמון · נחלת בנימין &nbsp;|&nbsp; נבנה על ידי <a href="https://www.shiftup.marketing/" target="_blank" rel="noopener" title="Shift Up - שיווק דיגיטלי">Shift Up שיווק דיגיטלי</a></div>
+<script>
+/* נרשם ליום הפתוח: הודעת תודה של יום פתוח (לא שבו"ש) + שמירה ביומן */
+(function(){try{if(new URLSearchParams(location.search).get('t')!=='yom')return;
+document.getElementById('tyTitle').textContent='קיבלנו! נתראה ב-10.11';
+document.getElementById('tyLead').textContent='רועי יחזור אליך עם כל הפרטים ותיאום ההסעה';
+document.getElementById('tySub').textContent='יום שלישי, ל׳ בחשוון, בטלמון, ההסעה יוצאת ממודיעין ב-10:00, כדאי לשמור את התאריך ביומן כבר עכשיו';
+document.getElementById('tyCal').hidden=false;
+document.title='נתראה ביום הפתוח · מכינת אורות';}catch(e){}})();
+</script>
 </body>
 </html>
