@@ -904,12 +904,20 @@ function wireLeadForm(form, sourceLabel){
       page:location.href,
       ts:new Date().toISOString()
     };
-    // שומרים את הליד; דף התודה שולח שורה אחת (מלאה אם ממלאים ישיבה/עיר, בסיסית אם עוזבים)
-    try{ sessionStorage.setItem('orot_lead_data', JSON.stringify(leadData)); sessionStorage.removeItem('orot_sheet_sent'); }catch(e){}
+    // השורה נשלחת לגיליון מיד בלחיצה (לא בעזיבת דף התודה: בדפדפן של אינסטגרם זה אבד, 22.10).
+    // דף התודה רק משלים ישיבה+עיר לאותה שורה לפי הטלפון (mode=enrich ב-Apps Script).
+    try{ sessionStorage.setItem('orot_lead_data', JSON.stringify(leadData)); }catch(e){}
     if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='שולח...';}
     const goThanks=()=>{ try{ location.href=isOpenDay?'thank-you.html?t=yom':'thank-you.html'; }catch(e){} };
     if(isOpenDay){
-      goThanks();
+      let went=false; const goOnce=()=>{ if(!went){ went=true; goThanks(); } };
+      const body=new URLSearchParams(leadData).toString();
+      try{
+        fetch(SHEET_ENDPOINT,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:body})
+          .catch(()=>{ try{ navigator.sendBeacon&&navigator.sendBeacon(SHEET_ENDPOINT,new Blob([body],{type:'application/x-www-form-urlencoded;charset=UTF-8'})); }catch(err){} })
+          .finally(goOnce);
+      }catch(err){ try{ navigator.sendBeacon&&navigator.sendBeacon(SHEET_ENDPOINT,new Blob([body],{type:'application/x-www-form-urlencoded;charset=UTF-8'})); }catch(e2){} goOnce(); }
+      setTimeout(goOnce,2500); // לא מחכים יותר מ-2.5 שנ'; keepalive ממשיך לשלוח גם אחרי המעבר
     } else {
       const send=SHEET_ENDPOINT
         ? fetch(SHEET_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:new URLSearchParams(leadData).toString()})
