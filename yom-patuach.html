@@ -943,9 +943,9 @@ document.addEventListener('click',function(e){
   if(window.gtag){ gtag('event','generate_lead',{method:'whatsapp',location:spot}); gtag('event','whatsapp_click',{location:spot,utm_source:(typeof ATTR!=='undefined'?ATTR.utm_source:'')}); }
   if(typeof SHEET_ENDPOINT!=='undefined' && SHEET_ENDPOINT){
     const body=new URLSearchParams({
-      name:'📲 פנייה בוואטסאפ (בלי טופס)',
+      name:'📲 לחץ על וואטסאפ, לא בטוח ששלח',
       phone:'', school:'', city:'',
-      arrival:'פנייה בוואטסאפ, הטלפון אצל רועי בצ\'אט',
+      arrival:'לחיצה על כפתור וואטסאפ, אם שלח ההודעה אצל רועי בצ\'אט',
       formType:'open-day',
       openday_date:'ל׳ חשוון 10.11.26',
       source:'וואטסאפ מעמוד יום פתוח · '+spot,
