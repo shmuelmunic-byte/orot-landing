@@ -933,6 +933,9 @@ wireLeadForm(document.getElementById('leadFormBottom'), 'יום פתוח 10.11.2
 document.addEventListener('click',function(e){
   const a=e.target.closest('a[href*="wa.me"],a[href*="whatsapp"]');
   if(!a)return;
+  // סורקים (בדיקת המודעות של מטא וכו') לוחצים על הכפתור: לא פנייה, לא Lead, לא מייל לרועי
+  const ua=navigator.userAgent||'';
+  if(!e.isTrusted || navigator.webdriver || /bot|crawl|spider|slurp|facebookexternalhit|facebookcatalog|facebot|meta-external|headless|lighthouse|preview/i.test(ua)) return;
   const spot=a.classList.contains('wa-float')?'כפתור צף':(a.closest('#cta-bottom')?'טופס תחתון':(a.closest('#cta-top')?'טופס עליון':'פוטר'));
   if(window.fbq){ fbq('track','Contact',{content_name:'וואטסאפ אורות',source:spot}); }
   let first=true;
