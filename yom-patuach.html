@@ -902,7 +902,11 @@ function wireLeadForm(form, sourceLabel){
       referrer:ATTR.referrer,
       click_id:ATTR.click_id,
       page:location.href,
-      ts:new Date().toISOString()
+      ts:new Date().toISOString(),
+      // ל-Conversions API (1.11): מזהי הדפדפן של מטא, כדי שההרשמה מהגיליון תתאים לאדם שראה את המודעה
+      fbp:(document.cookie.match(/(?:^|;\s*)_fbp=([^;]+)/)||[])[1]||'',
+      fbc:(document.cookie.match(/(?:^|;\s*)_fbc=([^;]+)/)||[])[1]||'',
+      ua:navigator.userAgent||''
     };
     // השורה נשלחת לגיליון מיד בלחיצה (לא בעזיבת דף התודה: בדפדפן של אינסטגרם זה אבד, 22.10).
     // דף התודה רק משלים ישיבה+עיר לאותה שורה לפי הטלפון (mode=enrich ב-Apps Script).
