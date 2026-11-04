@@ -496,6 +496,8 @@ html{scroll-behavior:smooth}
 @media(max-width:380px){.f-feats{grid-template-columns:1fr;gap:9px}.f-info{gap:18px}}
 /* ===== עמוד מורחב (21.10): תווית, משנה, סקשנים מתחת לטופס ===== */
 .f-label{margin:0 14px 10px;text-align:center;font-family:'Miriam Libre',sans-serif;font-weight:700;font-size:.95rem;color:var(--deep);background:rgba(23,168,220,.1);border-radius:10px;padding:8px 10px}
+.f-hero>.f-hvid{display:block;width:100%;height:100%;object-fit:cover;object-position:center;background:#0b2b48}
+.f-herocta{display:flex;justify-content:center;margin:12px 14px 0;font-size:1.12rem;padding:14px 20px}
 .f-sub{margin:14px 22px 0;text-align:center;font-size:1.08rem;line-height:1.55;color:var(--ink);font-weight:600}
 .f-dmeta{margin-top:6px;text-align:center;font-size:.9rem;color:#dbe8f4;font-weight:600}
 .y-sec{margin:34px 14px 0;padding:30px 20px;border-radius:16px;background:var(--surface);box-shadow:var(--shadow)}
@@ -552,14 +554,18 @@ body.sticky-on .a11y-btn{bottom:84px}
       <span class="f-name">מכינת אורות<small>טלמון · נחלת בנימין</small></span>
     </div>
   </div>
-  <p class="f-label">מכינה קדם צבאית תורנית לבנים</p>
+  <p class="f-label">מכינה קדם צבאית לבנים · טלמון</p>
 
   <a class="f-hero" href="#cta-top" aria-label="להרשמה ליום הפתוח">
-    <picture><source type="image/webp" srcset="assets/img/g-group-720.webp 720w, assets/img/g-group-1200.webp 1200w" sizes="(max-width:600px) 100vw, 600px"><img src="assets/img/g-group.jpg" alt="בחורי מכינת אורות יחד" width="1920" height="1440" fetchpriority="high" decoding="async"></picture>
-    <span class="f-eyebrow">יום פתוח</span>
-    <div class="f-htext"><p class="f-match" id="fMatch" hidden></p><h1>בוא לראות מקרוב<br>את השנה הבאה שלך</h1></div>
+    <!-- 4.11: סרטון אמיתי מהשטח במקום תמונת מחזור (אודיט 4.11: 91% עזבו במסך הראשון). לולאה בלי כרטיסי טקסט, מתוך הסרטון של רועי -->
+    <video class="f-hvid" id="heroVid" src="assets/video/hero-roy-640.mp4" poster="assets/video/hero-roy-poster.webp" autoplay muted loop playsinline preload="auto" aria-label="בחורי מכינת אורות במסעות, בספורט ובמכינה" width="640" height="440"></video>
+    <span class="f-eyebrow">יום פתוח · 10.11</span>
+    <div class="f-htext"><p class="f-match" id="fMatch" hidden></p><h1>יום אחד לבדוק,<br>לפני שנה שלמה</h1></div>
     <script>/* שורת התאמה למודעה: לפי utm_content, כדי שמי שהגיע ממודעה יראה את ההבטחה שלה */(function(){try{var q=new URLSearchParams(location.search),c=(q.get('utm_content')||'').toLowerCase(),s=(q.get('utm_source')||'').toLowerCase(),t='';if(c.indexOf('testimony')>-1)t='בוגרים שלנו הגיעו לשנה ובחרו להישאר לשנתיים';else if(c.indexOf('motion')>-1)t='יש דברים שמרגישים רק כשאתה בפנים';else if(c.indexOf('map')>-1)t='מחיפה ועד נתיבות כבר נרשמו, מאיפה אתה?';else if(c.indexOf('checklist')>-1)t='את מה שלא רואים בסרטון, בודקים ב-10.11';else if(c.indexOf('roy')>-1)t='בית מדרש חי שאתה בוחר להיות בו';else if(c.indexOf('asif')>-1)t='אסיף הגיע לשנה ונשאר לשנתיים, בוא לראות למה';else if(c||s==='meta')t='שמיניסטים מכל הארץ כבר נרשמו ליום הפתוח';if(t){var e=document.getElementById('fMatch');e.textContent=t;e.hidden=false;}}catch(e){}})();</script>
   </a>
+  <script>/* סרטון הפתיח: עוצרים למי שביקש בלי תנועה (מערכת או וידג'ט הנגישות) */(function(){var v=document.getElementById('heroVid');if(!v)return;function chk(){var r=(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)||document.documentElement.classList.contains('a11y-noanim');if(r){v.pause();v.removeAttribute('autoplay');}}chk();setTimeout(chk,800);})();</script>
+
+  <a class="btn btn-gold f-herocta" href="#cta-top" data-hero-cta>נרשמים בחצי דקה ↓</a>
 
   <p class="f-sub">יום אחד באורות, פוגשים את החבר'ה ואת הצוות, מרגישים את המקום מבפנים, ואתה יודע אם זה המקום שלך לשנה הבאה</p>
 
@@ -878,7 +884,16 @@ function wireLeadForm(form, sourceLabel){
     const consBad=!consent.checked;
     if(consErr)consErr.hidden=!consBad;
     if(consBad){ok=false;firstBad=firstBad||consent;}
-    if(!ok){ if(firstBad&&firstBad.focus) firstBad.focus(); return; }
+    // 4.11: מציגים שגיאה אחת בכל פעם, של השדה הראשון שחסר (הקלטה 4.11: 4 שגיאות בבת אחת, הנער עזב תוך 4 שניות)
+    if(!ok){
+      form.querySelectorAll('.err,.consent-err').forEach(function(x){x.hidden=true;});
+      if(firstBad){
+        var showErr = firstBad===consent ? form.querySelector('.consent-err') : (firstBad.closest('.field')||{}).querySelector ? firstBad.closest('.field').querySelector('.err') : null;
+        if(showErr) showErr.hidden=false;
+        if(firstBad.focus) firstBad.focus();
+      }
+      return;
+    }
     // אירועי ההמרה (Lead במטא + generate_lead ב-GA4) יורים בעמוד התודה thank-you.html
     // מזהה המרה חד-פעמי לכל הגשה (dedup, מונע ספירת יתר מרענון/נחיתה חוזרת)
     const leadEventId='lead_'+Date.now()+'_'+Math.random().toString(36).slice(2,10);
