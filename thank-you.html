@@ -126,10 +126,16 @@ h1{font-family:'Karantina',sans-serif;font-weight:700;letter-spacing:.045em;font
 <script>
 /* נרשם ליום הפתוח: הודעת תודה של יום פתוח (לא שבו"ש) + שמירה ביומן */
 (function(){try{if(new URLSearchParams(location.search).get('t')!=='yom')return;
-document.getElementById('tyTitle').textContent='קיבלנו! נתראה ב-10.11';
+// 5.11: שני ימים פתוחים. התאריך נלקח מהבחירה בטופס (orot_lead_data), ברירת מחדל 10.11
+var od=''; try{ od=(JSON.parse(sessionStorage.getItem('orot_lead_data')||'{}')||{}).openday_date||''; }catch(e){}
+var dec=od.indexOf('1.12')>-1, dShort=dec?'1.12':'10.11', dHeb=dec?'כ״א בכסלו':'ל׳ בחשוון';
+document.getElementById('tyTitle').textContent='קיבלנו! נתראה ב-'+dShort;
 document.getElementById('tyLead').textContent='רועי יחזור אליך עם כל הפרטים ותיאום ההסעה';
-document.getElementById('tySub').textContent='יום שלישי, ל׳ בחשוון, בטלמון, ההסעה יוצאת ממודיעין ב-10:00, כדאי לשמור את התאריך ביומן כבר עכשיו';
-document.getElementById('tyCal').hidden=false;
+document.getElementById('tySub').textContent='יום שלישי, '+dHeb+', בטלמון, מתחילים ב-11:00 וההסעה יוצאת ממודיעין ב-10:00, כדאי לשמור את התאריך ביומן כבר עכשיו';
+var cal=document.getElementById('tyCal');
+if(dec){ cal.href=cal.href.replace(/20261110T/g,'20261201T'); cal.textContent='שמור את 1.12 ביומן'; }
+var eok=document.getElementById('tyEnrichOk'); if(eok) eok.textContent='מעולה, שמרנו. נתראה ב-'+dShort+' ✓';
+cal.hidden=false;
 document.title='נתראה ביום הפתוח · מכינת אורות';
 // השורה כבר נשלחה מהטופס בלחיצה. כאן רק משלימים ישיבה+עיר לאותה שורה (Apps Script מאתר לפי טלפון).
 // אם השורה לא נמצאת, ה-Apps Script מוסיף שורה מלאה, אז שולחים את כל פרטי הליד.
