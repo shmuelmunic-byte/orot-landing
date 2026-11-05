@@ -973,8 +973,8 @@ function wireLeadForm(form, sourceLabel){
     }
   });
 }
-wireLeadForm(document.getElementById('leadFormTop'), 'יום פתוח 10.11.26');
-wireLeadForm(document.getElementById('leadFormBottom'), 'יום פתוח 10.11.26');
+wireLeadForm(document.getElementById('leadFormTop'), 'יום פתוח (טופס עליון)');
+wireLeadForm(document.getElementById('leadFormBottom'), 'יום פתוח (טופס תחתון)');
 // ===== לחיצת וואטסאפ = פנייה: Contact + Lead במטא, generate_lead ב-GA4, ושורה בגיליון (פעם אחת בביקור) =====
 document.addEventListener('click',function(e){
   const a=e.target.closest('a[href*="wa.me"],a[href*="whatsapp"]');
