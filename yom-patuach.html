@@ -121,7 +121,8 @@ if(window.GA_MEASUREMENT_ID && window.GA_MEASUREMENT_ID!=='G-XXXXXXXXXX'){
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Heebo',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:'Heebo',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip}
+html{overflow-x:hidden;overflow-x:clip}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
@@ -183,7 +184,7 @@ header:not(.scrolled) .burger span{background:#fff;box-shadow:0 1px 4px rgba(0,8
 /* mobile: image becomes a banner that shows more of the group, text drops below on dark */
 @media(max-width:760px){
   .hero{min-height:auto;display:flex;flex-direction:column;align-items:stretch;color:#fff;background:var(--deep)}
-  .hero-bg{position:relative;inset:auto;height:46vh;min-height:300px;z-index:0}
+  .hero-bg{position:relative;inset:auto;height:46vh;height:46svh;min-height:300px;z-index:0}
   .hero-bg img{height:100%;object-position:center 30%}
   .hero::after{display:none}
   .hero-inner{padding:28px 20px 42px;background:linear-gradient(180deg,#0A67AC,#0A4C86);min-width:0}
@@ -570,7 +571,7 @@ body.sticky-on .a11y-btn{bottom:84px}
   <p class="f-sub">יום אחד באורות, פוגשים את החבר'ה ואת הצוות, מרגישים את המקום מבפנים, ואתה יודע אם זה המקום שלך לשנה הבאה</p>
 
   <div class="f-date">
-    <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#ffd98a" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/><circle cx="8" cy="14" r="1.2" fill="#ffd98a" stroke="none"/><circle cx="12" cy="14" r="1.2" fill="#ffd98a" stroke="none"/><circle cx="16" cy="14" r="1.2" fill="#ffd98a" stroke="none"/></svg>
+    <svg aria-hidden="true" width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#ffd98a" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/><circle cx="8" cy="14" r="1.2" fill="#ffd98a" stroke="none"/><circle cx="12" cy="14" r="1.2" fill="#ffd98a" stroke="none"/><circle cx="16" cy="14" r="1.2" fill="#ffd98a" stroke="none"/></svg>
     <div><div class="f-dlbl">שני ימים פתוחים · ימי שלישי</div><h2>10.11 · 1.12</h2><div class="f-dmeta">ל׳ בחשוון · כ״א בכסלו<br>מתחילים ב-11:00 · הסעה חינם ממודיעין ב-10:00<br>סיום סביב 15:45</div></div>
   </div>
 
