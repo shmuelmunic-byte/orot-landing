@@ -112,7 +112,7 @@ h1{font-family:'Karantina',sans-serif;font-weight:700;letter-spacing:.045em;font
     <div class="ef"><input id="ty-city" name="city" type="text" placeholder="עיר או יישוב מגורים" autocomplete="address-level2"><span class="eerr" hidden>נא למלא מקום מגורים</span></div>
     <button type="submit" class="btn btn-out" id="tyEnrichBtn">שמור את הפרטים</button>
   </form>
-  <p id="tyEnrichOk" class="enrich-ok" hidden>מעולה, שמרנו. נתראה ב-10.11 ✓</p>
+  <p id="tyEnrichOk" class="enrich-ok" hidden>מעולה, שמרנו. נתראה ב-1.12 ✓</p>
 
   <div class="btns">
     <a class="btn btn-cal" id="tyCal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%D7%99%D7%95%D7%9D+%D7%A4%D7%AA%D7%95%D7%97+%D7%91%D7%9E%D7%9B%D7%99%D7%A0%D7%AA+%D7%90%D7%95%D7%A8%D7%95%D7%AA%2C+%D7%98%D7%9C%D7%9E%D7%95%D7%9F&amp;dates=20261110T100000%2F20261110T154500&amp;ctz=Asia%2FJerusalem&amp;details=%D7%94%D7%A1%D7%A2%D7%94+%D7%97%D7%99%D7%A0%D7%9D+%D7%99%D7%95%D7%A6%D7%90%D7%AA+%D7%9E%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F+%D7%91-10%3A00%2C+%D7%A1%D7%99%D7%95%D7%9D+%D7%9E%D7%A9%D7%95%D7%A2%D7%A8+%D7%A1%D7%91%D7%99%D7%91+15%3A45%2C+%D7%9C%D7%A9%D7%90%D7%9C%D7%95%D7%AA+%D7%A8%D7%95%D7%A2%D7%99+%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4+054-2520537&amp;location=%D7%9E%D7%9B%D7%99%D7%A0%D7%AA+%D7%90%D7%95%D7%A8%D7%95%D7%AA%2C+%D7%98%D7%9C%D7%9E%D7%95%D7%9F" target="_blank" rel="noopener" hidden>שמור את 10.11 ביומן</a>
@@ -128,7 +128,7 @@ h1{font-family:'Karantina',sans-serif;font-weight:700;letter-spacing:.045em;font
 (function(){try{if(new URLSearchParams(location.search).get('t')!=='yom')return;
 // 5.11: שני ימים פתוחים. התאריך נלקח מהבחירה בטופס (orot_lead_data), ברירת מחדל 10.11
 var od=''; try{ od=(JSON.parse(sessionStorage.getItem('orot_lead_data')||'{}')||{}).openday_date||''; }catch(e){}
-var dec=od.indexOf('1.12')>-1, dShort=dec?'1.12':'10.11', dHeb=dec?'כ״א בכסלו':'ל׳ בחשוון';
+var dec=od.indexOf('10.11')===-1, /* מ-10.11 ברירת המחדל 1.12 */ dShort=dec?'1.12':'10.11', dHeb=dec?'כ״א בכסלו':'ל׳ בחשוון';
 document.getElementById('tyTitle').textContent='קיבלנו! נתראה ב-'+dShort;
 document.getElementById('tyLead').textContent='רועי יחזור אליך עם כל הפרטים ותיאום ההסעה';
 document.getElementById('tySub').textContent='יום שלישי, '+dHeb+', בטלמון, מתחילים ב-11:00 וההסעה יוצאת ממודיעין ב-10:00, כדאי לשמור את התאריך ביומן כבר עכשיו';
