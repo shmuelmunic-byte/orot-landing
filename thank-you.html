@@ -128,12 +128,12 @@ h1{font-family:'Karantina',sans-serif;font-weight:700;letter-spacing:.045em;font
 (function(){try{if(new URLSearchParams(location.search).get('t')!=='yom')return;
 // 5.11: שני ימים פתוחים. התאריך נלקח מהבחירה בטופס (orot_lead_data), ברירת מחדל 10.11
 var od=''; try{ od=(JSON.parse(sessionStorage.getItem('orot_lead_data')||'{}')||{}).openday_date||''; }catch(e){}
-var dec=od.indexOf('10.11')===-1, /* מ-10.11 ברירת המחדל 1.12 */ dShort=dec?'1.12':'10.11', dHeb=dec?'כ״א בכסלו':'ל׳ בחשוון';
+var tev=od.indexOf('30.12')>-1, /* 11.11: נוסף 30.12, ברירת המחדל 1.12 */ dec=!tev, dShort=tev?'30.12':'1.12', dHeb=tev?'כ׳ בטבת':'כ״א בכסלו', dDay=tev?'יום רביעי':'יום שלישי';
 document.getElementById('tyTitle').textContent='קיבלנו! נתראה ב-'+dShort;
 document.getElementById('tyLead').textContent='רועי יחזור אליך עם כל הפרטים ותיאום ההסעה';
-document.getElementById('tySub').textContent='יום שלישי, '+dHeb+', בטלמון, מתחילים ב-11:00 וההסעה יוצאת ממודיעין ב-10:00, כדאי לשמור את התאריך ביומן כבר עכשיו';
+document.getElementById('tySub').textContent=dDay+', '+dHeb+', בטלמון, מתחילים ב-11:00 וההסעה יוצאת ממודיעין ב-10:00, כדאי לשמור את התאריך ביומן כבר עכשיו';
 var cal=document.getElementById('tyCal');
-if(dec){ cal.href=cal.href.replace(/20261110T/g,'20261201T'); cal.textContent='שמור את 1.12 ביומן'; }
+cal.href=cal.href.replace(/20261110T/g,tev?'20261230T':'20261201T'); cal.textContent='שמור את '+dShort+' ביומן';
 var eok=document.getElementById('tyEnrichOk'); if(eok) eok.textContent='מעולה, שמרנו. נתראה ב-'+dShort+' ✓';
 cal.hidden=false;
 document.title='נתראה ביום הפתוח · מכינת אורות';
